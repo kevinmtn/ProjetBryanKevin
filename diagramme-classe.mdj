@@ -1545,7 +1545,7 @@
 											"top": 125,
 											"width": 136.6904296875,
 											"height": 13,
-											"text": "+creditCost: int",
+											"text": "+creditCost: float",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4353,7 +4353,7 @@
 								"$ref": "AAAAAAGEWEHaNIy1Z7M="
 							},
 							"name": "creditCost",
-							"type": "int"
+							"type": "float"
 						},
 						{
 							"_type": "UMLAttribute",
