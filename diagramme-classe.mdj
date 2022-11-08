@@ -1545,7 +1545,7 @@
 											"top": 125,
 											"width": 136.6904296875,
 											"height": 13,
-											"text": "+string: creditCost",
+											"text": "+creditCost: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4352,8 +4352,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGEWEHaNIy1Z7M="
 							},
-							"name": "string",
-							"type": "creditCost"
+							"name": "creditCost",
+							"type": "int"
 						},
 						{
 							"_type": "UMLAttribute",
