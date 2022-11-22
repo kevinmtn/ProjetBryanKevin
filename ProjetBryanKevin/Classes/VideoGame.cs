@@ -9,15 +9,19 @@ namespace ProjetBryanKevin.Classes
 {
     public class VideoGame
     {
+        private int idVideoGame;
         private string name;
         private int creditCost;
         private string console;
+       
+      
 
-        public VideoGame(string name, int creditCost, string console)
+        public VideoGame(string name, int creditCost, string console, int idVideoGame)
         {
             this.name = name;
             this.creditCost = creditCost;
             this.console = console;
+            this.idVideoGame = idVideoGame;
         }
 
         public string Name { 
@@ -34,6 +38,12 @@ namespace ProjetBryanKevin.Classes
         {
             get { return this.console; }
             set { this.console = value; }
+        }
+
+        public int IdVideoGame
+        {
+            get { return this.idVideoGame; }
+            set { this.idVideoGame = value; }
         }
     }
 }
