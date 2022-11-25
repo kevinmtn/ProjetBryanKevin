@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace ProjetBryanKevin.Classes
 {
@@ -13,15 +14,19 @@ namespace ProjetBryanKevin.Classes
         private string name;
         private int creditCost;
         private string console;
-       
-      
 
-        public VideoGame(string name, int creditCost, string console, int idVideoGame)
+
+        public VideoGame()
         {
+
+        }
+        public VideoGame(int idVideoGame,string name, int creditCost, string console)
+        {
+            this.idVideoGame = idVideoGame;
             this.name = name;
             this.creditCost = creditCost;
             this.console = console;
-            this.idVideoGame = idVideoGame;
+          
         }
 
         public string Name { 
