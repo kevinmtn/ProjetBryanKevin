@@ -22,17 +22,17 @@ namespace ProjetBryanKevin.DAO
 
         public override List<Administrator> DisplayAll()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public override Administrator Find(int id)
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         public override bool Update(Administrator obj)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

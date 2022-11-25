@@ -10,11 +10,13 @@ namespace ProjetBryanKevin.Classes
     {
         private int idCopy;
         private VideoGame videoGame;
+        private Player player;
 
-        public Copy(int idCopy, VideoGame videoGame)
+        public Copy(int idCopy, VideoGame videoGame, Player player)
         {
             this.idCopy = idCopy;
             this.videoGame = videoGame;
+            this.player = player;
         }
 
         public int IdCopy
@@ -29,6 +31,11 @@ namespace ProjetBryanKevin.Classes
             set { videoGame = value; }
         }
 
+        public Player Player
+        {
+            get { return player; }
+            set { player = value; }
+        }
 
     }
 }
