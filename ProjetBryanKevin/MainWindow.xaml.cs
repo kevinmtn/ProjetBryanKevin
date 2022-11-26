@@ -1,4 +1,6 @@
-﻿using ProjetBryanKevin.DAO;
+﻿using ProjetBryanKevin.Classes;
+using ProjetBryanKevin.DAO;
+using ProjetBryanKevin.Factory;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -22,6 +24,7 @@ namespace ProjetBryanKevin
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow instance;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,59 +38,50 @@ namespace ProjetBryanKevin
 
             switch (ConnexionChoice.Text)
             {
-                case "Membre":
-                    DAO<Member> memberDAO = adf.GetMemberDAO();
-                    Member memb = memberDAO.VerificationConnection(login, password);
+                case "Administrateur":
+                    DAO<Administrator> daoAdministrator = adf.GetAdministratorDAO();
+                    Administrator administrator= daoAdministrator.VerificationConnection(login, password);
 
-                    if (memb == null)
+                    if (administrator == null)
                     {
                         ErrorMessageForLogin();
                     }
                     else
                     {
-                        WindowForMember wfm = new WindowForMember(memb);
+                        AdministratorWindow wfm = new AdministratorWindow(administrator);
                         wfm.Show();
                         this.Close();
                     }
 
                     break;
 
-                case "Trésorier":
-                    DAO<Treasurer> treasurerDAO = adf.GetTreasurerDAO();
-                    Treasurer tres = treasurerDAO.VerificationConnection(login, password);
+                case "Utilisateur":
+                    DAO<Player> daoPlayer = adf.GetPlayerDAO();
+                    Player player= daoPlayer.VerificationConnection(login, password);
 
-                    if (tres == null)
+                    if (player == null)
                     {
                         ErrorMessageForLogin();
                     }
 
                     else
                     {
-                        WindowForTreasurer wft = new WindowForTreasurer(tres);
+                        PlayerWindow wft = new PlayerWindow(player);
                         wft.Show();
                         this.Close();
                     }
 
                     break;
 
-                case "Responsable":
-                    DAO<Responsible> responsibleDAO = adf.GetResponsibleDAO();
-                    Responsible resp = responsibleDAO.VerificationConnection(login, password);
-
-                    if (resp == null)
-                    {
-                        ErrorMessageForLogin();
-                    }
-                    else
-                    {
-                        WindowForResponsible wfr = new WindowForResponsible(resp);
-                        wfr.Show();
-                        this.Close();
-                    }
-
-                    break;
             }
 
+        }
+
+        private void ErrorMessageForLogin()
+        {
+            Pseudo.Text = "";
+            Password.Clear();
+            MessageBox.Show("Votre pseudo ou votre login est incorrect", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

@@ -8,9 +8,9 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/background.png" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="./Image/background.png" Stretch="none"/>
         </Grid.Background>
-        <Grid HorizontalAlignment="Center" Height="353" VerticalAlignment="Top" Width="730" Margin="0,52,0,0">
+        <Grid HorizontalAlignment="Center" Height="354" VerticalAlignment="Top" Width="760" Margin="0,51,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="162*"/>
                 <ColumnDefinition Width="203*"/>
