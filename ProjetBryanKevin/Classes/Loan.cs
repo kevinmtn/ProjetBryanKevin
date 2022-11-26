@@ -16,15 +16,21 @@ namespace ProjetBryanKevin.Classes
         private Player borrower;
         private Copy copy;
 
-        public Loan(DateTime startDate, DateTime endDate, bool onGoing, int idLoan,Player lender, Player borrower, Copy copy)
+        public Loan(int idLoan, DateTime startDate, DateTime endDate, bool onGoing, Player lender, Player borrower, Copy copy)
         {
+            this.idLoan = idLoan;
             this.startDate = startDate;
             this.endDate = endDate;
             this.onGoing = onGoing;
-            this.idLoan = idLoan;
             this.copy = copy;
             this.borrower = borrower;
             this.lender = lender;
+        }
+
+        public int IdLoan
+        {
+            get { return idLoan; }
+            set { this.idLoan = value; }
         }
 
         public DateTime StartDate {
@@ -43,12 +49,6 @@ namespace ProjetBryanKevin.Classes
         public bool OnGoing { 
             get { return onGoing; } 
             set { onGoing= value; } 
-        }
-
-        public int IdLoan
-        {
-            get { return idLoan; }
-            set { this.idLoan = value; }
         }
 
         public Player Lender

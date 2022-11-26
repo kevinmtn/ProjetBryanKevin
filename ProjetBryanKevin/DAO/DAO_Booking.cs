@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjetBryanKevin.DAO
 {
+
     class DAO_Booking : DAO<Booking>
     {
         public DAO_Booking() { }
@@ -43,9 +44,33 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public override bool Delete(Booking obj)
+        public override bool Delete(Booking booking)
         {
-            return false;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("DELETE FROM dbo.Booking WHERE idBooking=@id", connection);
+                    cmd.Parameters.AddWithValue("id", booking.IdBooking);
+
+                    connection.Open();
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    if (result < 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
         }
 
         public override List<Booking> DisplayAll()
@@ -61,6 +86,11 @@ namespace ProjetBryanKevin.DAO
         public override bool Update(Booking obj)
         {
             throw new NotImplementedException();
+        }
+
+        public override Booking VerificationConnection(string username, string password)
+        {
+            return null;
         }
     }
 }

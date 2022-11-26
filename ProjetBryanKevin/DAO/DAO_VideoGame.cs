@@ -47,9 +47,33 @@ namespace ProjetBryanKevin.DAO
 
    
 
-        public override bool Delete(VideoGame obj)
+        public override bool Delete(VideoGame videoGame)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("DELETE FROM dbo.VideoGame WHERE idVideoGame=@id", connection);
+                    cmd.Parameters.AddWithValue("id", videoGame.IdVideoGame);
+
+                    connection.Open();
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    if (result < 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
         }
 
 
@@ -132,7 +156,12 @@ namespace ProjetBryanKevin.DAO
 
         public override bool Update(VideoGame obj)
         {
-            throw new NotImplementedException();
+            return false;
+        }
+
+        public override VideoGame VerificationConnection(string username, string password)
+        {
+            return null;
         }
     }
 }

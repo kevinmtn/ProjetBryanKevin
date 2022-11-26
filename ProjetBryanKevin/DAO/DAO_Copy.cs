@@ -37,5 +37,10 @@ namespace ProjetBryanKevin.DAO
         {
             throw new NotImplementedException();
         }
+
+        public override Copy VerificationConnection(string username, string password)
+        {
+            return null;
+        }
     }
 }

@@ -81,7 +81,6 @@ namespace ProjetBryanKevin.DAO
                                 );
                             players.Add(player);
                         }
-
                     }
                 }
             }
@@ -121,7 +120,6 @@ namespace ProjetBryanKevin.DAO
                                 reader.GetDateTime("dateOfBirth")
                                 );
                         }
-
                     }
                 }
             }
@@ -136,7 +134,48 @@ namespace ProjetBryanKevin.DAO
 
         public override bool Update(Player obj)
         {
-            throw new NotImplementedException();
+            return false;
+        }
+
+        public override Player VerificationConnection(string username, string password)
+        {
+
+            Player player = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE userName = @userName AND password = @password", connection);
+                    cmd.Parameters.AddWithValue("username", username);
+                    cmd.Parameters.AddWithValue("password", password);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            player = new Player
+                            (
+                                reader.GetInt32("idUser"),
+                                reader.GetString("userName"),
+                                reader.GetString("password"),
+                                reader.GetInt32("credit"),
+                                reader.GetString("pseudo"),
+                                reader.GetDateTime("registrationDate"),
+                                reader.GetDateTime("dateOfBirth")
+                            );
+                        }
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Une erreur SQL est survenue !");
+            }
+
+            return player;
         }
     }
 }

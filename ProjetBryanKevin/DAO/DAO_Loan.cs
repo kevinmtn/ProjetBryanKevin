@@ -1,6 +1,7 @@
 ﻿using ProjetBryanKevin.Classes;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,6 @@ namespace ProjetBryanKevin.DAO
     {
         public DAO_Loan()
         {
-
         }
         public override bool Create(Loan loan)
         {
@@ -47,9 +47,33 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public override bool Delete(Loan obj)
+        public override bool Delete(Loan loan)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("DELETE FROM dbo.Loan WHERE idLoan=@id", connection);
+                    cmd.Parameters.AddWithValue("id", loan.IdLoan);
+
+                    connection.Open();
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    if (result < 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
         }
 
         public override List<Loan> DisplayAll()
@@ -59,12 +83,20 @@ namespace ProjetBryanKevin.DAO
 
         public override Loan Find(int id)
         {
-            throw new NotImplementedException();
+            Loan loan = null;
+
+            return null;
+
         }
 
         public override bool Update(Loan obj)
         {
             throw new NotImplementedException();
+        }
+
+        public override Loan VerificationConnection(string username, string password)
+        {
+            return null;
         }
     }
 }
