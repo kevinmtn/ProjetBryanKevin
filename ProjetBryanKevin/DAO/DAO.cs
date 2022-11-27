@@ -13,7 +13,7 @@ namespace ProjetBryanKevin.DAO
 
         public DAO()
         {
-            this.connectionString = ConfigurationManager.ConnectionStrings["BD_Kevin_Bryan"].ConnectionString;
+            this.connectionString = ConfigurationManager.ConnectionStrings["DB_Bryan_Kevin"].ConnectionString;
         }
 
         public abstract bool Create(T obj);

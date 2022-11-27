@@ -137,7 +137,7 @@ namespace ProjetBryanKevin.DAO
             return false;
         }
 
-        public override Player VerificationConnection(string username, string password)
+        public override Player VerificationConnection(string pseudo, string password)
         {
 
             Player player = null;
@@ -146,8 +146,8 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE userName = @userName AND password = @password", connection);
-                    cmd.Parameters.AddWithValue("username", username);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE pseudo = @pseudo AND password = @password", connection);
+                    cmd.Parameters.AddWithValue("pseudo", pseudo);
                     cmd.Parameters.AddWithValue("password", password);
 
                     connection.Open();
@@ -158,8 +158,8 @@ namespace ProjetBryanKevin.DAO
                         {
                             player = new Player
                             (
-                                reader.GetInt32("idUser"),
-                                reader.GetString("userName"),
+                                reader.GetInt32("idPlayer"),
+                                reader.GetString("username"),
                                 reader.GetString("password"),
                                 reader.GetInt32("credit"),
                                 reader.GetString("pseudo"),
