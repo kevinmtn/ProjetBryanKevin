@@ -11,6 +11,7 @@ namespace ProjetBryanKevin.Classes
         private int id;
         private string userName;
         private string password;
+       
 
 
         public User(int id, string userName, string password)

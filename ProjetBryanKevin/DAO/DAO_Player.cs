@@ -77,7 +77,8 @@ namespace ProjetBryanKevin.DAO
                                 reader.GetInt32("credit"),
                                 reader.GetString("pseudo"),
                                 reader.GetDateTime("registrationDate"),
-                                reader.GetDateTime("dateOfBirth")
+                                reader.GetDateTime("dateOfBirth"),
+                                reader.GetBoolean("isAdmin")
                                 );
                             players.Add(player);
                         }
@@ -117,7 +118,8 @@ namespace ProjetBryanKevin.DAO
                                 reader.GetInt32("credit"),
                                 reader.GetString("pseudo"),
                                 reader.GetDateTime("registrationDate"),
-                                reader.GetDateTime("dateOfBirth")
+                                reader.GetDateTime("dateOfBirth"),
+                                reader.GetBoolean("isAdmin")
                                 );
                         }
                     }
@@ -164,7 +166,8 @@ namespace ProjetBryanKevin.DAO
                                 reader.GetInt32("credit"),
                                 reader.GetString("pseudo"),
                                 reader.GetDateTime("registrationDate"),
-                                reader.GetDateTime("dateOfBirth")
+                                reader.GetDateTime("dateOfBirth"),
+                                reader.GetBoolean("isAdmin")
                             );
                         }
                     }

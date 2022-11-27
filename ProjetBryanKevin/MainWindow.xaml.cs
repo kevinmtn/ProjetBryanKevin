@@ -81,7 +81,7 @@ namespace ProjetBryanKevin
         {
             Pseudo.Text = "";
             Password.Clear();
-            MessageBox.Show("Votre pseudo ou votre login est incorrect", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show("Votre pseudo ou votre mot de passe est incorrect", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

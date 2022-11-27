@@ -13,8 +13,9 @@ namespace ProjetBryanKevin.Classes
         private string pseudo;
         private DateTime registrationDate;
         private DateTime dateOfBirth;
+        private bool isAdmin;
 
-        public Player(int id, string userName, string password, int credit, string pseudo, DateTime registrationDate, DateTime dateOfBirth) : base(id, userName, password)
+        public Player(int id, string userName, string password, int credit, string pseudo, DateTime registrationDate, DateTime dateOfBirth, bool isAdmin) : base(id, userName, password)
         {
 
             base.Id = id;
@@ -24,6 +25,7 @@ namespace ProjetBryanKevin.Classes
             this.pseudo = pseudo;
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
+            this.isAdmin = isAdmin;
         }
 
         public int Credit
@@ -47,6 +49,12 @@ namespace ProjetBryanKevin.Classes
         {
             get { return dateOfBirth; }
             set{ dateOfBirth = value;}
+        }
+
+        public bool IsAdmin
+        {
+            get { return isAdmin;}
+            set { isAdmin = value; }
         }
     }
 }
