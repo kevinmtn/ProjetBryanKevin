@@ -20,7 +20,7 @@ namespace ProjetBryanKevin.Pages.Player
     /// </summary>
     public partial class PlayerHome : Page
     {
-        public PlayerHome()
+        public PlayerHome(Classes.Player play)
         {
             InitializeComponent();
         }

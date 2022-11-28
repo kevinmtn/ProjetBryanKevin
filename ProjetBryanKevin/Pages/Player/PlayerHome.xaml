@@ -10,7 +10,7 @@
       Background="White">
 
     <Grid>
-        <Label Content="Accueil utilisateur" HorizontalAlignment="Center" Margin="0,120,0,0" VerticalAlignment="Top" Background="#FFC81919"/>
+        <Label Content="Bienvenue" HorizontalAlignment="Center" Margin="0,183,0,0" VerticalAlignment="Top" Background="{x:Null}"/>
 
     </Grid>
 </Page>

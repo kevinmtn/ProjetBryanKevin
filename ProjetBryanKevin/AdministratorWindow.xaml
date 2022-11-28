@@ -13,6 +13,8 @@
                 </MenuItem>
                 <MenuItem Header="_Options" Foreground="White">
                     <MenuItem Header="_Accueil" Click="menuHome"/>
+                    <MenuItem Header="_Voir les jeux disponibles" Click="menuVideoGame"/>
+                    
                  
                 </MenuItem>
             </Menu>

@@ -1,4 +1,5 @@
 ﻿using ProjetBryanKevin.Classes;
+using ProjetBryanKevin.Pages.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,17 +27,25 @@ namespace ProjetBryanKevin
         {
             InitializeComponent();
             play= player;
-            
-
         }
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Vous êtes déconnecté");
+            MessageBox.Show("Vous  vous êtes déconnecté");
 
             MainWindow main = new MainWindow();
             main.Show();
             this.Close();
+        }
+
+        private void Main_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
+
+        private void menuHome(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new PlayerHome(play);
         }
     }
 }

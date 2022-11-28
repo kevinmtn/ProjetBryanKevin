@@ -48,5 +48,10 @@ namespace ProjetBryanKevin
         {
             Main.Content = new AdministratorHome(admin);
         }
+
+        private void menuVideoGame(Object sender, RoutedEventArgs e)
+        {
+           
+        }
     }
 }

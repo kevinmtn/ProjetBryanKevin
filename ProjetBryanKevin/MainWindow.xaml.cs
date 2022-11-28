@@ -70,11 +70,8 @@ namespace ProjetBryanKevin
                         wft.Show();
                         this.Close();
                     }
-
                     break;
-
             }
-
         }
 
         private void ErrorMessageForLogin()
