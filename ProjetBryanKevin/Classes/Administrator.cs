@@ -10,6 +10,9 @@ namespace ProjetBryanKevin.Classes
     {
         public Administrator(int id, string userName, string password) : base(id, userName, password)
         {
+            base.Id = id;
+            base.UserName = userName;
+            base.Password = password;
         }
     }
 }

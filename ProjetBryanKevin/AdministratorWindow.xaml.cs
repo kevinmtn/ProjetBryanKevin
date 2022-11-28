@@ -21,12 +21,13 @@ namespace ProjetBryanKevin
     /// </summary>
     public partial class AdministratorWindow : Window
     {
-        Administrator administrator;
+        Administrator admin;
 
         public AdministratorWindow(Administrator administrator)
         {
             InitializeComponent();
-            this.administrator = administrator;  
+            admin = administrator;
+           
         }
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
@@ -38,5 +39,14 @@ namespace ProjetBryanKevin
             this.Close();
         }
 
+        private void Main_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
+        {
+
+        }
+
+        private void menuHome(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new AdministratorHome(admin);
+        }
     }
 }

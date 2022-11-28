@@ -26,6 +26,7 @@ namespace ProjetBryanKevin
         {
             InitializeComponent();
             play= player;
+            
 
         }
 
