@@ -117,7 +117,7 @@ namespace ProjetBryanKevin.DAO
                         {
                             administrator = new Administrator
                             (
-                                reader.GetInt32("idUser"),
+                                reader.GetInt32("idAdministrator"),
                                 reader.GetString("username"),
                                 reader.GetString("password")
                                 
