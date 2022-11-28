@@ -26,9 +26,7 @@ namespace ProjetBryanKevin
         public AdministratorWindow(Administrator administrator)
         {
             InitializeComponent();
-            this.administrator = administrator;
-
-           
+            this.administrator = administrator;  
         }
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
