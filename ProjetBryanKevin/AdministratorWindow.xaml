@@ -12,8 +12,8 @@
                 <MenuItem Header="_Deconnexion" Click="menuDisconnect" Foreground="White">
                 </MenuItem>
                 <MenuItem Header="_Options" Foreground="White">
-                    <MenuItem Header="_Accueil" Click="menuHome"/>
-                    <MenuItem Header="_Voir les jeux disponibles" Click="menuVideoGame"/>
+                    <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
+                    <MenuItem Header="_Voir les jeux disponibles" Click="menuVideoGame" Foreground="Black"/>
                     
                  
                 </MenuItem>
