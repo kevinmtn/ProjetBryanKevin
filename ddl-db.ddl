@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS Booking;
 DROP TABLE IF EXISTS VideoGame;
 DROP TABLE IF EXISTS Copy;
 DROP TABLE IF EXISTS Loan;
+DROP TABLE IF EXISTS Administrator;
 
 
 CREATE TABLE Player (
@@ -52,6 +53,12 @@ CREATE TABLE Loan (
     PRIMARY KEY (idLoan)
 );
 
+CREATE TABLE Administrator(
+	idAdministrator INTEGER NOT NULL,
+	username VARCHAR(50) NOT NULL,
+	password VARCHAR(50) NOT NULL,
+	PRIMARY KEY (idAdministrator)
+);
 
 ALTER TABLE Booking ADD FOREIGN KEY (idPlayer) REFERENCES Player(idPlayer);
 ALTER TABLE Booking ADD FOREIGN KEY (idVideoGame) REFERENCES VideoGame(idVideoGame);
