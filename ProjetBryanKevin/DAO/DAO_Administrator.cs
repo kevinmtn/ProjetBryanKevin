@@ -23,8 +23,38 @@ namespace ProjetBryanKevin.DAO
 
         public override List<Administrator> DisplayAll()
         {
-            return null;
+            List<Administrator> administrators = new List<Administrator>();
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Administrator");
+                  
+                    connection.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Administrator administrator = new Administrator(
+                                 reader.GetInt32("idAdministrator"),
+                                reader.GetString("username"),
+                                reader.GetString("password")
+                                );
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Une erreur sql est survenue !");
+            }
+
+            return administrators;
         }
+
 
         public override Administrator Find(int id)
         {
@@ -34,7 +64,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE idPlayer = @id", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Administrator WHERE idAdministrator = @id", connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
 
@@ -44,8 +74,8 @@ namespace ProjetBryanKevin.DAO
                         {
 
                             administrator = new Administrator(
-                                reader.GetInt32("idPlayer"),
-                                reader.GetString("userName"),
+                                reader.GetInt32("idAdministrator"),
+                                reader.GetString("username"),
                                 reader.GetString("password")
                                 );
                         }
@@ -75,7 +105,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.User WHERE userName = @userName AND password = @password", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Administrator WHERE username = @username AND password = @password", connection);
                     cmd.Parameters.AddWithValue("username", username);
                     cmd.Parameters.AddWithValue("password", password);
 
@@ -88,7 +118,7 @@ namespace ProjetBryanKevin.DAO
                             administrator = new Administrator
                             (
                                 reader.GetInt32("idUser"),
-                                reader.GetString("userName"),
+                                reader.GetString("username"),
                                 reader.GetString("password")
                                 
                             );
