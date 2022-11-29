@@ -55,7 +55,7 @@ namespace ProjetBryanKevin
 
                     break;
 
-                case "Utilisateur":
+                case "Participant":
                     DAO<Player> daoPlayer = adf.GetPlayerDAO();
                     Player player= daoPlayer.VerificationConnection(login, password);
 

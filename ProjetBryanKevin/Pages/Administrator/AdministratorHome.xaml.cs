@@ -18,10 +18,19 @@ namespace ProjetBryanKevin.Pages.Administrator
     /// </summary>
     public partial class AdministratorHome : Page
     {
+        AdministratorHome administrator;
         
         public AdministratorHome(Classes.Administrator admin)
         {
             InitializeComponent();
+            administrator = admin;
+            Connection.Text = "Connecté en tant que Membre";
+            Name.Text = admin.UserName;
+        }
+
+        public static implicit operator AdministratorHome(Classes.Administrator v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

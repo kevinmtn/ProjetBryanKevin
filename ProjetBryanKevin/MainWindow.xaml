@@ -30,7 +30,7 @@
             <Button x:Name="Connexion" Click="ButtonClicked" Content="Se connecter" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,290,0,0" Height="42" Width="114" Background="#FF522C0C" Foreground="White" Grid.Column="1"/>
             <ComboBox Name="ConnexionChoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="217,225,0,0" Height="29" FontSize="14">
                 <ComboBoxItem IsSelected="True">Administrateur</ComboBoxItem>
-                <ComboBoxItem>Utilisateur</ComboBoxItem>
+                <ComboBoxItem>Participant</ComboBoxItem>
 
             </ComboBox>
 

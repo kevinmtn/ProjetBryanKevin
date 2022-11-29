@@ -38,14 +38,15 @@ namespace ProjetBryanKevin
             this.Close();
         }
 
-        private void Main_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-
-        }
 
         private void menuHome(Object sender, RoutedEventArgs e)
         {
             Main.Content = new PlayerHome(play);
+        }
+
+        private void seeVideoGames(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new VideoGameAvailable();
         }
     }
 }

@@ -10,7 +10,8 @@
       Background="White">
 
     <Grid>
-        <Label Content="Bienvenue" HorizontalAlignment="Center" Margin="0,183,0,0" VerticalAlignment="Top" Background="{x:Null}"/>
+        <TextBlock Name="Connection" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,50,0,0" FontSize="20" Foreground="#FF1D1717"/>
+        <TextBlock Name="Name" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,128,0,0" FontSize="20"/>
 
     </Grid>
 </Page>

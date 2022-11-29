@@ -22,6 +22,7 @@ namespace ProjetBryanKevin
     public partial class AdministratorWindow : Window
     {
         Administrator admin;
+        VideoGame video;
 
         public AdministratorWindow(Administrator administrator)
         {
@@ -39,11 +40,6 @@ namespace ProjetBryanKevin
             this.Close();
         }
 
-        private void Main_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-
-        }
-
         private void menuHome(Object sender, RoutedEventArgs e)
         {
             Main.Content = new AdministratorHome(admin);
@@ -51,7 +47,7 @@ namespace ProjetBryanKevin
 
         private void menuVideoGame(Object sender, RoutedEventArgs e)
         {
-           
+            Main.Content = new UpdateVideoGameCredit(video);
         }
     }
 }

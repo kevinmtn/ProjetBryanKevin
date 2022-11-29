@@ -13,13 +13,13 @@
                 </MenuItem>
                 <MenuItem Header="_Options" Foreground="White">
                     <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
-                    <MenuItem Header="_Voir les jeux disponibles" Foreground="Black"/>
-                    <MenuItem Header="_Mes reservations"  Foreground="Black"/>
-                    <MenuItem Header="_Louer un jeux"  Foreground="Black"/>
+                    <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="Black"/>
+                    <MenuItem Header="_Mes réservations"  Foreground="Black"/>
+                    <MenuItem Header="_Preter un jeux"  Foreground="Black"/>
 
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Frame Name="Main" Margin="0,20,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" Navigated="Main_Navigated"/>
+        <Frame Name="Main" Margin="0,20,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
     </Grid>
 </Window>

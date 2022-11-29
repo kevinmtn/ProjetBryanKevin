@@ -1,7 +1,8 @@
-﻿using ProjetBryanKevin.Classes;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,22 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 namespace ProjetBryanKevin.Pages.Player
 {
     /// <summary>
-    /// Logique d'interaction pour PlayerHome.xaml
+    /// Logique d'interaction pour VideoGameAvailable.xaml
     /// </summary>
-    public partial class PlayerHome : Page
+    public partial class VideoGameAvailable : Page
     {
-        PlayerHome play;
-
-        public PlayerHome(Classes.Player player)
+        public VideoGameAvailable()
         {
             InitializeComponent();
-            player = play;
-            
-            Connection.Text = "Connecté en tant que Responsable";
-            Name.Text = player.UserName;
         }
     }
 }

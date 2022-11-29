@@ -14,11 +14,9 @@
                 <MenuItem Header="_Options" Foreground="White">
                     <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
                     <MenuItem Header="_Voir les jeux disponibles" Click="menuVideoGame" Foreground="Black"/>
-                    
-                 
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Frame Name="Main" Margin="0,20,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" Navigated="Main_Navigated"/>
+        <Frame Name="Main" Margin="0,20,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
     </Grid>
 </Window>

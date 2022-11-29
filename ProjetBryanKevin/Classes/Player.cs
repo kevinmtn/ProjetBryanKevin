@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetBryanKevin.Pages.Player;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,9 @@ namespace ProjetBryanKevin.Classes
             set{ dateOfBirth = value;}
         }
 
-     
+        public static implicit operator Player?(PlayerHome? v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
