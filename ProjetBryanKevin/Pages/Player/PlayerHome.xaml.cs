@@ -23,10 +23,7 @@ namespace ProjetBryanKevin.Pages.Player
         public PlayerHome(Classes.Player player)
         {
             InitializeComponent();
-            player = play;
             
-            Connection.Text = "Connecté en tant que Responsable";
-            Name.Text = player.UserName;
         }
     }
 }

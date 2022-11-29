@@ -52,9 +52,6 @@ namespace ProjetBryanKevin.Classes
             set{ dateOfBirth = value;}
         }
 
-        public static implicit operator Player?(PlayerHome? v)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }
