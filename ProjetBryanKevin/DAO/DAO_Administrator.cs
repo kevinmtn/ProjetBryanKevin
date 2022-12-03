@@ -72,7 +72,6 @@ namespace ProjetBryanKevin.DAO
                     {
                         if (reader.Read())
                         {
-
                             administrator = new Administrator(
                                 reader.GetInt32("idAdministrator"),
                                 reader.GetString("username"),

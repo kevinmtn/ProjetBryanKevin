@@ -21,7 +21,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Player(pseudo,registrationDate,dateOfBirth, IdUser) VALUES (@pseudo,@registrationDate,@dateOfBirth,@idUser)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Users(pseudo,registrationDate,dateOfBirth, IdUser) VALUES (@pseudo,@registrationDate,@dateOfBirth,@idUser)", connection);
                     cmd.Parameters.AddWithValue("pseudo", player.Pseudo);
                     cmd.Parameters.AddWithValue("registrationDate", player.RegistrationDate);
                     cmd.Parameters.AddWithValue("dateOfBirth", player.DateOfBirth);
@@ -61,7 +61,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Users", connection);
                     
                     connection.Open();
 
@@ -103,7 +103,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using(SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE idPlayer = @id", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Users WHERE idPlayer = @id", connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
 
@@ -147,7 +147,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE pseudo = @pseudo AND password = @password", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Users WHERE pseudo = @pseudo AND password = @password", connection);
                     cmd.Parameters.AddWithValue("pseudo", pseudo);
                     cmd.Parameters.AddWithValue("password", password);
 
