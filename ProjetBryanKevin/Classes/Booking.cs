@@ -13,6 +13,13 @@ namespace ProjetBryanKevin.Classes
         private Player booker;
         private VideoGame videoGame;
 
+        public Booking(Player booker, VideoGame videoGame, DateTime bookingDate)
+        {
+            this.booker = booker;
+            this.videoGame = videoGame;
+            this.bookingDate = bookingDate;
+        }
+
         public Booking(int idBooking, DateTime bookingDate, Player booker, VideoGame videoGame )
         {
             this.bookingDate = bookingDate;
