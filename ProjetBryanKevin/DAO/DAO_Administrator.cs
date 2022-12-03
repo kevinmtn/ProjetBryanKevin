@@ -11,12 +11,12 @@ namespace ProjetBryanKevin.DAO
     {
         public DAO_Administrator() { }
 
-        public override bool Create (Administrator obj)
+        public override bool Create (Administrator admin)
         {
             return false;
         }
 
-        public override bool Delete (Administrator obj)
+        public override bool Delete (Administrator admin)
         {
             return false;
         }
@@ -91,7 +91,7 @@ namespace ProjetBryanKevin.DAO
         }
 
 
-        public override bool Update(Administrator obj)
+        public override bool Update(Administrator admin)
         {
             return false;
         }
