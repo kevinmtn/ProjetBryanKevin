@@ -44,7 +44,7 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-                throw new Exception(e.Message.ToString());
+                throw new Exception(e.Message);
             }
         }
 
@@ -62,7 +62,6 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Users", connection);
-                    
                     connection.Open();
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -87,10 +86,8 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-
                 throw new Exception("Une erreur sql est survenue !");
             }
-
             return players;
         }
 
@@ -133,9 +130,30 @@ namespace ProjetBryanKevin.DAO
             return player;
         }
 
-        public override bool Update(Player obj)
+        public override bool Update(Player updatedPlayer)
         {
-            return false;
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE dbo.Player SET pseudo = @pseudo, username = @username, password = @password," +
+                        " registrationDate = @registrationDate, dateOfBirth = @dateOfBirth, credit = @credit WHERE idPlayer = @idPlayer");
+                    command.Parameters.AddWithValue("idPlayer", updatedPlayer.Id);
+                    command.Parameters.AddWithValue("pseudo", updatedPlayer.Pseudo);
+                    command.Parameters.AddWithValue("username", updatedPlayer.UserName);
+                    command.Parameters.AddWithValue("password", updatedPlayer.Password);
+                    command.Parameters.AddWithValue("registrationDate", updatedPlayer.RegistrationDate);
+                    command.Parameters.AddWithValue("dateOfBirth", updatedPlayer.DateOfBirth);
+                    command.Parameters.AddWithValue("credit", updatedPlayer.Credit);
+                    connection.Open();
+                    bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false ;
+                    return isUpdated;
+                }
+            }
+            catch(SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public override Player VerificationConnection(string pseudo, string password)

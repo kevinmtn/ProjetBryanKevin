@@ -41,7 +41,7 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-                throw new Exception(e.Message.ToString());
+                throw new Exception(e.Message);
             }
         }
 
@@ -72,7 +72,7 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-                throw new Exception(e.Message.ToString());
+                throw new Exception(e.Message);
             }
         }
 
@@ -154,9 +154,27 @@ namespace ProjetBryanKevin.DAO
             return videoGame;
         }
 
-        public override bool Update(VideoGame obj)
+        public override bool Update(VideoGame updatedVideoGame)
         {
-            return false;
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE dbo.VideoGame " +
+                        "SET name = @name, creditCost = @creditCost, console = @console " +
+                        "WHERE idVideoGame = @idVideoGame");
+                    command.Parameters.AddWithValue("idVideoGame", updatedVideoGame.IdVideoGame);
+                    command.Parameters.AddWithValue("name", updatedVideoGame.Name);
+                    command.Parameters.AddWithValue("creditCost", updatedVideoGame.CreditCost);
+                    command.Parameters.AddWithValue("console", updatedVideoGame.Console);
+                    connection.Open();
+                    bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false;
+                    return isUpdated;
+                }
+            }catch(SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public override VideoGame VerificationConnection(string username, string password)

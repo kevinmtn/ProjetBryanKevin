@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 
 namespace ProjetBryanKevin.DAO
 {
+    
     class DAO_Loan : DAO<Loan>
     {
+        DAO_Copy DAO_Copy = new DAO_Copy();
+        DAO_Player DAO_Player = new DAO_Player();
         public DAO_Loan()
         {
         }
@@ -43,7 +46,7 @@ namespace ProjetBryanKevin.DAO
                 }
             }catch(SqlException e)
             {
-                throw new Exception(e.Message.ToString());
+                throw new Exception(e.Message);
             }
         }
 
@@ -72,26 +75,102 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-                throw new Exception(e.Message.ToString());
+                throw new Exception(e.Message);
             }
         }
 
         public override List<Loan> DisplayAll()
         {
-            throw new NotImplementedException();
+            List<Loan> loans = new List<Loan>();
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan", connection);
+                    connection.Open();
+                    using(SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            Loan temporaryLoan = new Loan(
+                                reader.GetInt32("idLoan"),
+                                reader.GetDateTime("startData"),
+                                reader.GetDateTime("endData"),
+                                reader.GetBoolean("ongoing"),
+                                DAO_Player.Find(reader.GetInt32("idLender")),
+                                DAO_Player.Find(reader.GetInt32("idBorrower")),
+                                DAO_Copy.Find(reader.GetInt32("idCopy"))
+                                ); 
+                            loans.Add(temporaryLoan);
+                        }
+                    }
+                }
+
+            }catch(SqlException e) 
+            { 
+                throw new Exception(e.Message); 
+            }  
+            return loans;
         }
 
         public override Loan Find(int id)
         {
             Loan loan = null;
+            try
+            {
+                using(SqlConnection connection =new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idLoan = @idLoan", connection);
+                    command.Parameters.AddWithValue("idLoan", id);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            loan = new Loan(
+                                reader.GetInt32("idLoan"),
+                                reader.GetDateTime("startData"),
+                                reader.GetDateTime("endData"),
+                                reader.GetBoolean("ongoing"),
+                                DAO_Player.Find(reader.GetInt32("idLender")),
+                                DAO_Player.Find(reader.GetInt32("idBorrower")),
+                                DAO_Copy.Find(reader.GetInt32("idCopy"))
+                                );
+                        }
+                    }
 
-            return null;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            return loan;
 
         }
 
-        public override bool Update(Loan obj)
+        public override bool Update(Loan updatedLoan)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE dbo.Copy SET startDate = @startDate, endDate = @endDate, " +
+                        "ongoing = @ongoing, idCopy = @idCopy, idBorrower = @idBorrower, idLender = @idLender WHERE idLoan = @idLoan");
+                    command.Parameters.AddWithValue("idLoan", updatedLoan.IdLoan);
+                    command.Parameters.AddWithValue("startDate", updatedLoan.StartDate);
+                    command.Parameters.AddWithValue("endDate", updatedLoan.EndDate);
+                    command.Parameters.AddWithValue("ongoing", updatedLoan.OnGoing);
+                    command.Parameters.AddWithValue("idCopy", updatedLoan.Copy.IdCopy);
+                    command.Parameters.AddWithValue("idBorrower", updatedLoan.Borrower.Id);
+                    command.Parameters.AddWithValue("idLender", updatedLoan.Lender.Id);
+                    connection.Open();
+                    bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false;
+                    return isUpdated;
+                }
+            }
+            catch (SqlException e)
+            { throw new Exception(e.Message); }
         }
 
         public override Loan VerificationConnection(string username, string password)
