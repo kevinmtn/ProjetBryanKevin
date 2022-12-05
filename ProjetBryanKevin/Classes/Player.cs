@@ -64,5 +64,17 @@ namespace ProjetBryanKevin.Classes
             return db.DisplayAll();
         }
 
+
+
+        public bool LoanAllowed()
+        {
+            if(credit>=0) return false;
+            return true;
+        }
+
+        public void AddBirthdayBonus()
+        {
+
+        }
     }
 }

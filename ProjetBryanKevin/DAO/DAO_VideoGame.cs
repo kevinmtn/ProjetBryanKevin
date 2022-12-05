@@ -89,12 +89,12 @@ namespace ProjetBryanKevin.DAO
                     {
                         while (reader.Read())
                         {
-                            VideoGame vg = new VideoGame();
-                            vg.IdVideoGame = reader.GetInt32("idVideoGame");
-                            vg.Name = reader.GetString("name");
-                            vg.CreditCost = reader.GetInt32("creditCost");
-                            vg.Console = reader.GetString("console");
-
+                            VideoGame vg = new VideoGame(
+                                reader.GetInt32("idVideoGame"),
+                                reader.GetString("name"),
+                                reader.GetInt32("creditCost"),
+                                reader.GetString("console")
+                                );
                             videoGames.Add(vg);
                         }
 
@@ -128,12 +128,12 @@ namespace ProjetBryanKevin.DAO
                     {
                         while (reader.Read())
                         {
-                            VideoGame vg = new VideoGame();
-                            vg.IdVideoGame = reader.GetInt32("idVideoGame");
-                            vg.Name = reader.GetString("name");
-                            vg.CreditCost = reader.GetInt32("creditCost");
-                            vg.Console = reader.GetString("console");
-                                    
+                            VideoGame vg = new VideoGame(
+                                reader.GetInt32("idVideoGame"),
+                                reader.GetString("name"),
+                                reader.GetInt32("creditCost"),
+                                reader.GetString("console")
+                                );
                         }
                     }
                 }
@@ -162,6 +162,7 @@ namespace ProjetBryanKevin.DAO
                     command.Parameters.AddWithValue("console", updatedVideoGame.Console);
                     connection.Open();
                     bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false;
+
                     return isUpdated;
                 }
             }catch(SqlException e)

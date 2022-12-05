@@ -9,7 +9,6 @@
       Title="AdministratorHome">
 
     <Grid Background="#FF9E9E9E">
-        <TextBlock Name="Connection" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,57,0,0" FontSize="20" Foreground="#FF909090"/>
-        <TextBlock Name="Name" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,103,0,0" FontSize="20"/>
+        <TextBlock Name="WelcomeText" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,151,0,0" FontSize="20" Width="334"/>
     </Grid>
 </Page>

@@ -24,8 +24,7 @@ namespace ProjetBryanKevin.Pages.Administrator
         {
             InitializeComponent();
             administrator = admin;
-            Connection.Text = "Connecté en tant que Membre";
-            Name.Text = admin.UserName;
+            WelcomeText.Text = "Bienvenue " +admin.UserName;
         }
     }
 }

@@ -10,13 +10,13 @@
       Background="White">
 
     <Grid>
-        <Grid HorizontalAlignment="Center" Height="208" VerticalAlignment="Center" Width="436" Background="#7F040305">
-            <Label Content="Prêt d'un jeux" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" Foreground="White"/>
-            <Label Content="Nom du jeux" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" RenderTransformOrigin="0.722,0.533" Foreground="White"/>
-            <TextBox x:Name="GameName" HorizontalAlignment="Left" Height="26" Margin="135,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
-            <Label Content="Console" HorizontalAlignment="Left" Margin="10,104,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" RenderTransformOrigin="0.232,0.554" Foreground="White"/>
-            <TextBox x:Name="ConsoleType" HorizontalAlignment="Left" Height="26" Margin="135,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
-            <Button Name="AddGame"  Content="Valider" Click="ButtonValidate"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="172,158,0,0" Height="29" Width="76" Background="#FF515959" Foreground="#FFF1EEEE"/>
+        <Grid HorizontalAlignment="Center" Height="280" VerticalAlignment="Center" Width="570" Background="#7F040305">
+            <Label Content="Prêt d'un jeux" HorizontalAlignment="Left" Margin="225,18,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" Foreground="White"/>
+            <Label Content="Nom du jeux" HorizontalAlignment="Left" Margin="20,91,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" RenderTransformOrigin="0.722,0.533" Foreground="White"/>
+            <TextBox x:Name="GameName" HorizontalAlignment="Left" Height="26" Margin="145,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
+            <Label Content="Console" HorizontalAlignment="Left" Margin="20,149,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" RenderTransformOrigin="0.232,0.554" Foreground="White"/>
+            <TextBox x:Name="ConsoleType" HorizontalAlignment="Left" Height="26" Margin="145,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
+            <Button Name="AddGame"  Content="Valider" Click="ButtonValidate"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="240,225,0,0" Height="32" Width="82" Background="#FF515959" Foreground="#FFF1EEEE"/>
         </Grid>
     </Grid>
 </Page>

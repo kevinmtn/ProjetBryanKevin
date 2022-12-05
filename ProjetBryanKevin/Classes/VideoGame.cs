@@ -17,17 +17,12 @@ namespace ProjetBryanKevin.Classes
         private string console;
 
 
-        public VideoGame()
-        {
-
-        }
         public VideoGame(int idVideoGame,string name, int creditCost, string console)
         {
             this.idVideoGame = idVideoGame;
             this.name = name;
             this.creditCost = creditCost;
             this.console = console;
-          
         }
 
         public string Name { 
@@ -61,6 +56,11 @@ namespace ProjetBryanKevin.Classes
         {
             DAO_VideoGame db = new DAO_VideoGame();
             return db.DisplayAll();
+        }
+
+        public void SelectBooking()
+        {
+
         }
     }
 }
