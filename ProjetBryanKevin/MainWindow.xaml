@@ -6,17 +6,17 @@
         xmlns:local="clr-namespace:ProjetBryanKevin"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,0,0,-34">
         <Grid.Background>
             <ImageBrush ImageSource="/background.png" Stretch="none"/>
         </Grid.Background>
-        <Grid HorizontalAlignment="Center" Height="354" VerticalAlignment="Top" Width="780" Margin="0,51,0,0">
+        <Grid HorizontalAlignment="Center" Height="277" VerticalAlignment="Top" Width="780" Margin="0,70,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="162*"/>
                 <ColumnDefinition Width="203*"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="Pseudo" HorizontalAlignment="Left" Height="26" Margin="188,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" AutomationProperties.IsRequiredForForm="True" FontSize="15" Grid.ColumnSpan="2"/>
-            <Label Content="Connexion" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="132" FontSize="22" Margin="306,-55,0,0" RenderTransformOrigin="0.5,0.5" Foreground="#FF484848" Grid.ColumnSpan="2" Background="{x:Null}">
+            <Label Content="Connexion" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="132" FontSize="22" Margin="320,-67,0,0" RenderTransformOrigin="0.5,0.5" Foreground="#FF484848" Grid.ColumnSpan="2" Background="{x:Null}">
                 <Label.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

@@ -14,7 +14,6 @@ CREATE TABLE Player (
     registrationDate DATE NOT NULL,
     dateOfBirth DATE NOT NULL,
     credit INTEGER NOT NULL,
-    isAdmin BIT NOT NULL,
     PRIMARY KEY (idPlayer)
 );
 
