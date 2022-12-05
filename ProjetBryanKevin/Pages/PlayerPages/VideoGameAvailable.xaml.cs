@@ -24,12 +24,10 @@ namespace ProjetBryanKevin.Pages.Player
     public partial class VideoGameAvailable : Page
     {
         AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
-        public VideoGameAvailable(VideoGame video)
+        public VideoGameAvailable()
         {
             InitializeComponent();
             List<VideoGame> videoGames = VideoGame.GetVideoGame();
-            DAO<VideoGame> dao = adf.getVideoGameDAO();
-            videoGames = dao.DisplayAll();
             dataGridVideoGame.ItemsSource =videoGames;
         }
 

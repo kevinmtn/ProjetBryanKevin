@@ -1,7 +1,4 @@
-﻿using ProjetBryanKevin.Classes;
-using ProjetBryanKevin.DAO;
-using ProjetBryanKevin.Factory;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ProjetBryanKevin.Pages.Administrator
+namespace ProjetBryanKevin.Pages.PlayerPages
 {
     /// <summary>
-    /// Logique d'interaction pour UpdateVideoGameCredit.xaml
+    /// Logique d'interaction pour ReservationPage.xaml
     /// </summary>
-    public partial class UpdateVideoGameCredit : Page
+    public partial class ReservationPage : Page
     {
-        VideoGame vid;
-        public UpdateVideoGameCredit(VideoGame video)
+        public ReservationPage()
         {
             InitializeComponent();
-            List<VideoGame> videoGames = VideoGame.GetVideoGame();
-            dataGridVideoGame.ItemsSource = videoGames;
         }
-
-   
     }
 }

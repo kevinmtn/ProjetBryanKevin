@@ -18,11 +18,14 @@ namespace ProjetBryanKevin.Pages.Player
     /// </summary>
     public partial class PlayerHome : Page
     {
-        PlayerHome play;
+        Classes.Player play;
 
         public PlayerHome(Classes.Player player)
         {
             InitializeComponent();
+            play = player;
+
+            WelcomeText.Text = "Bienvenue  " + play.UserName;
             
         }
     }

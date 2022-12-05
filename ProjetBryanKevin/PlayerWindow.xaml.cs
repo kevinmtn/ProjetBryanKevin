@@ -1,5 +1,6 @@
 ﻿using ProjetBryanKevin.Classes;
 using ProjetBryanKevin.Pages.Player;
+using ProjetBryanKevin.Pages.PlayerPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,22 +24,22 @@ namespace ProjetBryanKevin
     {
 
         Player play;
-        VideoGame game;
+    
         public PlayerWindow(Player player)
         {
             InitializeComponent();
             play= player;
+            WelcomeText.Text = "Bienvenue  " + play.UserName;
         }
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Vous  vous êtes déconnecté");
+            MessageBox.Show("Vous vous êtes déconnecté","Deconnection",MessageBoxButton.OK, MessageBoxImage.Exclamation);
 
             MainWindow main = new MainWindow();
             main.Show();
             this.Close();
         }
-
 
         private void menuHome(Object sender, RoutedEventArgs e)
         {
@@ -47,7 +48,12 @@ namespace ProjetBryanKevin
 
         private void seeVideoGames(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new VideoGameAvailable(game);
+            Main.Content = new VideoGameAvailable();
+        }
+
+        private void loanVideoGame(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new LoanPage();
         }
     }
 }
