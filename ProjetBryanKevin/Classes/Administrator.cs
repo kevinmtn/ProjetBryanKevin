@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ProjetBryanKevin.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ProjetBryanKevin.Classes
 {
@@ -14,5 +16,14 @@ namespace ProjetBryanKevin.Classes
             base.UserName = userName;
             base.Password = password;
         }
+
+
+        public static List<Administrator> GetAdministrator()
+        {
+            DAO_Administrator dao_Admin = new DAO_Administrator;
+            return dao_Admin.DisplayAll();
+        }
+
+     
     }
 }

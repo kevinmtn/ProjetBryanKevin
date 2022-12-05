@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetBryanKevin.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,5 +38,15 @@ namespace ProjetBryanKevin.Classes
             set { player = value; }
         }
 
+        public bool Insert()
+        {
+            DAO_Copy db = new DAO_Copy();
+            return db.Create(this);
+        }
+        public static List<Copy> GetCopy()
+        {
+            DAO_Copy db = new DAO_Copy();
+            return db.DisplayAll();
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using ProjetBryanKevin.DAO;
 
 namespace ProjetBryanKevin.Classes
 {
@@ -49,6 +50,17 @@ namespace ProjetBryanKevin.Classes
         {
             get { return this.idVideoGame; }
             set { this.idVideoGame = value; }
+        }
+
+        public bool Insert()
+        {
+            DAO_VideoGame db = new DAO_VideoGame();
+            return db.Create(this);
+        }
+        public static List<VideoGame> GetVideoGame()
+        {
+            DAO_VideoGame db = new DAO_VideoGame();
+            return db.DisplayAll();
         }
     }
 }

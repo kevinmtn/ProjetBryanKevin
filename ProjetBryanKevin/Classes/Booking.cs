@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ProjetBryanKevin.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ProjetBryanKevin.Classes
 {
@@ -48,6 +50,18 @@ namespace ProjetBryanKevin.Classes
         {
             get { return this.videoGame; }
             set { this.videoGame = value; }
+        }
+
+        public bool Insert()
+        {
+            DAO_Booking dAO_Booking = new DAO_Booking();
+            return dAO_Booking.Create(this);
+        }
+
+        public static List<Booking> GetBooking()
+        {
+            DAO_Booking dao_booking = new DAO_Booking();
+            return dao_booking.DisplayAll();
         }
     }
 }

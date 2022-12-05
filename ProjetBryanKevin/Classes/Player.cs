@@ -1,4 +1,5 @@
-﻿using ProjetBryanKevin.Pages.Player;
+﻿using ProjetBryanKevin.DAO;
+using ProjetBryanKevin.Pages.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,16 @@ namespace ProjetBryanKevin.Classes
             set{ dateOfBirth = value;}
         }
 
-      
+        public bool Insert()
+        {
+            DAO_Player db = new DAO_Player();
+            return db.Create(this);
+        }
+        public static List<Player> GetPlayer()
+        {
+            DAO_Player db = new DAO_Player();
+            return db.DisplayAll();
+        }
+
     }
 }

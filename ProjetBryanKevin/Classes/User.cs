@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetBryanKevin.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,5 +41,7 @@ namespace ProjetBryanKevin.Classes
             get{return password;}
             set{password = value;}
         }
+
+
     }
 }

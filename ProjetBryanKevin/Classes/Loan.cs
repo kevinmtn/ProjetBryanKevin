@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ProjetBryanKevin.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ProjetBryanKevin.Classes
 {
@@ -70,6 +72,16 @@ namespace ProjetBryanKevin.Classes
             {
                 copy = value;
             }
+        }
+        public bool Insert()
+        {
+            DAO_Loan db = new DAO_Loan();
+            return db.Create(this);
+        }
+        public static List<Loan> GetLoan()
+        {
+            DAO_Loan dao_loan= new DAO_Loan();
+            return dao_loan.DisplayAll();
         }
     }
 }
