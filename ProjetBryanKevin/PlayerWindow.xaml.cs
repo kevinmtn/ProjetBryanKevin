@@ -23,6 +23,7 @@ namespace ProjetBryanKevin
     {
 
         Player play;
+        VideoGame game;
         public PlayerWindow(Player player)
         {
             InitializeComponent();
@@ -46,7 +47,7 @@ namespace ProjetBryanKevin
 
         private void seeVideoGames(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new VideoGameAvailable();
+            Main.Content = new VideoGameAvailable(game);
         }
     }
 }

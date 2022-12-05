@@ -20,7 +20,7 @@ namespace ProjetBryanKevin.Classes
 
         public static List<Administrator> GetAdministrator()
         {
-            DAO_Administrator dao_Admin = new DAO_Administrator;
+            DAO_Administrator dao_Admin = new DAO_Administrator();
             return dao_Admin.DisplayAll();
         }
 

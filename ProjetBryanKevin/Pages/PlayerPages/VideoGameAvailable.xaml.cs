@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ProjetBryanKevin.Classes;
+using ProjetBryanKevin.DAO;
+using ProjetBryanKevin.Factory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,21 @@ namespace ProjetBryanKevin.Pages.Player
     /// </summary>
     public partial class VideoGameAvailable : Page
     {
-        public VideoGameAvailable()
+        AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+        public VideoGameAvailable(VideoGame video)
         {
             InitializeComponent();
+            List<VideoGame> videoGames = VideoGame.GetVideoGame();
+            DAO<VideoGame> dao = adf.getVideoGameDAO();
+            videoGames = dao.DisplayAll();
+            dataGridVideoGame.ItemsSource =videoGames;
+        }
+
+        private void ButtonLoan(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Etes vous certain de vouloir reserver ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+
         }
     }
 }

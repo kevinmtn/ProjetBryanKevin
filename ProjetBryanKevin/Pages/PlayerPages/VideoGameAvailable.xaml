@@ -10,14 +10,21 @@
       Background="White">
 
     <Grid>
-        <DataGrid Name="dataGridRide" Margin="0,87,0,0" AutoGenerateColumns="False" HorizontalAlignment="Center" Width="768" Height="353" VerticalAlignment="Top"  Background="#FFECECEC">
+        <Label Content="Jeux video disponibles" HorizontalAlignment="Center" Width="168" Height="30" VerticalAlignment="Top" Foreground="#FF292323" FontSize="15" Margin="0,16,0,0" Background="{x:Null}"/>
+        <DataGrid Name="dataGridVideoGame" Margin="40,68,0,0"  HorizontalAlignment="Left" Width="730" Height="353" VerticalAlignment="Top"  Background="#FFECECEC" AutoGenerateColumns="True" >
+
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Number}" Header="Nom du jeux"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding StartingPoint}" Header="Console"/>
-                <DataGridTextColumn IsReadOnly="True" Binding="{Binding EndPoint}" Header="Valeur crédit"/>
+         
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="button" Content="Réserver" Click="ButtonLoan"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Jeux video disponibles" HorizontalAlignment="Center" Width="167" Height="30" VerticalAlignment="Top" Foreground="#FF292323" FontSize="15" Margin="0,36,0,0" Background="{x:Null}"/>
+
 
     </Grid>
 </Page>

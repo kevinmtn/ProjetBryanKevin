@@ -89,14 +89,13 @@ namespace ProjetBryanKevin.DAO
                     {
                         while (reader.Read())
                         {
-                            VideoGame videoGame = new VideoGame
-                                (
-                                 reader.GetInt32("idVideoGame"),
-                                 reader.GetString("name"),
-                                 reader.GetInt32("creditCost"),
-                                 reader.GetString("console")
-                                 );
-                            videoGames.Add(videoGame);
+                            VideoGame vg = new VideoGame();
+                            vg.IdVideoGame = reader.GetInt32("idVideoGame");
+                            vg.Name = reader.GetString("name");
+                            vg.CreditCost = reader.GetInt32("creditCost");
+                            vg.Console = reader.GetString("console");
+
+                            videoGames.Add(vg);
                         }
 
                     }
@@ -129,13 +128,12 @@ namespace ProjetBryanKevin.DAO
                     {
                         while (reader.Read())
                         {
-                             videoGame = new VideoGame
-                                (
-                                 reader.GetInt32("idVideoGame"),
-                                 reader.GetString("name"),
-                                 reader.GetInt32("creditCost"),
-                                 reader.GetString("console")
-                                 );   
+                            VideoGame vg = new VideoGame();
+                            vg.IdVideoGame = reader.GetInt32("idVideoGame");
+                            vg.Name = reader.GetString("name");
+                            vg.CreditCost = reader.GetInt32("creditCost");
+                            vg.Console = reader.GetString("console");
+                                    
                         }
                     }
                 }
