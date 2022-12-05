@@ -125,7 +125,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 { 
-                    SqlCommand command = new SqlCommand("UPDATE dbo.Booking SET bookingDate = @bookingDate WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame";, connection);
+                    SqlCommand command = new SqlCommand("UPDATE dbo.Booking SET bookingDate = @bookingDate WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame", connection);
                     command.Parameters.AddWithValue("idPlayer", updatedBooking.Booker.Id);
                     command.Parameters.AddWithValue("idVideoGame", updatedBooking.VideoGame.IdVideoGame);
                     command.Parameters.AddWithValue("bookingDate", updatedBooking.BookingDate);
@@ -145,37 +145,3 @@ namespace ProjetBryanKevin.DAO
     }
 }
 
-/*
-
-public override List<Booking> DisplayAll()
-{
-    List<Booking> bookings = new List<Booking>();
-
-    try
-    {
-        using (SqlConnection connection = new SqlConnection(this.connectionString))
-        {
-            SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Booking", connection);
-            connection.Open();
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    Booking booking = new Booking
-                    (
-                        reader.GetInt32("idBooking"),
-                        reader.GetDateTime("bookingDate"),
-                        reader.GetValue("idPlayer"),
-                        reader.GetInt32("idVideoGame")
-
-
-                  );
-                    bookings.Add(booking);
-
-                }
-            }
-        }
-    }
-        }
-*/
