@@ -16,6 +16,8 @@ namespace ProjetBryanKevin.DAO
         }
         public override bool Create(VideoGame videoGame)
         {
+            bool success;
+
             try
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
@@ -28,16 +30,9 @@ namespace ProjetBryanKevin.DAO
                     connection.Open();
 
                     int result = cmd.ExecuteNonQuery();
-
-                    if (result < 0)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        return true;
-                    }
+                    success = result > 0;
                 }
+                return success;
             }
             catch (SqlException e)
             {

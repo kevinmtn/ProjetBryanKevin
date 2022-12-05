@@ -18,6 +18,7 @@ namespace ProjetBryanKevin.DAO
 
         public override bool Create(Booking book)
         {
+            bool success = false;
             try
             {
                 using(SqlConnection connection = new SqlConnection(this.connectionString))
@@ -27,9 +28,10 @@ namespace ProjetBryanKevin.DAO
                     cmd.Parameters.AddWithValue("idVideoGame", book.VideoGame.IdVideoGame);
                     cmd.Parameters.AddWithValue("bookingDate", book.BookingDate);
                     connection.Open();
-                    int rowsAfffected = cmd.ExecuteNonQuery();
-                    return rowsAfffected > 0;
+                    int result = cmd.ExecuteNonQuery();
+                    success = result > 0;
                 }
+                return success;
             }
             catch (SqlException e)
             {
