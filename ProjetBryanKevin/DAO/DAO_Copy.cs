@@ -19,6 +19,7 @@ namespace ProjetBryanKevin.DAO
         }
         public override bool Create(Copy copy)
         {
+            bool success= false;
             try
             {
                 using(SqlConnection connection = new SqlConnection(connectionString))
@@ -29,8 +30,10 @@ namespace ProjetBryanKevin.DAO
                     cmd.Parameters.AddWithValue("idPlayer", copy.Player.Id);
                     connection.Open();
                     int result = cmd.ExecuteNonQuery();
-                    return result > 0;
+                    success = result > 0;
                 }
+                return success;
+
             }catch(SqlException e)
             {
                 throw new Exception(e.Message);
