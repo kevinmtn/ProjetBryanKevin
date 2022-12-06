@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetBryanKevin.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,17 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class ReservationPage : Page
     {
-        public ReservationPage()
+        public ReservationPage(Classes.Player play)
         {
             InitializeComponent();
+            List<Booking> booking = Booking.GetBooking(play);
+            dataGridVideoGame.ItemsSource = booking;
+        }
+
+        private void ButtonCancel(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Etes vous certain de vouloir annuler cette réservation ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
         }
     }
 }

@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="PlayerWindow" Height="450" Width="800">
     <Grid>
-
-        <TextBlock Name="WelcomeText" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#FF1D1717" Width="294"/>
-
         <DockPanel>
             <Menu DockPanel.Dock="Top" Background="#FF86726B">
                 <MenuItem Header="_Deconnexion" Click="menuDisconnect" Foreground="White">
@@ -17,9 +14,8 @@
                 <MenuItem Header="_Options" Foreground="White">
                     <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
                     <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="Black"/>
-                    <MenuItem Header="_Mes réservations"  Foreground="Black"/>
+                    <MenuItem Header="_Mes réservations"  Click="reservation" Foreground="Black"/>
                     <MenuItem Header="_Preter un jeux" Click="loanVideoGame" Foreground="Black"/>
-
                 </MenuItem>
             </Menu>
         </DockPanel>

@@ -29,7 +29,8 @@ namespace ProjetBryanKevin
         {
             InitializeComponent();
             play= player;
-            WelcomeText.Text = "Bienvenue  " + play.UserName;
+
+            Main.Content = new PlayerHome(play);
         }
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
@@ -54,6 +55,10 @@ namespace ProjetBryanKevin
         private void loanVideoGame(Object sender, RoutedEventArgs e)
         {
             Main.Content = new LoanPage();
+        }
+        private void reservation(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new ReservationPage(play);
         }
     }
 }

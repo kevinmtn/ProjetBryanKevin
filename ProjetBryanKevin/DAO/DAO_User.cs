@@ -29,6 +29,11 @@ namespace ProjetBryanKevin.DAO
             throw new NotImplementedException();
         }
 
+        public override List<User> DisplayForAPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
+
         public override User Find(int id)
         {
             throw new NotImplementedException();

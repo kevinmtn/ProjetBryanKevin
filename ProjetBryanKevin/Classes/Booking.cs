@@ -58,10 +58,10 @@ namespace ProjetBryanKevin.Classes
             return dAO_Booking.Create(this);
         }
 
-        public static List<Booking> GetBooking()
+        public static List<Booking> GetBooking(Player play)
         {
             DAO_Booking dao_booking = new DAO_Booking();
-            return dao_booking.DisplayAll();
+            return dao_booking.DisplayForAPlayer(play);
         }
 
         public bool Delete()

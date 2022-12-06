@@ -108,6 +108,11 @@ namespace ProjetBryanKevin.DAO
             return loans;
         }
 
+        public override List<Loan> DisplayForAPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Loan Find(int id)
         {
             Loan loan = null;

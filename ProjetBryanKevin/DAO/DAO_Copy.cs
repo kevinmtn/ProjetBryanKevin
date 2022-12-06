@@ -83,6 +83,11 @@ namespace ProjetBryanKevin.DAO
             return copyList;
         }
 
+        public override List<Copy> DisplayForAPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
+
         public override Copy Find(int id)
         {
             Copy copy = null;

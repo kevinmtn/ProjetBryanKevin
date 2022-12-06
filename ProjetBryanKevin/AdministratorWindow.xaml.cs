@@ -28,7 +28,7 @@ namespace ProjetBryanKevin
         {
             InitializeComponent();
             admin = administrator;
-           
+            Main.Content = new AdministratorHome(admin);
         }
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)

@@ -87,6 +87,38 @@ namespace ProjetBryanKevin.DAO
             return bookings;
         }
 
+        public override List<Booking> DisplayForAPlayer(Player play)
+        {
+           
+            List<Booking> bookings = new List<Booking>();
+            try
+            {
+               
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                   
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer=@id", connection);
+                    command.Parameters.AddWithValue("id", play.Id);
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Booking temporaryBooking = new Booking(
+                                DAO_Player.Find(reader.GetInt32("idPlayer")),
+                                DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
+                                reader.GetDateTime("bookingDate")
+                                );
+                            bookings.Add(temporaryBooking);
+                        }
+                    }
+                }
+            }
+            catch (SqlException e) { throw new Exception(e.Message); }
+            return bookings;
+        }
+
         public override Booking Find(int id)
         {
             throw new NotImplementedException();

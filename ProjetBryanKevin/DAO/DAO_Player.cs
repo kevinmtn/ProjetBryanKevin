@@ -86,6 +86,10 @@ namespace ProjetBryanKevin.DAO
             return players;
         }
 
+        public override List<Player> DisplayForAPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
 
         public override Player Find(int id)
         {

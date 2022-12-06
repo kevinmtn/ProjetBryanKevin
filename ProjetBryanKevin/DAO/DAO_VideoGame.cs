@@ -110,6 +110,10 @@ namespace ProjetBryanKevin.DAO
             return videoGames;
         }
 
+        public override List<VideoGame> DisplayForAPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
 
         public override VideoGame Find(int id)
         {

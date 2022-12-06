@@ -23,7 +23,7 @@ namespace ProjetBryanKevin.Pages.Player
     /// </summary>
     public partial class VideoGameAvailable : Page
     {
-        AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+     
         public VideoGameAvailable()
         {
             InitializeComponent();

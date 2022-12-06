@@ -55,6 +55,10 @@ namespace ProjetBryanKevin.DAO
             return administrators;
         }
 
+        public override List<Administrator> DisplayForAPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
 
         public override Administrator Find(int id)
         {
