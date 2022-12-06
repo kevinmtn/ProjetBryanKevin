@@ -18,16 +18,11 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// <summary>
     /// Logique d'interaction pour LoanPage.xaml
     /// </summary>
-    public partial class LoanPage : Page
+    public partial class BorrowerPage : Page
     {
-        public LoanPage()
+        public BorrowerPage()
         {
             InitializeComponent();
-        }
-
-        private void ButtonValidate(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

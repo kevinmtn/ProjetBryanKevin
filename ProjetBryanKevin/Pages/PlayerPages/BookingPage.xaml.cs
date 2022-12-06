@@ -19,19 +19,30 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// <summary>
     /// Logique d'interaction pour ReservationPage.xaml
     /// </summary>
-    public partial class ReservationPage : Page
+    public partial class BookingPage : Page
     {
-        public ReservationPage(Classes.Player play)
+        public BookingPage(Classes.Player play)
         {
             InitializeComponent();
             List<Booking> booking = Booking.GetBooking(play);
+       
             dataGridVideoGame.ItemsSource = booking;
         }
 
         private void ButtonCancel(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Etes vous certain de vouloir annuler cette réservation ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
+            MessageBoxResult res = MessageBox.Show("Etes vous certain de vouloir annuler cette réservation ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            switch (res)
+            {
+
+                case MessageBoxResult.Yes:
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

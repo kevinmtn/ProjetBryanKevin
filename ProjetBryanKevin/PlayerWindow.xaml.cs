@@ -35,7 +35,7 @@ namespace ProjetBryanKevin
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Vous vous êtes déconnecté","Deconnection",MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Vous vous êtes déconnecté","Deconnexion",MessageBoxButton.OK, MessageBoxImage.Information);
 
             MainWindow main = new MainWindow();
             main.Show();
@@ -51,14 +51,18 @@ namespace ProjetBryanKevin
         {
             Main.Content = new VideoGameAvailable();
         }
-
-        private void loanVideoGame(Object sender, RoutedEventArgs e)
+        private void borrowVideoGame(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new LoanPage();
+            Main.Content = new BorrowerPage();
         }
-        private void reservation(Object sender, RoutedEventArgs e)
+
+        private void lendVideoGame(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new ReservationPage(play);
+            Main.Content = new LenderPage();
+        }
+        private void booking(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new BookingPage(play);
         }
     }
 }

@@ -14,8 +14,9 @@
                 <MenuItem Header="_Options" Foreground="White">
                     <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
                     <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="Black"/>
-                    <MenuItem Header="_Mes réservations"  Click="reservation" Foreground="Black"/>
-                    <MenuItem Header="_Preter un jeux" Click="loanVideoGame" Foreground="Black"/>
+                    <MenuItem Header="_Emprunter un jeux"  Click="borrowVideoGame" Foreground="Black"/>
+                    <MenuItem Header="_Preter un jeux" Click="lendVideoGame" Foreground="Black"/>
+                    <MenuItem Header="_Mes réservations"  Click="booking" Foreground="Black"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
