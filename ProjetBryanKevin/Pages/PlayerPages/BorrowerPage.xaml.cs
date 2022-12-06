@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetBryanKevin.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,19 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class BorrowerPage : Page
     {
-        public BorrowerPage()
+        public BorrowerPage(Classes.Player play)
         {
+            
             InitializeComponent();
+            List<VideoGame> videoGames = VideoGame.GetVideoGame();
+            dataGridVideoGame.ItemsSource = videoGames;
+
+            Credit.Text = play.Credit.ToString();
+        }
+
+        private void ButtonLoan(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
         }
     }
 }

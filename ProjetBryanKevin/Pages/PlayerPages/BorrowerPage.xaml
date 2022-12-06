@@ -6,9 +6,29 @@
       xmlns:local="clr-namespace:ProjetBryanKevin.Pages.PlayerPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="BorrowerPage">
+      Title="BorrowerPage"
+      Background="White">
+
 
     <Grid>
-        
+        <Label Content="Jeux video disponibles" HorizontalAlignment="Center" Width="168" Height="30" VerticalAlignment="Top" Foreground="#FF292323" FontSize="15" Margin="0,23,0,0" Background="{x:Null}"/>
+        <DataGrid x:Name="dataGridVideoGame" VerticalAlignment="Center"
+          ItemsSource="{Binding Source=videoGames}"
+          AutoGenerateColumns="False" CanUserResizeColumns="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom du jeux" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Console" Binding="{Binding Console}"/>
+                <DataGridTextColumn Header="Nombre de crédit" Binding="{Binding CreditCost}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Reservation" Click="ButtonLoan" Content="Emprunter le jeux"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label Content="Credit restant:" HorizontalAlignment="Left" Margin="634,52,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="Credit"  HorizontalAlignment="Left" Margin="726,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="74"/>
     </Grid>
 </Page>

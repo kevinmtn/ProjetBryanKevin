@@ -28,5 +28,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="Credit restant:" HorizontalAlignment="Left" Margin="634,52,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="Credit"  HorizontalAlignment="Left" Margin="726,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="74"/>
     </Grid>
 </Page>

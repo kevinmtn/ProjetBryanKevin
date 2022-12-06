@@ -24,11 +24,13 @@ namespace ProjetBryanKevin.Pages.Player
     public partial class VideoGameAvailable : Page
     {
      
-        public VideoGameAvailable()
+        public VideoGameAvailable(Classes.Player play)
         {
             InitializeComponent();
             List<VideoGame> videoGames = VideoGame.GetVideoGame();
             dataGridVideoGame.ItemsSource = videoGames;
+
+            Credit.Text = play.Credit.ToString();
         }
 
         private void ButtonLoan(object sender, RoutedEventArgs e)

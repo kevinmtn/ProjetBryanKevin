@@ -27,6 +27,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             List<Booking> booking = Booking.GetBooking(play);
        
             dataGridVideoGame.ItemsSource = booking;
+
         }
 
         private void ButtonCancel(object sender, RoutedEventArgs e)

@@ -16,7 +16,7 @@
           ItemsSource="{Binding Source=booking}"
           AutoGenerateColumns="False" CanUserResizeColumns="True" Margin="0,91,0,0">
             <DataGrid.Columns>
-           
+
                 <DataGridTextColumn Header="Date de la réservation" Binding="{Binding BookingDate}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
