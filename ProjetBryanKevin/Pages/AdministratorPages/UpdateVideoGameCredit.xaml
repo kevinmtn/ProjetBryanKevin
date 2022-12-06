@@ -9,14 +9,25 @@
       Title="UpdateVideoGameCredit"
       Background="White">
 
-    
-        <Grid>
-            <Label Content="Jeux video disponibles" HorizontalAlignment="Center" Width="168" Height="30" VerticalAlignment="Top" Foreground="#FF292323" FontSize="15" Margin="0,16,0,0" Background="{x:Null}"/>
-            <DataGrid Name="dataGridVideoGame" Margin="40,68,0,0"  HorizontalAlignment="Left" Width="730" Height="353" VerticalAlignment="Top"  Background="#FFECECEC" AutoGenerateColumns="True" >
 
-            </DataGrid>
-
-       
+    <Grid>
+        <Label Content="Jeux video disponibles" HorizontalAlignment="Center" Width="168" Height="30" VerticalAlignment="Top" Foreground="#FF292323" FontSize="15" Margin="0,23,0,0" Background="{x:Null}"/>
+        <DataGrid x:Name="dataGridVideoGame" VerticalAlignment="Top"
+          ItemsSource="{Binding Source=videoGames}"
+          AutoGenerateColumns="False" CanUserResizeColumns="True" Margin="0,91,0,0" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom du jeux" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Console" Binding="{Binding Console}"/>
+                <DataGridTextColumn Header="Nombre de crédit" Binding="{Binding CreditCost}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Modification" Click="ButtonModification" Content="Modifier les crédits"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
-        
+
 </Page>

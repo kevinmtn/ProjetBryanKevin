@@ -28,13 +28,12 @@ namespace ProjetBryanKevin.Pages.Player
         {
             InitializeComponent();
             List<VideoGame> videoGames = VideoGame.GetVideoGame();
-            dataGridVideoGame.ItemsSource =videoGames;
+            dataGridVideoGame.ItemsSource = videoGames;
         }
 
         private void ButtonLoan(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Etes vous certain de vouloir reserver ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
 
         }
     }

@@ -6,56 +6,55 @@
         xmlns:local="clr-namespace:ProjetBryanKevin"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="0,0,0,-34">
+    <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/background.png" Stretch="none"/>
         </Grid.Background>
-        <Grid HorizontalAlignment="Center" Height="277" VerticalAlignment="Top" Width="780" Margin="0,70,0,0">
+        <Grid HorizontalAlignment="Center" Height="354" VerticalAlignment="Top" Width="780" Margin="0,51,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="162*"/>
                 <ColumnDefinition Width="203*"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="Pseudo" HorizontalAlignment="Left" Height="26" Margin="188,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" AutomationProperties.IsRequiredForForm="True" FontSize="15" Grid.ColumnSpan="2"/>
-            <Label Content="Connexion" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="132" FontSize="22" Margin="320,-67,0,0" RenderTransformOrigin="0.5,0.5" Foreground="#FF484848" Grid.ColumnSpan="2" Background="{x:Null}">
-                <Label.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-0.023"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-            <PasswordBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="197" Height="26" AutomationProperties.IsRequiredForForm="True" FontSize="15" Margin="188,144,0,0" Grid.ColumnSpan="2"/>
-            <Button x:Name="Connexion" Click="ButtonClicked" Content="Se connecter" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,290,0,0" Height="42" Width="114" Background="#FF522C0C" Foreground="White" Grid.Column="1"/>
-            <ComboBox Name="ConnexionChoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="217,225,0,0" Height="29" FontSize="14">
-                <ComboBoxItem IsSelected="True">Administrateur</ComboBoxItem>
+          
+                <Label Content="Connexion" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="132" FontSize="22" Margin="306,-55,0,0" RenderTransformOrigin="0.5,0.5" Foreground="#FF484848" Grid.ColumnSpan="2" Background="{x:Null}">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.023"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <PasswordBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="197" Height="26" AutomationProperties.IsRequiredForForm="True" FontSize="15" Margin="188,144,0,0" Grid.ColumnSpan="2"/>
+                <Button x:Name="Connexion" Click="ButtonClicked" Content="Se connecter" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,290,0,0" Height="42" Width="114" Background="#FF522C0C" Foreground="White" Grid.Column="1"/>
+                <ComboBox Name="ConnexionChoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="217,225,0,0" Height="29" FontSize="14">
+                    <ComboBoxItem IsSelected="True">Administrateur</ComboBoxItem>
                 <ComboBoxItem>Participant</ComboBoxItem>
-
-            </ComboBox>
-
-            <Label Content="Se connecter en tant que : " HorizontalAlignment="Left" Margin="27,225,0,0" VerticalAlignment="Top" Width="155" Foreground="White" Background="#FF523535" />
-            <Label x:Name="Login" Content="Pseudo" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="60" FontSize="15" Background="{x:Null}" Margin="38,72,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black" >
-                <Label.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-0.023"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-            <Label x:Name="password" Content="Mot de passe" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="102" FontSize="15" Background="{x:Null}" Margin="36,139,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black">
-                <Label.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-0.023"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Label.RenderTransform>
-            </Label>
-            <Image Margin="204,10,10,225" Source="/Image3.png" Stretch="Fill" Grid.Column="1"/>
+                </ComboBox>
+                <Label Content="Se connecter en tant que : " HorizontalAlignment="Left" Margin="27,225,0,0" VerticalAlignment="Top" Width="155" Foreground="White" Background="#FF523535" />
+                <Label x:Name="Login" Content="Pseudo" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="60" FontSize="15" Background="{x:Null}" Margin="38,72,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black" >
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.023"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Label x:Name="password" Content="Mot de passe" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="102" FontSize="15" Background="{x:Null}" Margin="36,139,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black">
+                    <Label.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-0.023"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Label.RenderTransform>
+                </Label>
+                <Image Margin="204,10,10,225" Source="/Image3.png" Stretch="Fill" Grid.Column="1"/>
         </Grid>
     </Grid>
 </Window>

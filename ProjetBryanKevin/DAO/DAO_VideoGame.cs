@@ -81,7 +81,7 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame", connection);
-
+                 
                     connection.Open();
 
 

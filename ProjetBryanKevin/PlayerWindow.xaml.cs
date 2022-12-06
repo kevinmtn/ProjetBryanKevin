@@ -34,7 +34,7 @@ namespace ProjetBryanKevin
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Vous vous êtes déconnecté","Deconnection",MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            MessageBox.Show("Vous vous êtes déconnecté","Deconnection",MessageBoxButton.OK, MessageBoxImage.Information);
 
             MainWindow main = new MainWindow();
             main.Show();

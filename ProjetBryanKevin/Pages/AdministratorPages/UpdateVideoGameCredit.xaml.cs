@@ -31,6 +31,10 @@ namespace ProjetBryanKevin.Pages.Administrator
             dataGridVideoGame.ItemsSource = videoGames;
         }
 
-   
+        private void ButtonModification(object sender, RoutedEventArgs e)
+        {
+           
+
+        }
     }
 }
