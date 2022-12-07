@@ -17,13 +17,10 @@ namespace ProjetBryanKevin.Classes
             base.Password = password;
         }
 
-
         public static List<Administrator> GetAdministrator()
         {
             DAO_Administrator dao_Admin = new DAO_Administrator();
             return dao_Admin.DisplayAll();
         }
-
-     
     }
 }

@@ -9,16 +9,13 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Background="#FF86726B" Height="435">
-                <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="White" Height="32" FontSize="13">
-                </MenuItem>
+                <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="White" Height="32" FontSize="13"/>
                 <MenuItem Header="_Options" Foreground="White" FontSize="13">
                     <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
                     <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="Black"/>
-
                     <MenuItem Header="_Emprunter un jeux"  Click="borrowVideoGame" Foreground="Black"/>
                     <MenuItem Header="_Preter un jeux" Click="lendVideoGame" Foreground="Black"/>
                     <MenuItem Header="_Mes réservations"  Click="booking" Foreground="Black"/>
-
                 </MenuItem>
             </Menu>
         </DockPanel>

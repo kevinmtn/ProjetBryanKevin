@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace ProjetBryanKevin.DAO
 {
-    class DAO_Player : DAO<Player>
+    class DAO_Player : DAO_User<Player>
     {
 
         public DAO_Player()
@@ -121,11 +121,6 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception("Une erreur sql est survenue !\n" + e.Message);
             }
             return player;
-        }
-
-        public override List<Player> FindBookingsByIdPlayer(Player play)
-        {
-            throw new NotImplementedException();
         }
 
         public override bool Update(Player updatedPlayer)

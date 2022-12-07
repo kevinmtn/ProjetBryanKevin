@@ -7,7 +7,7 @@ using System.Diagnostics.Metrics;
 
 namespace ProjetBryanKevin.DAO
 {
-    class DAO_Administrator : DAO<Administrator>
+    class DAO_Administrator : DAO_User<Administrator>
     {
         public DAO_Administrator() { }
 
@@ -90,10 +90,6 @@ namespace ProjetBryanKevin.DAO
             return administrator;
         }
 
-        public override List<Administrator> FindBookingsByIdPlayer(Player play)
-        {
-            throw new NotImplementedException();
-        }
 
         public override bool Update(Administrator admin)
         {
