@@ -26,7 +26,7 @@ namespace ProjetBryanKevin.DAO
                     SqlCommand cmd = new SqlCommand("INSERT INTO dbo.VideoGame(name,creditCost,console) VALUES (@name,@creditCost,@console)", connection);
                     cmd.Parameters.AddWithValue("name", videoGame.Name);
                     cmd.Parameters.AddWithValue("creditCost", videoGame.CreditCost);
-                    cmd.Parameters.AddWithValue("dateOfBirth", videoGame.Console);
+                    cmd.Parameters.AddWithValue("console", videoGame.Console);
 
                     connection.Open();
 

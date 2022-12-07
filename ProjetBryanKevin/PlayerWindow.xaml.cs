@@ -69,5 +69,10 @@ namespace ProjetBryanKevin
         {
             Main.Content = new PlayerBookingsPage(play.Id);
         }
+
+        private void seePlayerLoansPage(Object sender, RoutedEventArgs e)
+        {
+            return;
+        }
     }
 }
