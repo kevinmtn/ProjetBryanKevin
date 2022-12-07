@@ -1,7 +1,6 @@
 ﻿using ProjetBryanKevin.Classes;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +19,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// <summary>
     /// Logique d'interaction pour PlayerBookingsPage.xaml
     /// </summary>
+<<<<<<<< HEAD:ProjetBryanKevin/Pages/PlayerPages/PlayerBookingsPage.xaml.cs
     public partial class PlayerBookingsPage : Page
     {
         public PlayerBookingsPage(int idPlayer)
@@ -27,13 +27,16 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             InitializeComponent();
             List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
             dataGridBooking.ItemsSource = bookings;
+========
+    public partial class BookingPage : Page
+    {
+        public BookingPage(Classes.Player play)
+        {
+            InitializeComponent();
+            List<Booking> bookings = Booking.GetPlayerBookings(play);
+            dataGridBooking.ItemsSource = bookings;
 
-        }
-        private void delBooking(Object sender, RoutedEventArgs e) 
-        { 
-            Booking? selectedBooking = (sender as Button).DataContext as Booking;
-            selectedBooking?.Delete();
-            Debug.Print("Reservation supprimée");
+>>>>>>>> Kevin:ProjetBryanKevin/Pages/PlayerPages/BookingPage.xaml.cs
         }
 
     }

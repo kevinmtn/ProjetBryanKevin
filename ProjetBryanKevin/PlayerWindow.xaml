@@ -7,22 +7,25 @@
         mc:Ignorable="d"
         Title="PlayerWindow" Height="450" Width="800">
     <Grid>
-
-        <TextBlock Name="WelcomeText" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#FF1D1717" Width="294"/>
-
         <DockPanel>
-            <Menu DockPanel.Dock="Top" Background="#FF86726B">
-                <MenuItem Header="_Deconnexion" Click="menuDisconnect" Foreground="White">
+            <Menu DockPanel.Dock="Top" Background="#FF86726B" Height="435">
+                <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="White" Height="32" FontSize="13">
                 </MenuItem>
-                <MenuItem Header="_Options" Foreground="White">
+                <MenuItem Header="_Options" Foreground="White" FontSize="13">
                     <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
                     <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="Black"/>
+<<<<<<< HEAD
                     <MenuItem Header="_Mes réservations"  Click = "seePlayerBookingsPage" Foreground="Black"/>
                     <MenuItem Header="_Preter un jeux" Click="loanVideoGame" Foreground="Black"/>
 
+=======
+                    <MenuItem Header="_Emprunter un jeux"  Click="borrowVideoGame" Foreground="Black"/>
+                    <MenuItem Header="_Preter un jeux" Click="lendVideoGame" Foreground="Black"/>
+                    <MenuItem Header="_Mes réservations"  Click="booking" Foreground="Black"/>
+>>>>>>> Kevin
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Frame Name="Main" Margin="0,20,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
+        <Frame Name="Main" Margin="0,34,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
     </Grid>
 </Window>

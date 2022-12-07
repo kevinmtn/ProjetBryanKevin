@@ -24,7 +24,6 @@ namespace ProjetBryanKevin.Pages.Player
         {
             InitializeComponent();
             play = player;
-
             WelcomeText.Text = "Bienvenue  " + play.UserName;
             
         }

@@ -90,6 +90,10 @@ namespace ProjetBryanKevin.DAO
             return administrator;
         }
 
+        public override List<Administrator> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
 
         public override bool Update(Administrator admin)
         {

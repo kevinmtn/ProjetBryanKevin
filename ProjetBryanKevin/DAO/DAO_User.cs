@@ -34,6 +34,11 @@ namespace ProjetBryanKevin.DAO
             throw new NotImplementedException();
         }
 
+        public override List<User> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Update(User obj)
         {
             throw new NotImplementedException();

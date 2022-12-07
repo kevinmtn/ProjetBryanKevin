@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetBryanKevin.Classes;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace ProjetBryanKevin.DAO
         public abstract T Find(int id);
         public abstract bool Update(T obj);
         public abstract List<T> DisplayAll();
+
+        public abstract List<T> FindBookingsByIdPlayer(Player play);
         public abstract T VerificationConnection(string username, string password);
 
 
