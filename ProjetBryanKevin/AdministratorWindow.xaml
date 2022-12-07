@@ -9,14 +9,14 @@
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Background="#FF86726B">
-                <MenuItem Header="_Deconnexion" Click="menuDisconnect" Foreground="White">
+                <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="White" Height="36" FontSize="13">
                 </MenuItem>
-                <MenuItem Header="_Options" Foreground="White">
-                    <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
+                <MenuItem Header="_Options" Foreground="White" FontSize="13">
+                    <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black" FontSize="13"/>
                     <MenuItem Header="_Voir les jeux disponibles" Click="menuVideoGame" Foreground="Black"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Frame Name="Main" Margin="0,20,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
+        <Frame Name="Main" Margin="0,33,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
     </Grid>
 </Window>

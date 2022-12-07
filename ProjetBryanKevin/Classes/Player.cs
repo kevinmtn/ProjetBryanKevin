@@ -63,9 +63,6 @@ namespace ProjetBryanKevin.Classes
             DAO_Player db = new DAO_Player();
             return db.DisplayAll();
         }
-
-
-
         public bool LoanAllowed()
         {
             if(credit>=0) return false;

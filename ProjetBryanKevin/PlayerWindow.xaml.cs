@@ -28,13 +28,24 @@ namespace ProjetBryanKevin
         public PlayerWindow(Player player)
         {
             InitializeComponent();
+<<<<<<< HEAD
             this.player = player;
             WelcomeText.Text = "Bienvenue " + this.player.UserName;
+=======
+            play= player;
+
+            Main.Content = new PlayerHome(play);
+>>>>>>> Kevin
         }
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
             MessageBox.Show("Vous vous êtes déconnecté","Deconnection",MessageBoxButton.OK, MessageBoxImage.Information);
+=======
+            MessageBox.Show("Vous vous êtes déconnecté","Deconnexion",MessageBoxButton.OK, MessageBoxImage.Information);
+
+>>>>>>> Kevin
             MainWindow main = new MainWindow();
             main.Show();
             this.Close();
@@ -47,12 +58,20 @@ namespace ProjetBryanKevin
 
         private void seeVideoGames(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new VideoGameAvailable();
+            Main.Content = new VideoGameAvailable(play);
+        }
+        private void borrowVideoGame(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new BorrowerPage(play);
         }
 
-        private void loanVideoGame(Object sender, RoutedEventArgs e)
+        private void lendVideoGame(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new LoanPage();
+            Main.Content = new LenderPage();
+        }
+        private void booking(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new BookingPage(play);
         }
 
         private void seePlayerBookingsPage(Object sender, RoutedEventArgs e)

@@ -112,6 +112,11 @@ namespace ProjetBryanKevin.DAO
             return copy;
         }
 
+        public override List<Copy> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Update(Copy copy)
         {
             try

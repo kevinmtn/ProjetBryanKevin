@@ -123,6 +123,11 @@ namespace ProjetBryanKevin.DAO
             return player;
         }
 
+        public override List<Player> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Update(Player updatedPlayer)
         {
             try

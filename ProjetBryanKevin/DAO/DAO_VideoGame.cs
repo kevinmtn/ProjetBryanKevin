@@ -27,7 +27,7 @@ namespace ProjetBryanKevin.DAO
                     cmd.Parameters.AddWithValue("name", videoGame.Name);
                     cmd.Parameters.AddWithValue("creditCost", videoGame.CreditCost);
                     cmd.Parameters.AddWithValue("dateOfBirth", videoGame.Console);
-                    
+
                     connection.Open();
 
                     int result = cmd.ExecuteNonQuery();
@@ -79,7 +79,7 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame", connection);
-                 
+
                     connection.Open();
 
 
@@ -140,11 +140,16 @@ namespace ProjetBryanKevin.DAO
             return videoGame;
         }
 
+        public override List<VideoGame> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
+
         public override bool Update(VideoGame updatedVideoGame)
         {
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("UPDATE dbo.VideoGame " +
                         "SET name = @name, creditCost = @creditCost, console = @console " +
@@ -158,7 +163,8 @@ namespace ProjetBryanKevin.DAO
 
                     return isUpdated;
                 }
-            }catch(SqlException e)
+            }
+            catch (SqlException e)
             {
                 throw new Exception(e.Message);
             }

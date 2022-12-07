@@ -23,12 +23,14 @@ namespace ProjetBryanKevin.Pages.Player
     /// </summary>
     public partial class VideoGameAvailable : Page
     {
-        AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
-        public VideoGameAvailable()
+     
+        public VideoGameAvailable(Classes.Player play)
         {
             InitializeComponent();
             List<VideoGame> videoGames = VideoGame.GetVideoGame();
             dataGridVideoGame.ItemsSource = videoGames;
+
+            Credit.Text = play.Credit.ToString();
         }
 
         private void ButtonLoan(object sender, RoutedEventArgs e)
