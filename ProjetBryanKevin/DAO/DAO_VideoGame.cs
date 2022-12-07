@@ -164,5 +164,31 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
         }
+
+        internal int CheckDuplicate(VideoGame videoGame)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE name = @name AND console = @console", connection);
+                    command.Parameters.AddWithValue("name", videoGame.Name);
+                    command.Parameters.AddWithValue("console", videoGame.Console);
+                    connection.Open();
+                    using(SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if(reader.Read())
+                        {
+                            return reader.GetInt32("creditCost") != 0 ? 2 : 1;
+                        }
+                        return 0;
+                    }
+                }
+            }
+            catch(SqlException e) 
+            { 
+                throw new Exception(e.Message); 
+            }   
+        }
     }
 }
