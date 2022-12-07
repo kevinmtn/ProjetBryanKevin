@@ -28,8 +28,8 @@
                 </Label.RenderTransform>
             </Label>
             <PasswordBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="197" Height="26" AutomationProperties.IsRequiredForForm="True" FontSize="15" Margin="188,144,0,0" Grid.ColumnSpan="2"/>
-            <Button x:Name="Connexion" Click="ButtonClicked" Content="Se connecter" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,290,0,0" Height="42" Width="114" Background="#FF522C0C" Foreground="White" Grid.Column="1"/>
-            <Button x:Name="Inscription" Click="ButtonClicked" Content="S'inscrire" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="310,290,0,0" Height="42" Width="114" Background="#FF522C0C" Foreground="White" Grid.Column="1"/>
+            <Button x:Name="Connexion" Click="ButtonConnection" Content="Se connecter" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,290,0,0" Height="42" Width="114" Background="#FF522C0C" Foreground="White" Grid.Column="1"/>
+            <Button x:Name="Inscription" Click="ButtonInscription" Content="S'inscrire" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="310,290,0,0" Height="42" Width="114" Background="#FF522C0C" Foreground="White" Grid.Column="1"/>
             <ComboBox Name="ConnexionChoice" HorizontalAlignment="Left" VerticalAlignment="Top" Width="129" Margin="217,225,0,0" Height="29" FontSize="14">
                 <ComboBoxItem IsSelected="True">Administrateur</ComboBoxItem>
                 <ComboBoxItem>Participant</ComboBoxItem>

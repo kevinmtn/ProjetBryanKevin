@@ -22,13 +22,14 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Player(pseudo,registrationDate,dateOfBirth, IdUser) VALUES (@pseudo,@registrationDate,@dateOfBirth,@idUser)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Player(pseudo, username,password,registrationDate,dateOfBirth,credit) VALUES (@pseudo,@username,@password,@registrationDate,@dateOfBirth,@credit)", connection);
                     cmd.Parameters.AddWithValue("pseudo", player.Pseudo);
+                    cmd.Parameters.AddWithValue("username", player.UserName);
+                    cmd.Parameters.AddWithValue("password", player.Password);
                     cmd.Parameters.AddWithValue("registrationDate", player.RegistrationDate);
                     cmd.Parameters.AddWithValue("dateOfBirth", player.DateOfBirth);
-                    cmd.Parameters.AddWithValue("IdUser", player.Id);
-    
-
+                    cmd.Parameters.AddWithValue("credit", player.Credit);
+               
                     connection.Open();
 
                     int result = cmd.ExecuteNonQuery();

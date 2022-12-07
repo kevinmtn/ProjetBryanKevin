@@ -1,6 +1,7 @@
 ﻿using ProjetBryanKevin.Classes;
 using ProjetBryanKevin.DAO;
 using ProjetBryanKevin.Factory;
+using ProjetBryanKevin.Pages.PlayerPages;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -30,7 +31,7 @@ namespace ProjetBryanKevin
             InitializeComponent();
         }
 
-        public void ButtonClicked(object sender, RoutedEventArgs e)
+        public void ButtonConnection(object sender, RoutedEventArgs e)
         {
             AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
             String login = Pseudo.Text;
@@ -72,6 +73,14 @@ namespace ProjetBryanKevin
                     }
                     break;
             }
+        }
+
+        public void ButtonInscription(object sender, RoutedEventArgs e)
+        {
+            InscriptionWindow inscription = new InscriptionWindow();
+            inscription.Show();
+            this.Close();
+
         }
 
         private void ErrorMessageForLogin()
