@@ -17,7 +17,7 @@
             </Grid.ColumnDefinitions>
             <TextBox x:Name="Pseudo" HorizontalAlignment="Left" Height="26" Margin="188,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" AutomationProperties.IsRequiredForForm="True" FontSize="15" Grid.ColumnSpan="2"/>
 
-            <Label Content="Connexion" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="132" FontSize="22" Margin="306,-55,0,0" RenderTransformOrigin="0.5,0.5" Foreground="#FF484848" Grid.ColumnSpan="2" Background="{x:Null}">
+            <Label Content="Connexion" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="132" FontSize="22" Margin="316,-55,0,0" RenderTransformOrigin="0.5,0.5" Foreground="#FF484848" Grid.ColumnSpan="2" Background="{x:Null}">
                 <Label.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>

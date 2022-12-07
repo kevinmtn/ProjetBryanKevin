@@ -22,7 +22,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="DelButton" Content="Supprimer" Margin="5,5,5,5" Click = "delBooking" />
+                            <Button x:Name="DelButton" Content="Supprimer" Margin="5,5,5,5" Click = "DelBooking" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
