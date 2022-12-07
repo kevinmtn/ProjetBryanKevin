@@ -21,6 +21,6 @@ namespace ProjetBryanKevin.Classes
         {
             DAO_Administrator dao_Admin = new DAO_Administrator();
             return dao_Admin.DisplayAll();
-        
+        }
     }
 }
