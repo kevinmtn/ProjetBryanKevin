@@ -145,12 +145,7 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public override Booking VerificationConnection(string username, string password)
-        {
-            return null;
-        }
-
-        public override List<Booking> FindBookingsByIdPlayer(Player idPlayer)
+        public  List<Booking> FindBookingsByIdPlayer(int idPlayer)
         {
             List<Booking> playerBookings = new List<Booking>();
             try
@@ -158,7 +153,7 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idPlayer", connection);
-                    command.Parameters.AddWithValue("idPlayer", idPlayer.Id);
+                    command.Parameters.AddWithValue("idPlayer", idPlayer);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

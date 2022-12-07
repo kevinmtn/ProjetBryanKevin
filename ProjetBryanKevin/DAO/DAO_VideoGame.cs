@@ -140,11 +140,6 @@ namespace ProjetBryanKevin.DAO
             return videoGame;
         }
 
-        public override List<VideoGame> FindBookingsByIdPlayer(Player play)
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool Update(VideoGame updatedVideoGame)
         {
             try
@@ -168,11 +163,6 @@ namespace ProjetBryanKevin.DAO
             {
                 throw new Exception(e.Message);
             }
-        }
-
-        public override VideoGame VerificationConnection(string username, string password)
-        {
-            return null;
         }
     }
 }

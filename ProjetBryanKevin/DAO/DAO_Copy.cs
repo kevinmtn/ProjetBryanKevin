@@ -110,18 +110,14 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
             return copy;
-        }
 
-        public override List<Copy> FindBookingsByIdPlayer(Player play)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public override bool Update(Copy copy)
         {
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("UPDATE dbo.Copy SET idVideoGame = @idVideoGame, idPlayer = @idPlayer WHERE idCopy = @idCopy");
                     command.Parameters.AddWithValue("idCopy", copy.IdCopy);
@@ -131,12 +127,7 @@ namespace ProjetBryanKevin.DAO
                     int rowsAffected = command.ExecuteNonQuery();
                     return rowsAffected > 0;
                 }
-            }catch (SqlException e) { throw new Exception(e.Message); }
-        }
-
-        public override Copy VerificationConnection(string username, string password)
-        {
-            return null;
+            } catch (SqlException e) { throw new Exception(e.Message); }
         }
     }
 }
