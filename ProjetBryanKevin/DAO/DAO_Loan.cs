@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjetBryanKevin.DAO
 {
-    
+
     class DAO_Loan : DAO<Loan>
     {
         DAO_Copy DAO_Copy = new DAO_Copy();
@@ -24,7 +24,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Loan(startDate, endDate,ongoing, IdCopy,IdBorrower,IdLender) VALUES (@startDate,@endDate,@ongoing,@idCopy,@IdBorrower,@IdLender)",connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Loan(startDate, endDate,ongoing, IdCopy,IdBorrower,IdLender) VALUES (@startDate,@endDate,@ongoing,@idCopy,@IdBorrower,@IdLender)", connection);
                     cmd.Parameters.AddWithValue("startDate", loan.StartDate);
                     cmd.Parameters.AddWithValue("endDate", loan.EndDate);
                     cmd.Parameters.AddWithValue("ongoing", loan.OnGoing);
@@ -39,7 +39,8 @@ namespace ProjetBryanKevin.DAO
                 }
                 return success;
 
-            }catch(SqlException e)
+            }
+            catch (SqlException e)
             {
                 throw new Exception(e.Message);
             }
@@ -79,13 +80,13 @@ namespace ProjetBryanKevin.DAO
             List<Loan> loans = new List<Loan>();
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan", connection);
                     connection.Open();
-                    using(SqlDataReader reader = command.ExecuteReader())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        while(reader.Read())
+                        while (reader.Read())
                         {
                             Loan temporaryLoan = new Loan(
                                 reader.GetInt32("idLoan"),
@@ -95,16 +96,17 @@ namespace ProjetBryanKevin.DAO
                                 DAO_Player.Find(reader.GetInt32("idLender")),
                                 DAO_Player.Find(reader.GetInt32("idBorrower")),
                                 DAO_Copy.Find(reader.GetInt32("idCopy"))
-                                ); 
+                                );
                             loans.Add(temporaryLoan);
                         }
                     }
                 }
 
-            }catch(SqlException e) 
-            { 
-                throw new Exception(e.Message); 
-            }  
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
             return loans;
         }
 
@@ -114,7 +116,7 @@ namespace ProjetBryanKevin.DAO
             Loan loan = null;
             try
             {
-                using(SqlConnection connection =new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idLoan = @idLoan", connection);
                     command.Parameters.AddWithValue("idLoan", id);
@@ -142,14 +144,15 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
             return loan;
+        }
 
-        
+
 
         public override bool Update(Loan updatedLoan)
         {
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("UPDATE dbo.Copy SET startDate = @startDate, endDate = @endDate, " +
                         "ongoing = @ongoing, idCopy = @idCopy, idBorrower = @idBorrower, idLender = @idLender WHERE idLoan = @idLoan");
@@ -167,6 +170,7 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             { throw new Exception(e.Message); }
-        
+
+        }
     }
 }

@@ -88,12 +88,12 @@ namespace ProjetBryanKevin.DAO
             Copy copy = null;
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Copy WHERE idCopy = @idCopy");
                     command.Parameters.AddWithValue("idCopy", id);
                     connection.Open();
-                    using(SqlDataReader reader = command.ExecuteReader())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -110,6 +110,7 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
             return copy;
+        }
 
 
 
