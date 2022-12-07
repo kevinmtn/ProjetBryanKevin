@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ProjetBryanKevin.DAO
 {
@@ -143,6 +144,34 @@ namespace ProjetBryanKevin.DAO
         public override Booking VerificationConnection(string username, string password)
         {
             return null;
+        }
+
+        public List<Booking> FindBookingsByIdPlayer(int idPlayer)
+        {
+            List<Booking> playerBookings = new List<Booking>();
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idPlayer", connection);
+                    command.Parameters.AddWithValue("idPlayer", idPlayer);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Booking temporaryBooking = new Booking(
+                                DAO_Player.Find(reader.GetInt32("idPlayer")),
+                                DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
+                                reader.GetDateTime("bookingDate")
+                                );
+                            playerBookings.Add(temporaryBooking);
+                        }
+                    }
+                }
+            }
+            catch (SqlException e) { throw new Exception(e.Message); }
+            return playerBookings;
         }
     }
 }

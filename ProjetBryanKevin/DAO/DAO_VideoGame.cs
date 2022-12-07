@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ProjetBryanKevin.DAO
 {
@@ -40,8 +41,6 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-   
-
         public override bool Delete(VideoGame videoGame)
         {
             try
@@ -70,7 +69,6 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
         }
-
 
         public override List<VideoGame> DisplayAll()
         {
@@ -110,7 +108,6 @@ namespace ProjetBryanKevin.DAO
             return videoGames;
         }
 
-
         public override VideoGame Find(int id)
         {
             VideoGame videoGame = null;
@@ -119,16 +116,14 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE idVideoGame=@id", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE idVideoGame = @id", connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
-
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
+                    { 
                         while (reader.Read())
                         {
-                            VideoGame vg = new VideoGame(
+                            videoGame = new VideoGame(
                                 reader.GetInt32("idVideoGame"),
                                 reader.GetString("name"),
                                 reader.GetInt32("creditCost"),
@@ -140,10 +135,8 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-
-                throw new Exception("Une erreur sql est survenue !");
+                throw new Exception("Une erreur sql est survenue !\n" + e.Message);
             }
-
             return videoGame;
         }
 

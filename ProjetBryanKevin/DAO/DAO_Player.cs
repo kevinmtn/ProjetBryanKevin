@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
-
+using System.Diagnostics;
 
 namespace ProjetBryanKevin.DAO
 {
@@ -98,7 +98,6 @@ namespace ProjetBryanKevin.DAO
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE idPlayer = @id", connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read()){
@@ -119,9 +118,8 @@ namespace ProjetBryanKevin.DAO
             catch (SqlException e)
             {
 
-                throw new Exception("Une erreur sql est survenue !");
+                throw new Exception("Une erreur sql est survenue !\n" + e.Message);
             }
-
             return player;
         }
 
@@ -184,9 +182,9 @@ namespace ProjetBryanKevin.DAO
                     }
                 }
             }
-            catch (SqlException)
+            catch (SqlException e)
             {
-                throw new Exception("Une erreur SQL est survenue !");
+                throw new Exception("Une erreur SQL est survenue !\n" + e.Message);
             }
 
             return player;
