@@ -19,15 +19,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// <summary>
     /// Logique d'interaction pour PlayerBookingsPage.xaml
     /// </summary>
-<<<<<<<< HEAD:ProjetBryanKevin/Pages/PlayerPages/PlayerBookingsPage.xaml.cs
-    public partial class PlayerBookingsPage : Page
-    {
-        public PlayerBookingsPage(int idPlayer)
-        {
-            InitializeComponent();
-            List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
-            dataGridBooking.ItemsSource = bookings;
-========
+
     public partial class BookingPage : Page
     {
         public BookingPage(Classes.Player play)
@@ -36,7 +28,6 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             List<Booking> bookings = Booking.GetPlayerBookings(play);
             dataGridBooking.ItemsSource = bookings;
 
->>>>>>>> Kevin:ProjetBryanKevin/Pages/PlayerPages/BookingPage.xaml.cs
         }
 
     }

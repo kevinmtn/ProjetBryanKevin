@@ -22,7 +22,7 @@ namespace ProjetBryanKevin.DAO
             bool success = false;
             try
             {
-                using(SqlConnection connection = new SqlConnection(this.connectionString))
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
                     SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Booking(idPlayer, idVideoGame, bookingDate) VALUES (@idPlayer, @idVideoGame,@bookingDate)", connection);
                     cmd.Parameters.AddWithValue("idPlayer", book.Booker.Id);
@@ -33,28 +33,6 @@ namespace ProjetBryanKevin.DAO
                     success = result > 0;
                 }
                 return success;
-            }
-            catch (SqlException e)
-            {
-                throw new Exception( e.Message);
-            }
-        }
-
-        public bool DeleteBooking(int idPlayer, int idVideoGame)
-        {
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(this.connectionString))
-                {
-                    SqlCommand cmd = new SqlCommand("DELETE FROM dbo.Booking WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame", connection);
-                    cmd.Parameters.AddWithValue("idPlayer", idPlayer);
-                    cmd.Parameters.AddWithValue("idVideoGame", idVideoGame);
-                    connection.Open();
-
-                    bool isDeleted = cmd.ExecuteNonQuery() > 0 ? true : false;
-
-                    return isDeleted;
-                }
             }
             catch (SqlException e)
             {
@@ -89,7 +67,7 @@ namespace ProjetBryanKevin.DAO
             List<Booking> bookings = new List<Booking>();
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking", connection);
                     connection.Open();
@@ -106,7 +84,8 @@ namespace ProjetBryanKevin.DAO
                         }
                     }
                 }
-            }catch (SqlException e) { throw new Exception(e.Message); }
+            }
+            catch (SqlException e) { throw new Exception(e.Message); }
             return bookings;
         }
 
@@ -120,13 +99,13 @@ namespace ProjetBryanKevin.DAO
             Booking booking = null;
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idBooker, idVideoGame = @idVideoGame", connection);
                     command.Parameters.AddWithValue("idBooker", idBooker);
                     command.Parameters.AddWithValue("idVideoGame", idVideoGame);
                     connection.Open();
-                    using(SqlDataReader reader = command.ExecuteReader())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -137,7 +116,8 @@ namespace ProjetBryanKevin.DAO
                         }
                     }
                 }
-            }catch (SqlException e)
+            }
+            catch (SqlException e)
             {
                 throw new Exception(e.Message);
             }
@@ -149,7 +129,7 @@ namespace ProjetBryanKevin.DAO
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
-                { 
+                {
                     SqlCommand command = new SqlCommand("UPDATE dbo.Booking SET bookingDate = @bookingDate WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame", connection);
                     command.Parameters.AddWithValue("idPlayer", updatedBooking.Booker.Id);
                     command.Parameters.AddWithValue("idVideoGame", updatedBooking.VideoGame.IdVideoGame);
@@ -159,8 +139,10 @@ namespace ProjetBryanKevin.DAO
                     return isUpdated;
                 }
             }
-            catch(SqlException e) { 
-            throw new Exception(e.Message); }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public override Booking VerificationConnection(string username, string password)
@@ -168,15 +150,15 @@ namespace ProjetBryanKevin.DAO
             return null;
         }
 
-        public List<Booking> FindBookingsByIdPlayer(int idPlayer)
+        public override List<Booking> FindBookingsByIdPlayer(Player idPlayer)
         {
             List<Booking> playerBookings = new List<Booking>();
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idPlayer", connection);
-                    command.Parameters.AddWithValue("idPlayer", idPlayer);
+                    command.Parameters.AddWithValue("idPlayer", idPlayer.Id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -197,4 +179,3 @@ namespace ProjetBryanKevin.DAO
         }
     }
 }
-

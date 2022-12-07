@@ -22,7 +22,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class PlayerBookingsPage : Page
     {
-        public PlayerBookingsPage(int idPlayer)
+        public PlayerBookingsPage(Classes.Player idPlayer)
         {
             InitializeComponent();
             List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
