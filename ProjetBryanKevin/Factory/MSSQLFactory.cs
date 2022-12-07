@@ -11,7 +11,11 @@ namespace ProjetBryanKevin.Factory
 
     class MSSQLFactory : AbstractDAOFactory
     {
-        public override DAO<Administrator> GetAdministratorDAO()
+        public override DAO_User<Player> GetPlayerDAO()
+        {
+            return new DAO_Player();
+        }
+        public override DAO_User<Administrator> GetAdministratorDAO()
         {
             return new DAO_Administrator();
         }
@@ -31,10 +35,6 @@ namespace ProjetBryanKevin.Factory
             return new DAO_Loan();
         }
 
-        public override DAO<Player> GetPlayerDAO()
-        {
-            return new DAO_Player();
-        }
 
         public override DAO<VideoGame> getVideoGameDAO()
         {

@@ -39,7 +39,7 @@ namespace ProjetBryanKevin
             switch (ConnexionChoice.Text)
             {
                 case "Administrateur":
-                    DAO<Administrator> daoAdministrator = adf.GetAdministratorDAO();
+                    DAO_User<Administrator> daoAdministrator = adf.GetAdministratorDAO();
                     Administrator administrator= daoAdministrator.VerificationConnection(login, password);
 
                     if (administrator == null)
@@ -56,7 +56,7 @@ namespace ProjetBryanKevin
                     break;
 
                 case "Participant":
-                    DAO<Player> daoPlayer = adf.GetPlayerDAO();
+                    DAO_User<Player> daoPlayer = adf.GetPlayerDAO();
                     Player player= daoPlayer.VerificationConnection(login, password);
 
                     if (player == null)

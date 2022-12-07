@@ -31,7 +31,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             String gameName = GameName.Text;
             String console = ConsoleType.Text;
 
-            if(gameName =="" || console == "")
+            if(gameName == "" || console == "")
             {
                 MessageBox.Show("Veuillez remplir tous les champs", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }

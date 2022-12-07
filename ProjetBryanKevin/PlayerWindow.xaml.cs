@@ -64,10 +64,6 @@ namespace ProjetBryanKevin
         {
             Main.Content = new LenderPage();
         }
-        private void booking(Object sender, RoutedEventArgs e)
-        {
-            Main.Content = new BookingPage(play);
-        }
 
         private void seePlayerBookingsPage(Object sender, RoutedEventArgs e)
         {

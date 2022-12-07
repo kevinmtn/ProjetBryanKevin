@@ -18,8 +18,8 @@ namespace ProjetBryanKevin.Factory
     internal abstract class AbstractDAOFactory
     {
 
-        public abstract DAO<Administrator> GetAdministratorDAO();
-        public abstract DAO<Player> GetPlayerDAO();
+        public abstract DAO_User<Administrator> GetAdministratorDAO();
+        public abstract DAO_User<Player> GetPlayerDAO();
         public static AbstractDAOFactory GetFactory(DAOFactoryType type)
         {
             switch (type)

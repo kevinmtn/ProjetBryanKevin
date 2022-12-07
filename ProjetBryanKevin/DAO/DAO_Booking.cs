@@ -46,8 +46,9 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("DELETE FROM dbo.Booking WHERE idBooking=@id", connection);
-                    cmd.Parameters.AddWithValue("id", booking.IdBooking);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM dbo.Booking WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame", connection);
+                    cmd.Parameters.AddWithValue("idPlayer", booking.Booker.Id);
+                    cmd.Parameters.AddWithValue("idVideoGame", booking.VideoGame.IdVideoGame);
 
                     connection.Open();
 
