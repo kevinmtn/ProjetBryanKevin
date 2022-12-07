@@ -8,10 +8,10 @@
         Title="PlayerWindow" Height="450" Width="800">
     <Grid>
         <DockPanel>
-            <Menu DockPanel.Dock="Top" Background="#FF86726B">
-                <MenuItem Header="_Deconnexion" Click="menuDisconnect" Foreground="White">
+            <Menu DockPanel.Dock="Top" Background="#FF86726B" Height="440">
+                <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="White" Height="32" FontSize="15">
                 </MenuItem>
-                <MenuItem Header="_Options" Foreground="White">
+                <MenuItem Header="_Options" Foreground="White" FontSize="15">
                     <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
                     <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="Black"/>
                     <MenuItem Header="_Emprunter un jeux"  Click="borrowVideoGame" Foreground="Black"/>
@@ -20,6 +20,6 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <Frame Name="Main" Margin="0,20,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
+        <Frame Name="Main" Margin="0,36,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
     </Grid>
 </Window>
