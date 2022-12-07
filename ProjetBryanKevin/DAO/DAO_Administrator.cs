@@ -55,10 +55,6 @@ namespace ProjetBryanKevin.DAO
             return administrators;
         }
 
-        public override List<Administrator> DisplayForAPlayer(Player play)
-        {
-            throw new NotImplementedException();
-        }
 
         public override Administrator Find(int id)
         {
@@ -94,6 +90,10 @@ namespace ProjetBryanKevin.DAO
             return administrator;
         }
 
+        public override List<Administrator> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
+        }
 
         public override bool Update(Administrator admin)
         {

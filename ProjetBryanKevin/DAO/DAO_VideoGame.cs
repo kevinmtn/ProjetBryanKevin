@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ProjetBryanKevin.DAO
 {
@@ -25,8 +26,8 @@ namespace ProjetBryanKevin.DAO
                     SqlCommand cmd = new SqlCommand("INSERT INTO dbo.VideoGame(name,creditCost,console) VALUES (@name,@creditCost,@console)", connection);
                     cmd.Parameters.AddWithValue("name", videoGame.Name);
                     cmd.Parameters.AddWithValue("creditCost", videoGame.CreditCost);
-                    cmd.Parameters.AddWithValue("console", videoGame.Console);
-                    
+                    cmd.Parameters.AddWithValue("dateOfBirth", videoGame.Console);
+
                     connection.Open();
 
                     int result = cmd.ExecuteNonQuery();
@@ -39,8 +40,6 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
         }
-
-   
 
         public override bool Delete(VideoGame videoGame)
         {
@@ -71,7 +70,6 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-
         public override List<VideoGame> DisplayAll()
         {
             List<VideoGame> videoGames = new List<VideoGame>();
@@ -81,7 +79,7 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame", connection);
-                 
+
                     connection.Open();
 
 
@@ -110,11 +108,6 @@ namespace ProjetBryanKevin.DAO
             return videoGames;
         }
 
-        public override List<VideoGame> DisplayForAPlayer(Player play)
-        {
-            throw new NotImplementedException();
-        }
-
         public override VideoGame Find(int id)
         {
             VideoGame videoGame = null;
@@ -123,16 +116,14 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE idVideoGame=@id", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE idVideoGame = @id", connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
-
-
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            VideoGame vg = new VideoGame(
+                            videoGame = new VideoGame(
                                 reader.GetInt32("idVideoGame"),
                                 reader.GetString("name"),
                                 reader.GetInt32("creditCost"),
@@ -144,18 +135,21 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-
-                throw new Exception("Une erreur sql est survenue !");
+                throw new Exception("Une erreur sql est survenue !\n" + e.Message);
             }
-
             return videoGame;
+        }
+
+        public override List<VideoGame> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
         }
 
         public override bool Update(VideoGame updatedVideoGame)
         {
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("UPDATE dbo.VideoGame " +
                         "SET name = @name, creditCost = @creditCost, console = @console " +
@@ -169,7 +163,8 @@ namespace ProjetBryanKevin.DAO
 
                     return isUpdated;
                 }
-            }catch(SqlException e)
+            }
+            catch (SqlException e)
             {
                 throw new Exception(e.Message);
             }

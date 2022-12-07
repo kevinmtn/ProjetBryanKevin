@@ -11,21 +11,17 @@
 
 
     <Grid>
-        <Label Content="Mes réservations" HorizontalAlignment="Center" Width="168" Height="30" VerticalAlignment="Top" Foreground="#FF292323" FontSize="15" Margin="0,23,0,0" Background="{x:Null}"/>
-        <DataGrid x:Name="dataGridVideoGame" VerticalAlignment="Top"
-          ItemsSource="{Binding Source=booking}"
-          AutoGenerateColumns="False" CanUserResizeColumns="True" Margin="0,91,0,0">
-            <DataGrid.Columns>
-
-                <DataGridTextColumn Header="Date de la réservation" Binding="{Binding BookingDate}"/>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button x:Name="CancelReservation" Click="ButtonCancel" Content="Annuler la réservation"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid>
+            <Label Content="Mes réservations" HorizontalAlignment="Center" Width="130" Height="30" VerticalAlignment="Top" Foreground="#FF292323" FontSize="15" Margin="0,41,0,0" Background="{x:Null}"/>
+            <DataGrid Name="dataGridBooking"  HorizontalAlignment="Center" Width="730" Height="186" 
+                  VerticalAlignment="Center"  Background="#FFECECEC" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Source=bookings}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom du jeu" Binding="{Binding VideoGame.Name}" Width="400"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Console" Binding="{Binding VideoGame.Console}" Width="100"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Date de la réservation" Binding="{Binding BookingDate}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </Page>

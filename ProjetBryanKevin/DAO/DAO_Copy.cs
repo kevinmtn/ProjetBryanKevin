@@ -83,11 +83,6 @@ namespace ProjetBryanKevin.DAO
             return copyList;
         }
 
-        public override List<Copy> DisplayForAPlayer(Player play)
-        {
-            throw new NotImplementedException();
-        }
-
         public override Copy Find(int id)
         {
             Copy copy = null;
@@ -115,6 +110,11 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
             return copy;
+        }
+
+        public override List<Copy> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
         }
 
         public override bool Update(Copy copy)

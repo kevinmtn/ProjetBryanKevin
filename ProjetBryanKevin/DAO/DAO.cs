@@ -23,7 +23,7 @@ namespace ProjetBryanKevin.DAO
         public abstract bool Update(T obj);
         public abstract List<T> DisplayAll();
 
-        public abstract List<T> DisplayForAPlayer(Player play);
+        public abstract List<T> FindBookingsByIdPlayer(Player play);
         public abstract T VerificationConnection(string username, string password);
 
 

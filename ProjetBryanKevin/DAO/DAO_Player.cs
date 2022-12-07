@@ -86,10 +86,6 @@ namespace ProjetBryanKevin.DAO
             return players;
         }
 
-        public override List<Player> DisplayForAPlayer(Player play)
-        {
-            throw new NotImplementedException();
-        }
 
         public override Player Find(int id)
         {
@@ -127,6 +123,11 @@ namespace ProjetBryanKevin.DAO
             }
 
             return player;
+        }
+
+        public override List<Player> FindBookingsByIdPlayer(Player play)
+        {
+            throw new NotImplementedException();
         }
 
         public override bool Update(Player updatedPlayer)

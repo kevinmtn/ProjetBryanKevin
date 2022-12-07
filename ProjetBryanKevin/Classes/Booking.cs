@@ -22,7 +22,7 @@ namespace ProjetBryanKevin.Classes
             this.bookingDate = bookingDate;
         }
 
-        public Booking(int idBooking, DateTime bookingDate, Player booker, VideoGame videoGame )
+        public Booking(int idBooking, DateTime bookingDate, Player booker, VideoGame videoGame)
         {
             this.bookingDate = bookingDate;
             this.idBooking = idBooking;
@@ -35,7 +35,8 @@ namespace ProjetBryanKevin.Classes
             get { return idBooking; }
             set { idBooking = value; }
         }
-        public DateTime BookingDate {
+        public DateTime BookingDate
+        {
             get { return this.bookingDate; }
             set { this.bookingDate = value; }
         }
@@ -58,16 +59,22 @@ namespace ProjetBryanKevin.Classes
             return dAO_Booking.Create(this);
         }
 
-        public static List<Booking> GetBooking(Player play)
+        public static List<Booking> GetBooking()
         {
             DAO_Booking dao_booking = new DAO_Booking();
-            return dao_booking.DisplayForAPlayer(play);
+            return dao_booking.DisplayAll();
         }
 
         public bool Delete()
         {
             DAO_Booking dao_Booking = new DAO_Booking();
             return dao_Booking.Delete(this);
+        }
+
+        public static List<Booking> GetPlayerBookings(Player idPlayer)
+        {
+            DAO_Booking dao_booking = new DAO_Booking();
+            return dao_booking.FindBookingsByIdPlayer(idPlayer);
         }
     }
 }

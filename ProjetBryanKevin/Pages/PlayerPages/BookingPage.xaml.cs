@@ -24,26 +24,10 @@ namespace ProjetBryanKevin.Pages.PlayerPages
         public BookingPage(Classes.Player play)
         {
             InitializeComponent();
-            List<Booking> booking = Booking.GetBooking(play);
-       
-            dataGridVideoGame.ItemsSource = booking;
+            List<Booking> bookings = Booking.GetPlayerBookings(play);
+            dataGridBooking.ItemsSource = bookings;
 
         }
 
-        private void ButtonCancel(object sender, RoutedEventArgs e)
-        {
-
-            MessageBoxResult res = MessageBox.Show("Etes vous certain de vouloir annuler cette réservation ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            switch (res)
-            {
-
-                case MessageBoxResult.Yes:
-                    break;
-                case MessageBoxResult.No:
-                    break;
-                default:
-                    break;
-            }
-        }
     }
 }
