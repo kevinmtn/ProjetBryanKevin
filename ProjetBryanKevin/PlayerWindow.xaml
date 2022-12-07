@@ -5,19 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjetBryanKevin"
         mc:Ignorable="d"
-        Title="PlayerWindow" Height="450" Width="800">
+        Title="VideoGame Manager" Height="450" Width="800">
     <Grid>
         <DockPanel>
             <Menu DockPanel.Dock="Top" Background="#FF86726B" Height="435">
-                <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="White" Height="32" FontSize="13"/>
-                <MenuItem Header="_Options" Foreground="White" FontSize="13">
-                    <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black"/>
-                    <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="Black"/>
-                    <MenuItem Header="_Emprunter un jeux"  Click="borrowVideoGame" Foreground="Black"/>
-                    <MenuItem Header="_Preter un jeux" Click="lendVideoGame" Foreground="Black"/>
-                    <MenuItem Header="_Mes réservations"  Click="seePlayerBookingsPage" Foreground="Black"/>
-                </MenuItem>
+                <MenuItem Header="_Accueil" Click="menuHome" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Emprunter un jeux"  Click="borrowVideoGame" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Preter un jeux" Click="lendVideoGame" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Mes locations"  Click="" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Mes réservations"  Click="seePlayerBookingsPage" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Width="50"/>
+                <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="Red" Height="32" FontSize="13" />
             </Menu>
+
         </DockPanel>
         <Frame Name="Main" Margin="0,34,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
     </Grid>
