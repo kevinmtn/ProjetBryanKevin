@@ -16,8 +16,10 @@ namespace ProjetBryanKevin.DAO
             this.connectionString = ConfigurationManager.ConnectionStrings["DB_Bryan_Kevin"].ConnectionString;
         }
 
+
         public abstract bool Create(T obj);
         public abstract bool Delete(T obj);
+
         public abstract T Find(int id);
         public abstract bool Update(T obj);
         public abstract List<T> DisplayAll();

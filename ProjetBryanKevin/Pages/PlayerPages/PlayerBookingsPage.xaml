@@ -8,19 +8,25 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PlayerBookingsPage">
 
+
     <Grid>
-        <Grid>
-            <Label Content="Mes réservations" HorizontalAlignment="Center" Width="120
+        <Label Content="Mes réservations" HorizontalAlignment="Center" Width="120
                " Height="30" VerticalAlignment="Top" Foreground="#FF292323" FontSize="15" Margin="0,10,0,0" Background="{x:Null}"/>
-            <DataGrid Name="dataGridBooking"  HorizontalAlignment="Center" Width="730" Height="354" 
+        <DataGrid Name="dataGridBooking"  HorizontalAlignment="Center" Width="800" Height="356" 
                   VerticalAlignment="Center"  Background="#FFECECEC" AutoGenerateColumns="False"
-                  ItemsSource="{Binding Source=bookings}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nom du jeu" Binding="{Binding VideoGame.Name}" Width="400"></DataGridTextColumn>
-                    <DataGridTextColumn Header="Console" Binding="{Binding VideoGame.Console}" Width="100"></DataGridTextColumn> 
-                    <DataGridTextColumn Header="Date de la réservation" Binding="{Binding BookingDate}"></DataGridTextColumn> 
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+                ItemsSource="{Binding Source=bookings}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nom du jeu" Binding="{Binding VideoGame.Name}" Width="400"/>
+                <DataGridTextColumn Header="Console" Binding="{Binding VideoGame.Console}" Width="100"/>
+                <DataGridTextColumn Header="Date de la réservation" Binding="{Binding BookingDate}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="DelButton" Content="Supprimer" Margin="5,5,5,5" Click = "delBooking" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

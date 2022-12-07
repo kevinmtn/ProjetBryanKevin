@@ -1,6 +1,7 @@
 ﻿using ProjetBryanKevin.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,13 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             InitializeComponent();
             List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
             dataGridBooking.ItemsSource = bookings;
+        }
+
+        private void delBooking(Object sender, RoutedEventArgs e) 
+        { 
+            Booking? selectedBooking = (sender as Button).DataContext as Booking;
+            selectedBooking?.Delete();
+            Debug.Print("Reservation supprimée");
         }
     }
 }

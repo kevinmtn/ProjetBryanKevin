@@ -40,6 +40,28 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
+        public bool DeleteBooking(int idPlayer, int idVideoGame)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("DELETE FROM dbo.Booking WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame", connection);
+                    cmd.Parameters.AddWithValue("idPlayer", idPlayer);
+                    cmd.Parameters.AddWithValue("idVideoGame", idVideoGame);
+                    connection.Open();
+
+                    bool isDeleted = cmd.ExecuteNonQuery() > 0 ? true : false;
+
+                    return isDeleted;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public override bool Delete(Booking booking)
         {
             try

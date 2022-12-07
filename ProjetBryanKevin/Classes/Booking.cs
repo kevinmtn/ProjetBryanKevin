@@ -67,8 +67,9 @@ namespace ProjetBryanKevin.Classes
         public bool Delete()
         {
             DAO_Booking dao_Booking = new DAO_Booking();
-            return dao_Booking.Delete(this);
+            return dao_Booking.DeleteBooking(this.Booker.Id, this.VideoGame.IdVideoGame);
         }
+
 
         public static List<Booking> GetPlayerBookings(int idPlayer)
         {
