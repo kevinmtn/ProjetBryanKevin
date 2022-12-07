@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetBryanKevin.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +17,15 @@ using System.Windows.Shapes;
 namespace ProjetBryanKevin.Pages.PlayerPages
 {
     /// <summary>
-    /// Logique d'interaction pour ReservationPage.xaml
+    /// Logique d'interaction pour PlayerBookingsPage.xaml
     /// </summary>
-    public partial class ReservationPage : Page
+    public partial class PlayerBookingsPage : Page
     {
-        public ReservationPage()
+        public PlayerBookingsPage(int idPlayer)
         {
             InitializeComponent();
+            List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
+            dataGridBooking.ItemsSource = bookings;
         }
     }
 }

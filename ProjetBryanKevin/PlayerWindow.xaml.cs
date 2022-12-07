@@ -23,19 +23,18 @@ namespace ProjetBryanKevin
     public partial class PlayerWindow : Window
     {
 
-        Player play;
+        Player player;
     
         public PlayerWindow(Player player)
         {
             InitializeComponent();
-            play= player;
-            WelcomeText.Text = "Bienvenue  " + play.UserName;
+            this.player = player;
+            WelcomeText.Text = "Bienvenue " + this.player.UserName;
         }
 
         private void menuDisconnect(Object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Vous vous êtes déconnecté","Deconnection",MessageBoxButton.OK, MessageBoxImage.Information);
-
             MainWindow main = new MainWindow();
             main.Show();
             this.Close();
@@ -43,7 +42,7 @@ namespace ProjetBryanKevin
 
         private void menuHome(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new PlayerHome(play);
+            Main.Content = new PlayerHome(player);
         }
 
         private void seeVideoGames(Object sender, RoutedEventArgs e)
@@ -54,6 +53,11 @@ namespace ProjetBryanKevin
         private void loanVideoGame(Object sender, RoutedEventArgs e)
         {
             Main.Content = new LoanPage();
+        }
+
+        private void seePlayerBookingsPage(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new PlayerBookingsPage(player.Id);
         }
     }
 }
