@@ -8,14 +8,12 @@
         Title="AdministratorWindow" Height="450" Width="800">
     <Grid>
         <DockPanel>
-            <Menu DockPanel.Dock="Top" Background="#FF86726B">
-                <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="White" Height="36" FontSize="13">
-                </MenuItem>
-                <MenuItem Header="_Options" Foreground="White" FontSize="13">
-                    <MenuItem Header="_Accueil" Click="menuHome" Foreground="Black" FontSize="13"/>
-                    <MenuItem Header="_Voir les jeux disponibles" Click="menuVideoGame" Foreground="Black"/>
-                </MenuItem>
+            <Menu DockPanel.Dock="Top" Background="#FF86726B" Height="Auto" Width="Auto">
+                <MenuItem Header="_Accueil" Click="MenuHome" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Voir les jeux disponibles" Click ="MenuVideoGame" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Se déconnecter" Click="MenuDisconnect" Foreground="Red" Height="32" FontSize="13" HorizontalAlignment="Right" Width="107" HorizontalContentAlignment="Right"/>
             </Menu>
+
         </DockPanel>
         <Frame Name="Main" Margin="0,33,0,0" NavigationUIVisibility="Hidden" Background="#FFBFBFBF" />
     </Grid>
