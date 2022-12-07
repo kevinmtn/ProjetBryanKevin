@@ -1,7 +1,6 @@
 ﻿using ProjetBryanKevin.Classes;
 using ProjetBryanKevin.DAO;
 using ProjetBryanKevin.Factory;
-using ProjetBryanKevin.Pages.PlayerPages;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -31,10 +30,10 @@ namespace ProjetBryanKevin
             InitializeComponent();
         }
 
-        public void ButtonConnection(object sender, RoutedEventArgs e)
+        public void SignInClicked(object sender, RoutedEventArgs e)
         {
             AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
-            String login = Pseudo.Text;
+            String login = Login.Text;
             String password = Password.Password.ToString();
 
             switch (ConnexionChoice.Text)
@@ -75,19 +74,19 @@ namespace ProjetBryanKevin
             }
         }
 
-        public void ButtonInscription(object sender, RoutedEventArgs e)
+        public void SignUpClicked(object sender, RoutedEventArgs e)
         {
-            InscriptionWindow inscription = new InscriptionWindow();
-            inscription.Show();
+            SignupWindow signup = new SignupWindow();
+            signup.Show();
             this.Close();
-
         }
 
         private void ErrorMessageForLogin()
         {
-            Pseudo.Text = "";
+            Login.Clear();
             Password.Clear();
             MessageBox.Show("Votre pseudo ou votre mot de passe est incorrect", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+
     }
 }

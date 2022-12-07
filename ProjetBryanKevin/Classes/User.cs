@@ -14,7 +14,12 @@ namespace ProjetBryanKevin.Classes
         private string password;
 
 
-       
+       public User(string userName, string password)
+        {
+            this.userName = userName;
+            this.password = password;
+        }
+
         public User(int id, string userName, string password)
         {
             this.id = id;
