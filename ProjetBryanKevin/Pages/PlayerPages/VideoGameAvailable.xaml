@@ -22,7 +22,15 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="Reservation" Click="ButtonLoan" Content="Reserver le jeux"/>
+                            <Button x:Name="Reservation" Click="ButtonBooking" Content="Reserver le jeux" Margin="2" Height="Auto" Width="Auto" Background="#FFAF622A" FontSize="13" Foreground="White"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="Borrow" Click="ButtonBorrow" Content="Emprunter le jeux" Margin="2" Width="Auto" Height="Auto" FontSize="13" Background="#FF840505" Foreground="White"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -84,7 +84,6 @@ namespace ProjetBryanKevin.DAO
             return players;
         }
 
-
         public override Player Find(int id)
         {
             Player player = null;

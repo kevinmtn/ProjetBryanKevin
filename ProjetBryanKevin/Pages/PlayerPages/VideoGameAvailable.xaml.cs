@@ -23,7 +23,8 @@ namespace ProjetBryanKevin.Pages.Player
     /// </summary>
     public partial class VideoGameAvailable : Page
     {
-     
+
+        bool verifCredit = true;
         public VideoGameAvailable(Classes.Player play)
         {
             InitializeComponent();
@@ -31,12 +32,27 @@ namespace ProjetBryanKevin.Pages.Player
             dataGridVideoGame.ItemsSource = videoGames;
 
             Credit.Text = play.Credit.ToString();
+
+            if (play.Credit <= 0)
+            {
+                verifCredit = false;
+            }
         }
 
-        private void ButtonLoan(object sender, RoutedEventArgs e)
+        private void ButtonBooking(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Etes vous certain de vouloir reserver ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
+        }
+        private void ButtonBorrow(object sender, RoutedEventArgs e)
+        {
+            if (verifCredit)
+            {
+                MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            }
+            else if(!verifCredit)
+            {
+                MessageBox.Show("Votre nombre de crédit n'est pas suffisant !", "Emprunt impossible", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }
