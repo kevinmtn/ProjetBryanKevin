@@ -198,8 +198,8 @@ namespace ProjetBryanKevin.DAO
             List<VideoGame> videoGames = new List<VideoGame>();
             try
             {
-                  using (SqlConnection connection = new SqlConnection(connectionString))
-                  {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE idVideoGame = @idVideoGame", connection);
                     command.Parameters.AddWithValue("idVideoGame", idVideoGame);
                     connection.Open();
@@ -217,6 +217,7 @@ namespace ProjetBryanKevin.DAO
                         }
                     }
                 }
+            }
             catch (SqlException e) { throw new Exception(e.Message); }
             return videoGames;
         }
