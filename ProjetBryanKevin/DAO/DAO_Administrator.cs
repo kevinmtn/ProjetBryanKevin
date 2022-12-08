@@ -21,7 +21,7 @@ namespace ProjetBryanKevin.DAO
             return false;
         }
 
-        public override List<Administrator> DisplayAll()
+        public override List<Administrator> FindAll()
         {
             List<Administrator> administrators = new List<Administrator>();
 

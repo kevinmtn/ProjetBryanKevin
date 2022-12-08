@@ -30,7 +30,7 @@ namespace ProjetBryanKevin.Pages.Player
         public VideoGameAvailable(Classes.Player play)
         {
             InitializeComponent();
-            List<VideoGame> videoGames = VideoGame.GetVideoGame();
+            List<VideoGame> videoGames = VideoGame.GetAllVideoGames();
             dataGridVideoGame.ItemsSource = videoGames;
             player = play;
 

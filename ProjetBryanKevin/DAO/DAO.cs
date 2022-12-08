@@ -23,7 +23,7 @@ namespace ProjetBryanKevin.DAO
 
         public abstract T Find(int id);
         public abstract bool Update(T obj);
-        public abstract List<T> DisplayAll();
+        public abstract List<T> FindAll();
 
     }
 }

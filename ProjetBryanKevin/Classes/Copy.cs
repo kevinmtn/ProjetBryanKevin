@@ -46,7 +46,7 @@ namespace ProjetBryanKevin.Classes
         public static List<Copy> GetCopy()
         {
             DAO_Copy db = new DAO_Copy();
-            return db.DisplayAll();
+            return db.FindAll();
         }
 
         public static Copy GetCopyFromIdVideoGame(int idVideoGame)

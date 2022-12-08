@@ -62,7 +62,7 @@ namespace ProjetBryanKevin.Classes
         public static List<Booking> GetBooking()
         {
             DAO_Booking dao_booking = new DAO_Booking();
-            return dao_booking.DisplayAll();
+            return dao_booking.FindAll();
         }
 
         public bool Delete()

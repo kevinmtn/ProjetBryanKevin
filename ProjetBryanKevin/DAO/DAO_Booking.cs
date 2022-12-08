@@ -63,7 +63,7 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public override List<Booking> DisplayAll()
+        public override List<Booking> FindAll()
         {
             List<Booking> bookings = new List<Booking>();
             try

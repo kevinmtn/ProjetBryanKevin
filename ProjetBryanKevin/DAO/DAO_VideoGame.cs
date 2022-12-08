@@ -70,7 +70,7 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public override List<VideoGame> DisplayAll()
+        public override List<VideoGame> FindAll()
         {
             List<VideoGame> videoGames = new List<VideoGame>();
 
@@ -193,9 +193,9 @@ namespace ProjetBryanKevin.DAO
             }   
         }
         
-        public List<VideoGame> FindVideoGameById(int idVideoGame)
+        public VideoGame FindVideoGameById(int idVideoGame)
         {
-            List<VideoGame> videoGames = new List<VideoGame>();
+            VideoGame videoGame = null;
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -207,19 +207,19 @@ namespace ProjetBryanKevin.DAO
                     {
                         while (reader.Read())
                         {
-                            VideoGame videoGame = new VideoGame(
+                             videoGame = new VideoGame(
                                reader.GetInt32("idVideoGame"),
                                 reader.GetString("name"),
                                 reader.GetInt32("creditCost"),
                                 reader.GetString("console")
                                 );
-                            videoGames.Add(videoGame);
+                            
                         }
                     }
                 }
             }
             catch (SqlException e) { throw new Exception(e.Message); }
-            return videoGames;
+            return videoGame;
         }
     }
 }

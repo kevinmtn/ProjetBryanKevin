@@ -52,16 +52,16 @@ namespace ProjetBryanKevin.Classes
             DAO_VideoGame db = new DAO_VideoGame();
             return db.Create(this);
         }
-        public static List<VideoGame> GetVideoGame()
+        public static List<VideoGame> GetAllVideoGames()
         {
             DAO_VideoGame db = new DAO_VideoGame();
-            return db.DisplayAll();
+            return db.FindAll();
         }
 
-        public static List<VideoGame> GetApprovedVideoGame()
+        public static List<VideoGame> GetApprovedVideoGames()
         {
             DAO_VideoGame db = new DAO_VideoGame();
-            List<VideoGame> allVideoGames = db.DisplayAll();
+            List<VideoGame> allVideoGames = db.FindAll();
             List<VideoGame> approvedVideoGames = new List<VideoGame>();
             foreach(VideoGame videoGame in allVideoGames)
             {
@@ -73,15 +73,10 @@ namespace ProjetBryanKevin.Classes
             return approvedVideoGames;
         }
 
-        public static List<VideoGame> GetAVideoGame(int idVideoGame)
+        public static VideoGame GetVideoGameById(int idVideoGame)
         {
             DAO_VideoGame dao_videoGame = new DAO_VideoGame();
             return dao_videoGame.FindVideoGameById(idVideoGame);
-        }
-      
-        public void SelectBooking()
-        {
-
         }
 
         /* 

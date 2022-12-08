@@ -27,7 +27,7 @@ namespace ProjetBryanKevin.Pages.Administrator
         public UpdateVideoGameCredit(VideoGame video)
         {
             InitializeComponent();
-            List<VideoGame> videoGames = VideoGame.GetVideoGame();
+            List<VideoGame> videoGames = VideoGame.GetAllVideoGames();
             dataGridVideoGame.ItemsSource = videoGames;
         }
 

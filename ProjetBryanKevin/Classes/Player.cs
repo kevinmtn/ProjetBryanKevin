@@ -71,7 +71,7 @@ namespace ProjetBryanKevin.Classes
         public static List<Player> GetPlayer()
         {
             DAO_Player db = new DAO_Player();
-            return db.DisplayAll();
+            return db.FindAll();
         }
         public bool LoanAllowed()
         {

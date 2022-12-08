@@ -56,7 +56,7 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public override List<Copy> DisplayAll()
+        public override List<Copy> FindAll()
         {
             List<Copy> copyList = new List<Copy>();
             try

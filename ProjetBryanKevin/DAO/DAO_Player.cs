@@ -46,7 +46,7 @@ namespace ProjetBryanKevin.DAO
             return false;
         }
 
-        public override List<Player> DisplayAll()
+        public override List<Player> FindAll()
         {
             List<Player> players = new List<Player>();
 

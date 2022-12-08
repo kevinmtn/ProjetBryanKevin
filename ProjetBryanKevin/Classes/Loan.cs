@@ -81,7 +81,7 @@ namespace ProjetBryanKevin.Classes
         public static List<Loan> GetLoan()
         {
             DAO_Loan dao_loan= new DAO_Loan();
-            return dao_loan.DisplayAll();
+            return dao_loan.FindAll();
         }
     }
 }

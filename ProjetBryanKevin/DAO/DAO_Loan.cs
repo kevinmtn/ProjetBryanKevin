@@ -75,7 +75,7 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public override List<Loan> DisplayAll()
+        public override List<Loan> FindAll()
         {
             List<Loan> loans = new List<Loan>();
             try

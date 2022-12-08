@@ -25,7 +25,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
         public LendingPage()
         {
             InitializeComponent();
-            List<VideoGame> approvedVideoGames= VideoGame.GetApprovedVideoGame();
+            List<VideoGame> approvedVideoGames= VideoGame.GetApprovedVideoGames();
             GameNames.ItemsSource = approvedVideoGames;
         }
 
