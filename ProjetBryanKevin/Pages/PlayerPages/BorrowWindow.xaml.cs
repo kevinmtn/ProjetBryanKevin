@@ -36,6 +36,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             NameGame.Text = copy.VideoGame.Name;
             ConsoleName.Text = copy.VideoGame.Console;
             CreditCost.Text = copy.VideoGame.CreditCost.ToString();
+            StartDate.Text = DateTime.Now.ToString();
         }
 
 

@@ -7,19 +7,20 @@
         mc:Ignorable="d"
         Title="BorrowWindow" Height="450" Width="800">
     <Grid Margin="77,23,81,16">
-        <Label Content="Location" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Nom du jeux: " HorizontalAlignment="Left" Margin="93,59,0,0" VerticalAlignment="Top"/>
-        <Label Content="Console: " HorizontalAlignment="Left" Margin="93,105,0,0" VerticalAlignment="Top"/>
-        <Label Content="Valeur crédit:" HorizontalAlignment="Left" Margin="92,150,0,0" VerticalAlignment="Top"/>
-        <Label Content="Date de fin de la location: " HorizontalAlignment="Left" Margin="92,246,0,0" VerticalAlignment="Top"/>
-        <Label Content="Date du début de la location" HorizontalAlignment="Left" Margin="92,199,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="Validation" Content="Valider la location" HorizontalAlignment="Left" Margin="252,314,0,0" VerticalAlignment="Top" Height="31" Width="120" Click="Validation_Click" RenderTransformOrigin="0.481,0.803"/>
-        <TextBox x:Name="NameGame" IsEnabled="False" HorizontalAlignment="Left" Margin="236,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
-        <TextBox x:Name="ConsoleName" IsEnabled="False" HorizontalAlignment="Left" Margin="236,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
-        <TextBox x:Name="CreditCost" IsEnabled="False" HorizontalAlignment="Left" Margin="236,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
-        <TextBox x:Name="LoanCost" IsEnabled="False" HorizontalAlignment="Left" Margin="434,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
-        <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="278,200,0,0" VerticalAlignment="Top"/>
-        <DatePicker  x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" HorizontalAlignment="Left" Margin="278,248,0,0" VerticalAlignment="Top"/>
+        <Label Content="Location" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Nom du jeux: " HorizontalAlignment="Left" Margin="80,50,0,0" VerticalAlignment="Top"/>
+        <Label Content="Console: " HorizontalAlignment="Left" Margin="80,100,0,0" VerticalAlignment="Top"/>
+        <Label Content="Valeur crédit:" HorizontalAlignment="Left" Margin="80,141,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date de fin de la location: " HorizontalAlignment="Left" Margin="73,230,0,0" VerticalAlignment="Top"/>
+        <Label Content="Date du début de la location" HorizontalAlignment="Left" Margin="73,186,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Validation" Content="Valider la location" HorizontalAlignment="Left" Margin="252,347,0,0" VerticalAlignment="Top" Height="31" Width="120" Click="Validation_Click" RenderTransformOrigin="0.481,0.803" Background="#FF3E0D0D" Foreground="#FFFFF3F3"/>
+        <TextBox x:Name="NameGame" IsEnabled="False" HorizontalAlignment="Left" Margin="203,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="ConsoleName" IsEnabled="False" HorizontalAlignment="Left" Margin="203,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="CreditCost" IsEnabled="False" HorizontalAlignment="Left" Margin="203,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="LoanCost" IsEnabled="False" HorizontalAlignment="Center" Margin="0,290,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <DatePicker  x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" HorizontalAlignment="Center" Margin="0,232,0,0" VerticalAlignment="Top" />
+        <TextBox x:Name="StartDate" HorizontalAlignment="Center" Margin="0,190,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <Label Content="Prix de la location" HorizontalAlignment="Left" Margin="80,286,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
