@@ -165,12 +165,14 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
+
         internal int CheckDuplicate(VideoGame videoGame)
         {
-            try
+        try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE name = @name AND console = @console", connection);
                     command.Parameters.AddWithValue("name", videoGame.Name);
                     command.Parameters.AddWithValue("console", videoGame.Console);
@@ -189,6 +191,34 @@ namespace ProjetBryanKevin.DAO
             { 
                 throw new Exception(e.Message); 
             }   
+        }
+        
+        public List<VideoGame> FindVideoGameById(int idVideoGame)
+        {
+            List<VideoGame> videoGames = new List<VideoGame>();
+            try
+            {
+                  using (SqlConnection connection = new SqlConnection(connectionString))
+                  {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE idVideoGame = @idVideoGame", connection);
+                    command.Parameters.AddWithValue("idVideoGame", idVideoGame);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            VideoGame videoGame = new VideoGame(
+                               reader.GetInt32("idVideoGame"),
+                                reader.GetString("name"),
+                                reader.GetInt32("creditCost"),
+                                reader.GetString("console")
+                                );
+                            videoGames.Add(videoGame);
+                        }
+                    }
+                }
+            catch (SqlException e) { throw new Exception(e.Message); }
+            return videoGames;
         }
     }
 }

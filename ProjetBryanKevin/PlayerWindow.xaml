@@ -8,10 +8,9 @@
         Title="VideoGame Manager" Height="450" Width="800">
     <Grid>
         <DockPanel>
-            <Menu DockPanel.Dock="Top" Background="#FF86726B" Height="435">
+            <Menu DockPanel.Dock="Top" Background="#FF86726B" Height="Auto" Width="Auto">
                 <MenuItem Header="_Accueil" Click="menuHome" Foreground="White" Height="32" FontSize="13"/>
                 <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="White" Height="32" FontSize="13"/>
-                <MenuItem Header="_Emprunter un jeux"  Click="borrowVideoGame" Foreground="White" Height="32" FontSize="13"/>
                 <MenuItem Header="_Preter un jeux" Click="lendVideoGame" Foreground="White" Height="32" FontSize="13"/>
                 <MenuItem Header="_Mes locations"  Click="seePlayerLoansPage" Foreground="White" Height="32" FontSize="13"/>
                 <MenuItem Header="_Mes réservations"  Click="seePlayerBookingsPage" Foreground="White" Height="32" FontSize="13"/>

@@ -31,7 +31,7 @@ namespace ProjetBryanKevin
             Main.Content = new AdministratorHome(admin);
         }
 
-        private void menuDisconnect(Object sender, RoutedEventArgs e)
+        private void MenuDisconnect(Object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Vous vous êtes déconnecté", "Deconnexion", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -40,12 +40,12 @@ namespace ProjetBryanKevin
             this.Close();
         }
 
-        private void menuHome(Object sender, RoutedEventArgs e)
+        private void MenuHome(Object sender, RoutedEventArgs e)
         {
             Main.Content = new AdministratorHome(admin);
         }
 
-        private void menuVideoGame(Object sender, RoutedEventArgs e)
+        private void MenuVideoGame(Object sender, RoutedEventArgs e)
         {
             Main.Content = new UpdateVideoGameCredit(video);
         }

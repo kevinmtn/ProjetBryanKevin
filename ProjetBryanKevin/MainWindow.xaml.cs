@@ -30,10 +30,10 @@ namespace ProjetBryanKevin
             InitializeComponent();
         }
 
-        public void ButtonClicked(object sender, RoutedEventArgs e)
+        public void SignInClicked(object sender, RoutedEventArgs e)
         {
             AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
-            String login = Pseudo.Text;
+            String login = Login.Text;
             String password = Password.Password.ToString();
 
             switch (ConnexionChoice.Text)
@@ -74,11 +74,19 @@ namespace ProjetBryanKevin
             }
         }
 
+        public void SignUpClicked(object sender, RoutedEventArgs e)
+        {
+            SignupWindow signup = new SignupWindow();
+            signup.Show();
+            this.Close();
+        }
+
         private void ErrorMessageForLogin()
         {
-            Pseudo.Text = "";
+            Login.Clear();
             Password.Clear();
             MessageBox.Show("Votre pseudo ou votre mot de passe est incorrect", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
+
     }
 }

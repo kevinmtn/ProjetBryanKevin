@@ -55,11 +55,6 @@ namespace ProjetBryanKevin
         {
             Main.Content = new VideoGameAvailable(play);
         }
-        private void borrowVideoGame(Object sender, RoutedEventArgs e)
-        {
-            Main.Content = new BorrowerPage(play);
-        }
-
         private void lendVideoGame(Object sender, RoutedEventArgs e)
         {
             Main.Content = new LendingPage();

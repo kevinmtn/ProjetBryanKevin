@@ -15,8 +15,18 @@ namespace ProjetBryanKevin.Classes
         private string pseudo;
         private DateTime registrationDate;
         private DateTime dateOfBirth;
-        
 
+        public Player(string userName, string password, string pseudo, DateTime registrationDate, DateTime dateOfBirth, int credit): base(userName, password)
+        {
+            base.Id = 0;
+            base.UserName = userName;
+            base.Password = password;
+            this.pseudo = pseudo;
+            this.credit = credit;
+            this.registrationDate = registrationDate;
+            this.dateOfBirth = dateOfBirth;
+
+        }
         public Player(int id, string userName, string password, int credit, string pseudo, DateTime registrationDate, DateTime dateOfBirth) : base(id, userName, password)
         {
 

@@ -49,7 +49,7 @@ namespace ProjetBryanKevin.DAO
             catch (SqlException e)
             {
 
-                throw new Exception("Une erreur sql est survenue !");
+                throw new Exception($"Une erreur sql est survenue! : {e.Message}");
             }
 
             return administrators;
@@ -84,7 +84,7 @@ namespace ProjetBryanKevin.DAO
             catch (SqlException e)
             {
 
-                throw new Exception("Une erreur sql est survenue !");
+                throw new Exception($"Une erreur sql est survenue ! : {e.Message}");
             }
 
             return administrator;
@@ -125,9 +125,9 @@ namespace ProjetBryanKevin.DAO
                     }
                 }
             }
-            catch (SqlException)
+            catch (SqlException e)
             {
-                throw new Exception("Une erreur SQL est survenue !");
+                throw new Exception($"Une erreur SQL est survenue !: {e.Message}");
             }
 
             return administrator;

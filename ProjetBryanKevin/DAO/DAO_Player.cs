@@ -22,19 +22,17 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Player(pseudo,registrationDate,dateOfBirth, IdUser) VALUES (@pseudo,@registrationDate,@dateOfBirth,@idUser)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Player(pseudo, username, password, registrationDate, dateOfBirth, credit) VALUES (@pseudo, @username, @password, @registrationDate,@dateOfBirth, @credit)", connection);
+                    cmd.Parameters.AddWithValue("username", player.UserName);
+                    cmd.Parameters.AddWithValue("password", player.Password);
                     cmd.Parameters.AddWithValue("pseudo", player.Pseudo);
                     cmd.Parameters.AddWithValue("registrationDate", player.RegistrationDate);
                     cmd.Parameters.AddWithValue("dateOfBirth", player.DateOfBirth);
-                    cmd.Parameters.AddWithValue("IdUser", player.Id);
-    
-
+                    cmd.Parameters.AddWithValue("credit", player.Credit);
                     connection.Open();
-
                     int result = cmd.ExecuteNonQuery();
                     success = result > 0;
                 }
-
                 return success;
             }
             catch (SqlException e)
@@ -64,16 +62,16 @@ namespace ProjetBryanKevin.DAO
                         while (reader.Read())
                         {
 
-                           Player player = new Player(
-                                reader.GetInt32("idPlayer"),
-                                reader.GetString("userName"),
-                                reader.GetString("password"),
-                                reader.GetInt32("credit"),
-                                reader.GetString("pseudo"),
-                                reader.GetDateTime("registrationDate"),
-                                reader.GetDateTime("dateOfBirth")
-                               
-                                );
+                            Player player = new Player(
+                                 reader.GetInt32("idPlayer"),
+                                 reader.GetString("userName"),
+                                 reader.GetString("password"),
+                                 reader.GetInt32("credit"),
+                                 reader.GetString("pseudo"),
+                                 reader.GetDateTime("registrationDate"),
+                                 reader.GetDateTime("dateOfBirth")
+
+                                 );
                             players.Add(player);
                         }
                     }
@@ -86,21 +84,21 @@ namespace ProjetBryanKevin.DAO
             return players;
         }
 
-
         public override Player Find(int id)
         {
             Player player = null;
 
             try
             {
-                using(SqlConnection connection = new SqlConnection(this.connectionString))
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
                     SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE idPlayer = @id", connection);
                     cmd.Parameters.AddWithValue("id", id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        if (reader.Read()){
+                        if (reader.Read())
+                        {
 
                             player = new Player(
                                 reader.GetInt32("idPlayer"),
@@ -127,7 +125,7 @@ namespace ProjetBryanKevin.DAO
         {
             try
             {
-                using(SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("UPDATE dbo.Player SET pseudo = @pseudo, username = @username, password = @password," +
                         " registrationDate = @registrationDate, dateOfBirth = @dateOfBirth, credit = @credit WHERE idPlayer = @idPlayer");
@@ -139,11 +137,11 @@ namespace ProjetBryanKevin.DAO
                     command.Parameters.AddWithValue("dateOfBirth", updatedPlayer.DateOfBirth);
                     command.Parameters.AddWithValue("credit", updatedPlayer.Credit);
                     connection.Open();
-                    bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false ;
+                    bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false;
                     return isUpdated;
                 }
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 throw new Exception(e.Message);
             }
@@ -188,6 +186,26 @@ namespace ProjetBryanKevin.DAO
             }
 
             return player;
+        }
+
+        internal bool IsLoginDuplicate(string pseudo)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE pseudo = @pseudo", connection);
+                    cmd.Parameters.AddWithValue("pseudo", pseudo);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                            return true;
+                    }
+                }
+                return false;
+            }
+            catch (SqlException e) { throw new Exception(e.Message); }
         }
     }
 }

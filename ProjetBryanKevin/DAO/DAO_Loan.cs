@@ -24,13 +24,13 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Loan(startDate, endDate,ongoing, IdCopy,IdBorrower,IdLender) VALUES (@startDate,@endDate,@ongoing,@idCopy,@IdBorrower,@IdLender)", connection);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Loan(startDate, endDate,ongoing, idCopy,idBorrower,idLender) VALUES (@startDate,@endDate,@ongoing,@idCopy,@iidBorrower,@idLender)", connection);
                     cmd.Parameters.AddWithValue("startDate", loan.StartDate);
                     cmd.Parameters.AddWithValue("endDate", loan.EndDate);
                     cmd.Parameters.AddWithValue("ongoing", loan.OnGoing);
-                    cmd.Parameters.AddWithValue("IdCopy", loan.Copy.IdCopy);
-                    cmd.Parameters.AddWithValue("IdBorrower", loan.Borrower.Id);
-                    cmd.Parameters.AddWithValue("IdLender", loan.Lender.Id);
+                    cmd.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
+                    cmd.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
+                    cmd.Parameters.AddWithValue("idLender", loan.Lender.Id);
 
                     connection.Open();
 
