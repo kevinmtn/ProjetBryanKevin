@@ -57,7 +57,7 @@ namespace ProjetBryanKevin
         }
         private void lendVideoGame(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new LenderPage();
+            Main.Content = new LendingPage();
         }
 
         private void seePlayerBookingsPage(Object sender, RoutedEventArgs e)

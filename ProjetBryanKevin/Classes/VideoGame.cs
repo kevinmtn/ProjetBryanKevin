@@ -58,14 +58,41 @@ namespace ProjetBryanKevin.Classes
             return db.DisplayAll();
         }
 
+        public static List<VideoGame> GetApprovedVideoGame()
+        {
+            DAO_VideoGame db = new DAO_VideoGame();
+            List<VideoGame> allVideoGames = db.DisplayAll();
+            List<VideoGame> approvedVideoGames = new List<VideoGame>();
+            foreach(VideoGame videoGame in allVideoGames)
+            {
+                if(videoGame.creditCost != 0)
+                {
+                    approvedVideoGames.Add(videoGame);
+                }
+            }
+            return approvedVideoGames;
+        }
+
         public static List<VideoGame> GetAVideoGame(int idVideoGame)
         {
             DAO_VideoGame dao_videoGame = new DAO_VideoGame();
             return dao_videoGame.FindVideoGameById(idVideoGame);
         }
+      
         public void SelectBooking()
         {
 
+        }
+
+        /* 
+         return 0 if no duplicate
+         return 1 if duplicate but creditcost = 0 (admin didn't not verified this game yet)
+         return 2 if duplicate
+         */
+        internal int CheckDuplicate()
+        {
+            DAO_VideoGame dao = new DAO_VideoGame();
+            return dao.CheckDuplicate(this);
         }
     }
 }

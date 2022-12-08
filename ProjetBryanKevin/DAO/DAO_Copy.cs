@@ -24,8 +24,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using(SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Copy(idCopy, idVideoGame, idPlayer) VALUES (@idCopy, @idVideoGame, @idPlayer)", connection);
-                    cmd.Parameters.AddWithValue("idCopy", copy.IdCopy);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Copy(idVideoGame, idPlayer) VALUES (@idVideoGame, @idPlayer)", connection);
                     cmd.Parameters.AddWithValue("idVideoGame", copy.VideoGame.IdVideoGame);
                     cmd.Parameters.AddWithValue("idPlayer", copy.Player.Id);
                     connection.Open();
