@@ -4,6 +4,7 @@ using ProjetBryanKevin.Factory;
 using ProjetBryanKevin.Pages.PlayerPages;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +31,8 @@ namespace ProjetBryanKevin.Pages.Player
         public VideoGameAvailable(Classes.Player play)
         {
             InitializeComponent();
-            List<VideoGame> videoGames = VideoGame.GetAllVideoGames();
-            dataGridVideoGame.ItemsSource = videoGames;
+            List<Copy> copies = Copy.GetCopy();
+            dataGridVideoGame.ItemsSource = copies;
             player = play;
 
             Credit.Text = play.Credit.ToString();
@@ -48,15 +49,14 @@ namespace ProjetBryanKevin.Pages.Player
         }
         private void ButtonBorrow(object sender, RoutedEventArgs e)
         {
-            VideoGame video = (VideoGame)dataGridVideoGame.SelectedItem;
-
+            Copy copy = (Copy)dataGridVideoGame.SelectedItem;
             if (verifCredit)
             {
                MessageBoxResult result= MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 switch (result)
                 {
                     case MessageBoxResult.Yes:
-                        BorrowWindow borrow = new BorrowWindow(video, player);
+                        BorrowWindow borrow = new BorrowWindow(copy, player);
                         borrow.Show();
 
                         break;

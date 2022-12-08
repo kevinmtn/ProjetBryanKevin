@@ -3,6 +3,7 @@ using ProjetBryanKevin.DAO;
 using ProjetBryanKevin.Factory;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,39 +24,40 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     public partial class BorrowWindow : Window
     {
         AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+        private Copy copy;
+        private Classes.Player borrower;
+        private int loanCost;
 
-        VideoGame vg;
-        Copy cop;
-        Classes.Player player;
-        string nameGame = "";
-        string consoleName = "";
-        string creditCost = "";
-        public BorrowWindow(VideoGame videoGame, Classes.Player play)
+        public BorrowWindow(Copy copy, Classes.Player borrower)
         {
             InitializeComponent();
-            vg = videoGame;
-
-            List<VideoGame> videoGames = VideoGame.GetAVideoGame(videoGame.IdVideoGame);
-            nameGame= NameGame.Text = videoGame.Name;
-            consoleName= ConsoleName.Text = videoGame.Console;
-            creditCost= CreditCost.Text = videoGame.CreditCost.ToString();
-            player = play;
-            cop = Copy.GetCopyFromIdVideoGame(vg.IdVideoGame); 
-
+            this.copy = copy;
+            this.borrower = borrower;
+            NameGame.Text = copy.VideoGame.Name;
+            ConsoleName.Text = copy.VideoGame.Console;
+            CreditCost.Text = copy.VideoGame.CreditCost.ToString();
         }
+
+
 
         private void Validation_Click(object sender, RoutedEventArgs e)
         {
-            //TODO fix borrow method
+            //TODO fix 
+            //DAO_Loan dao_loan = (DAO_Loan)adf.getLoanDAO();
+            //if (dao_loan.Create(new Loan(0, startDate, endDate, true,  player, player, cop)))
+            //{
+            //    MessageBox.Show("Votre emprunt est confirmé");
+            //}
 
-            DateTime startDate = StartDate.DisplayDate;
-            DateTime endDate = EndDate.DisplayDate;
+        }
 
-            DAO_Loan dao_loan = (DAO_Loan)adf.getLoanDAO();
-            if (dao_loan.Create(new Loan(0, startDate, endDate, true,  player, player, cop)))
-            {
-                MessageBox.Show("Votre emprunt est confirmé");
-            }
+        private void EndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime startDate = DateTime.Now;
+            DateTime endDate = EndDate.SelectedDate.Value;
+            TimeSpan duration = endDate.Subtract(startDate);
+            int loanCost = (copy.VideoGame.CreditCost * (duration.Days/7 + 1));
+            LoanCost.Text = loanCost.ToString();
 
         }
     }

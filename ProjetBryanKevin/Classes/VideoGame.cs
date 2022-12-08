@@ -58,6 +58,7 @@ namespace ProjetBryanKevin.Classes
             return db.FindAll();
         }
 
+        // credit != 0
         public static List<VideoGame> GetApprovedVideoGames()
         {
             DAO_VideoGame db = new DAO_VideoGame();

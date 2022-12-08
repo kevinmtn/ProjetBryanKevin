@@ -17,8 +17,9 @@
         <TextBox x:Name="NameGame" IsEnabled="False" HorizontalAlignment="Left" Margin="236,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
         <TextBox x:Name="ConsoleName" IsEnabled="False" HorizontalAlignment="Left" Margin="236,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
         <TextBox x:Name="CreditCost" IsEnabled="False" HorizontalAlignment="Left" Margin="236,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="LoanCost" IsEnabled="False" HorizontalAlignment="Left" Margin="434,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
         <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="278,200,0,0" VerticalAlignment="Top"/>
-        <DatePicker  x:Name="EndDate" HorizontalAlignment="Left" Margin="278,248,0,0" VerticalAlignment="Top"/>
+        <DatePicker  x:Name="EndDate" SelectedDateChanged="EndDate_SelectedDateChanged" HorizontalAlignment="Left" Margin="278,248,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

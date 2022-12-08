@@ -60,10 +60,10 @@ namespace ProjetBryanKevin.DAO
         {
             List<Copy> copyList = new List<Copy>();
             try
-            {
+            {   
                 using(SqlConnection connection = new SqlConnection(connectionString)) 
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copy");
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copy", connection);
                     connection.Open();
                     using(SqlDataReader reader = cmd.ExecuteReader())
                     {
@@ -89,7 +89,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Copy WHERE idCopy = @idCopy");
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Copy WHERE idCopy = @idCopy", connection);
                     command.Parameters.AddWithValue("idCopy", id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -119,7 +119,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand("UPDATE dbo.Copy SET idVideoGame = @idVideoGame, idPlayer = @idPlayer WHERE idCopy = @idCopy");
+                    SqlCommand command = new SqlCommand("UPDATE dbo.Copy SET idVideoGame = @idVideoGame, idPlayer = @idPlayer WHERE idCopy = @idCopy", connection);
                     command.Parameters.AddWithValue("idCopy", copy.IdCopy);
                     command.Parameters.AddWithValue("idVideoGame", copy.VideoGame.IdVideoGame);
                     command.Parameters.AddWithValue("idPlayer", copy.Player.Id);
@@ -137,37 +137,8 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand("SELECT idCopy FROM dbo.Copy WHERE idVideoGame = @idVideoGame");
+                    SqlCommand command = new SqlCommand("SELECT idCopy FROM dbo.Copy WHERE idVideoGame = @idVideoGame", connection);
                     command.Parameters.AddWithValue("idVideoGame", idVideoGame);
-                    connection.Open();
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            copy = new Copy(
-                                reader.GetInt32("idCopy"),
-                                DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
-                                DAO_Player.Find(reader.GetInt32("idPlay")));
-                        }
-                    }
-                }
-            }
-            catch (SqlException e)
-            {
-                throw new Exception(e.Message);
-            }
-            return copy;
-        }
-
-        internal Copy GetLenderFromId(int idCopy)
-        {
-            Copy copy = null;
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand("SELECT idCopy FROM dbo.Copy WHERE idVideoGame = @idVideoGame");
-                    command.Parameters.AddWithValue("idCopy", idCopy);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
