@@ -1,6 +1,7 @@
 ﻿using ProjetBryanKevin.Classes;
 using ProjetBryanKevin.DAO;
 using ProjetBryanKevin.Factory;
+using ProjetBryanKevin.Pages.PlayerPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +26,13 @@ namespace ProjetBryanKevin.Pages.Player
     {
 
         bool verifCredit = true;
+        Classes.Player player = null;
         public VideoGameAvailable(Classes.Player play)
         {
             InitializeComponent();
             List<VideoGame> videoGames = VideoGame.GetVideoGame();
             dataGridVideoGame.ItemsSource = videoGames;
+            player = play;
 
             Credit.Text = play.Credit.ToString();
 
@@ -45,9 +48,24 @@ namespace ProjetBryanKevin.Pages.Player
         }
         private void ButtonBorrow(object sender, RoutedEventArgs e)
         {
+            VideoGame video = (VideoGame)dataGridVideoGame.SelectedItem;
+
             if (verifCredit)
             {
-                MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+               MessageBoxResult result= MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        BorrowWindow borrow = new BorrowWindow(video, player);
+                        borrow.Show();
+
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    default:
+                        break;
+                }
+
             }
             else if(!verifCredit)
             {

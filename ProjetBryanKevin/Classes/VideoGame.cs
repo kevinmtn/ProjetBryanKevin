@@ -58,6 +58,11 @@ namespace ProjetBryanKevin.Classes
             return db.DisplayAll();
         }
 
+        public static List<VideoGame> GetAVideoGame(int idVideoGame)
+        {
+            DAO_VideoGame dao_videoGame = new DAO_VideoGame();
+            return dao_videoGame.FindVideoGameById(idVideoGame);
+        }
         public void SelectBooking()
         {
 
