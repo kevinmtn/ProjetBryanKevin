@@ -25,7 +25,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
         AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
 
         VideoGame vg;
-        Copy cop = null;
+        Copy cop;
         Classes.Player player;
         string nameGame = "";
         string consoleName = "";
@@ -36,11 +36,11 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             vg = videoGame;
 
             List<VideoGame> videoGames = VideoGame.GetAVideoGame(videoGame.IdVideoGame);
-           nameGame= NameGame.Text = videoGame.Name;
-           consoleName= ConsoleName.Text = videoGame.Console;
-           creditCost= CreditCost.Text = videoGame.CreditCost.ToString();
+            nameGame= NameGame.Text = videoGame.Name;
+            consoleName= ConsoleName.Text = videoGame.Console;
+            creditCost= CreditCost.Text = videoGame.CreditCost.ToString();
             player = play;
-            cop = new Copy(0,videoGame, play);
+            cop = Copy.GetCopyFromIdVideoGame(vg.IdVideoGame); 
 
         }
 

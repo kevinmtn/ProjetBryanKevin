@@ -48,5 +48,11 @@ namespace ProjetBryanKevin.Classes
             DAO_Copy db = new DAO_Copy();
             return db.DisplayAll();
         }
+
+        public static Copy GetCopyFromIdVideoGame(int idVideoGame)
+        {
+            DAO_Copy db = new DAO_Copy();
+            return db.GetCopyFromVideoGameId(idVideoGame);
+        }
     }
 }

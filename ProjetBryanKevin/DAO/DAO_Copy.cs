@@ -130,5 +130,63 @@ namespace ProjetBryanKevin.DAO
                 }
             } catch (SqlException e) { throw new Exception(e.Message); }
         }
+
+        internal Copy GetCopyFromVideoGameId(int idVideoGame)
+        {
+            Copy copy = null;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT idCopy FROM dbo.Copy WHERE idVideoGame = @idVideoGame");
+                    command.Parameters.AddWithValue("idVideoGame", idVideoGame);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            copy = new Copy(
+                                reader.GetInt32("idCopy"),
+                                DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
+                                DAO_Player.Find(reader.GetInt32("idPlay")));
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            return copy;
+        }
+
+        internal Copy GetLenderFromId(int idCopy)
+        {
+            Copy copy = null;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT idCopy FROM dbo.Copy WHERE idVideoGame = @idVideoGame");
+                    command.Parameters.AddWithValue("idCopy", idCopy);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            copy = new Copy(
+                                reader.GetInt32("idCopy"),
+                                DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
+                                DAO_Player.Find(reader.GetInt32("idPlay")));
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            return copy;
+        }
     }
 }
