@@ -32,18 +32,30 @@ namespace ProjetBryanKevin.Pages.PlayerPages
         }
         private void DelBooking(Object sender, RoutedEventArgs e) 
         { 
-            Booking? selectedBooking = (sender as Button).DataContext as Booking;
-            bool verif = (bool)(selectedBooking?.Delete());
-
-            if (verif) {
-
-                MessageBox.Show("Réservation supprimée", "Validation", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.NavigationService.Refresh();
-            }
-            else
+          
+            MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir supprimer cette reservtion ?", "Validation", MessageBoxButton.YesNo);
+            switch (result)
             {
-                MessageBox.Show("Une erreur est survenue lors de la suppression", "Erreur", MessageBoxButton.OK,MessageBoxImage.Error);
+                case MessageBoxResult.Yes:
+                    Booking? selectedBooking = (sender as Button).DataContext as Booking;
+                    bool verif = (bool)(selectedBooking?.Delete());
+
+                    if (verif)
+                    {
+                        MessageBox.Show("Réservation supprimée", "Validation", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Une erreur est survenue lors de la suppression", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    break;
+
+                case MessageBoxResult.No:
+                    break;
+                default:
+                    break;
             }
+   
             
         }
 
