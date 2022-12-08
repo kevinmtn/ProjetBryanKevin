@@ -14,9 +14,9 @@
         <Label Content="Date de fin de la location: " HorizontalAlignment="Left" Margin="92,246,0,0" VerticalAlignment="Top"/>
         <Label Content="Date du début de la location" HorizontalAlignment="Left" Margin="92,199,0,0" VerticalAlignment="Top"/>
         <Button x:Name="Validation" Content="Valider la location" HorizontalAlignment="Left" Margin="252,314,0,0" VerticalAlignment="Top" Height="31" Width="120" Click="Validation_Click" RenderTransformOrigin="0.481,0.803"/>
-        <TextBox x:Name="NameGame" HorizontalAlignment="Left" Margin="236,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
-        <TextBox x:Name="ConsoleName" HorizontalAlignment="Left" Margin="236,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
-        <TextBox x:Name="CreditCost" HorizontalAlignment="Left" Margin="236,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="NameGame" IsEnabled="False" HorizontalAlignment="Left" Margin="236,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="ConsoleName" IsEnabled="False" HorizontalAlignment="Left" Margin="236,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
+        <TextBox x:Name="CreditCost" IsEnabled="False" HorizontalAlignment="Left" Margin="236,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
         <DatePicker x:Name="StartDate" HorizontalAlignment="Left" Margin="278,200,0,0" VerticalAlignment="Top"/>
         <DatePicker  x:Name="EndDate" HorizontalAlignment="Left" Margin="278,248,0,0" VerticalAlignment="Top"/>
 
