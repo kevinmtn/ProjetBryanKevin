@@ -28,12 +28,16 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             InitializeComponent();
             List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
             dataGridBooking.ItemsSource = bookings;
+           if(bookings.Count==0)
+            {
+                MessageBox.Show("Vous ne posséder aucune reservation", "Pas de réservation", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
 
         }
         private void DelBooking(Object sender, RoutedEventArgs e) 
         { 
           
-            MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir supprimer cette reservtion ?", "Validation", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir supprimer cette reservation ?", "Validation", MessageBoxButton.YesNo);
             switch (result)
             {
                 case MessageBoxResult.Yes:

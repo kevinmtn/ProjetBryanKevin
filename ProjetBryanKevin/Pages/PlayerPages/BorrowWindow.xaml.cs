@@ -46,6 +46,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
         private void Validation_Click(object sender, RoutedEventArgs e)
         {
+            //TODO fix borrow method
 
             DateTime startDate = StartDate.DisplayDate;
             DateTime endDate = EndDate.DisplayDate;
