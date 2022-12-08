@@ -16,8 +16,8 @@
                 <ColumnDefinition Width="203*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Inscription" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="132" FontSize="22" Margin="306,-55,0,0" RenderTransformOrigin="0.5,0.5" Foreground="#FF484848" Grid.ColumnSpan="2" Background="{x:Null}"/>
-            <TextBox x:Name="Login" HorizontalAlignment="Left" Height="26" Margin="149,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
-            <Label x:Name="LoginLabel" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="60" FontSize="15" Background="{x:Null}" Margin="10,3,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black" />
+            <TextBox x:Name="UserName" HorizontalAlignment="Left" Height="26" Margin="149,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
+            <Label x:Name="LoginLabel" Content="Nom" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="60" FontSize="15" Background="{x:Null}" Margin="10,3,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black" />
             <PasswordBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="197" Height="32" AutomationProperties.IsRequiredForForm="True" FontSize="15" Margin="149,40,0,0"/>
             <Label x:Name="PasswordLabel" Content="Mot de passe" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="102" FontSize="15" Background="{x:Null}" Margin="10,40,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black"/>
             <Label x:Name="PseudoLabel" Content="Pseudo" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="60" FontSize="15" Background="{x:Null}" Margin="10,79,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black" />
@@ -25,6 +25,7 @@
             <DatePicker x:Name="BirthDate" Margin="149,118,0,208"/>
             <Label x:Name="BirthDateLabel" Content="Date de naissance" Height="32" FontSize="15" Margin="10,116,208,206"/>
             <Button x:Name="Inscription" Click="SignUp_Click" Content="S'inscrire" HorizontalAlignment="Center" VerticalAlignment="Top" Height="42" Width="325" Background="#FF522C0C" Foreground="White" Margin="0,162,0,0"/>
+            <Button x:Name="BackButton" Grid.Column="1" Content="Retour" HorizontalAlignment="Left" Margin="346,308,0,0" VerticalAlignment="Top" Height="46" Width="78" Background="Maroon" Foreground="White" Click="BackButton_Click"/>
         </Grid>
     </Grid>
 </Window>

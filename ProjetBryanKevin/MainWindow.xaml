@@ -16,7 +16,7 @@
                 <ColumnDefinition Width="203*"/>
             </Grid.ColumnDefinitions>
             <Label Content="Connexion" HorizontalAlignment="Left" VerticalAlignment="Top" Height="42" Width="132" FontSize="22" Margin="306,-55,0,0" RenderTransformOrigin="0.5,0.5" Foreground="#FF484848" Grid.ColumnSpan="2" Background="{x:Null}"/>
-            <Label x:Name="LoginLabel" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="60" FontSize="15" Background="{x:Null}" Margin="38,72,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black"/>
+            <Label x:Name="LoginLabel" Content="Pseudo" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="60" FontSize="15" Background="{x:Null}" Margin="38,72,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black"/>
             <TextBox x:Name="Login" HorizontalAlignment="Left" Height="26" Margin="188,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="197" AutomationProperties.IsRequiredForForm="True" FontSize="15" Grid.ColumnSpan="2"/>
             <Label x:Name="PasswordLabel" Content="Mot de passe" HorizontalAlignment="Left" VerticalAlignment="Top" Height="32" Width="102" FontSize="15" Background="{x:Null}" Margin="36,139,0,0" RenderTransformOrigin="0.5,0.5" Foreground="Black"/>
             <PasswordBox x:Name="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="197" Height="26" AutomationProperties.IsRequiredForForm="True" FontSize="15" Margin="188,144,0,0" Grid.ColumnSpan="2"/>

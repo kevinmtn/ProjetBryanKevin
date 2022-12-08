@@ -29,34 +29,40 @@ namespace ProjetBryanKevin
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
-            String username = Login.Text;
+            String username = UserName.Text;
             String pseudo = Pseudo.Text;
             String password = Password.Password.ToString();
-            DateTime birthDate = BirthDate.SelectedDate!.Value;
+            DateTime birthDate = BirthDate.DisplayDate;
             DateTime registrationDate = DateTime.Now;
-            int credit = 0;
-            if(birthDate == null || username== null || pseudo == null || password == null) 
+   
+
+            if( username== "" || pseudo == "" || password == "" || birthDate==null) 
             {
-                MessageBox.Show("Veuillez compléter tous les champs");
+                MessageBox.Show("Veuillez compléter tous les champs", "Formulaire imcomplet",MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             DAO_Player dao_player = (DAO_Player) adf.GetPlayerDAO();
+
             if (dao_player.IsLoginDuplicate(username))
             {
-                MessageBox.Show("Ce login est déjà utilisé...");
+                MessageBox.Show("Ce login est déjà utilisé...","Erreur" ,MessageBoxButton.OK,MessageBoxImage.Warning);
                 return;
             }
-            if (dao_player.Create(new Classes.Player(username, password, pseudo, registrationDate, birthDate)))
+
+            if (dao_player.Create(new Classes.Player(username, password, pseudo, registrationDate, birthDate, 10)))
             {
-                MessageBox.Show("Vous êtes maintenant inscrit!");
+                MessageBox.Show("Vous êtes maintenant inscrit!", "Inscription validée", MessageBoxButton.OK, MessageBoxImage.Information);
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 this.Close();
             }
+        }
 
-            
-
-
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

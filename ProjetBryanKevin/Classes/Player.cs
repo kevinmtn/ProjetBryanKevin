@@ -16,13 +16,13 @@ namespace ProjetBryanKevin.Classes
         private DateTime registrationDate;
         private DateTime dateOfBirth;
 
-        public Player(string userName, string password, string pseudo, DateTime registrationDate, DateTime dateOfBirth): base(userName, password)
+        public Player(string userName, string password, string pseudo, DateTime registrationDate, DateTime dateOfBirth, int credit): base(userName, password)
         {
             base.Id = 0;
             base.UserName = userName;
             base.Password = password;
             this.pseudo = pseudo;
-            this.credit = 0;
+            this.credit = credit;
             this.registrationDate = registrationDate;
             this.dateOfBirth = dateOfBirth;
 

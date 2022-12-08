@@ -147,7 +147,7 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public override Player VerificationConnection(string username, string password)
+        public override Player VerificationConnection(string pseudo, string password)
         {
 
             Player player = null;
@@ -156,8 +156,8 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE username = @username AND password = @password", connection);
-                    cmd.Parameters.AddWithValue("username", username);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE pseudo = @pseudo AND password = @password", connection);
+                    cmd.Parameters.AddWithValue("pseudo", pseudo);
                     cmd.Parameters.AddWithValue("password", password);
 
                     connection.Open();
@@ -188,14 +188,14 @@ namespace ProjetBryanKevin.DAO
             return player;
         }
 
-        internal bool IsLoginDuplicate(string username)
+        internal bool IsLoginDuplicate(string pseudo)
         {
             try
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE username = @username", connection);
-                    cmd.Parameters.AddWithValue("username", username);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE pseudo = @pseudo", connection);
+                    cmd.Parameters.AddWithValue("pseudo", pseudo);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
