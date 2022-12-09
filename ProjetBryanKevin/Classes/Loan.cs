@@ -83,5 +83,7 @@ namespace ProjetBryanKevin.Classes
             DAO_Loan dao_loan= new DAO_Loan();
             return dao_loan.FindAll();
         }
+
+
     }
 }

@@ -2,19 +2,11 @@
 using ProjetBryanKevin.DAO;
 using ProjetBryanKevin.Factory;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
+
 
 namespace ProjetBryanKevin.Pages.PlayerPages
 {
@@ -23,10 +15,10 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class BorrowWindow : Window
     {
-        AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
         private Copy copy;
         private Classes.Player borrower;
         private int loanCost;
+       
 
         public BorrowWindow(Copy copy, Classes.Player borrower)
         {
@@ -37,19 +29,32 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             ConsoleName.Text = copy.VideoGame.Console;
             CreditCost.Text = copy.VideoGame.CreditCost.ToString();
             StartDate.Text = DateTime.Now.ToString();
+            
         }
-
-
 
         private void Validation_Click(object sender, RoutedEventArgs e)
         {
-            //TODO fix 
-            //DAO_Loan dao_loan = (DAO_Loan)adf.getLoanDAO();
-            //if (dao_loan.Create(new Loan(0, startDate, endDate, true,  player, player, cop)))
-            //{
-            //    MessageBox.Show("Votre emprunt est confirmé");
-            //}
+            DateTime? endDate = EndDate.SelectedDate;
 
+            if (endDate.HasValue)
+            {
+                Loan newLoan = new Loan(1, DateTime.Now, (DateTime)endDate, true, borrower, copy.Player, copy);
+                if (newLoan.Insert != null)
+                {
+                    MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Une erreur est survenue lors de votre validation", "Erreur de validation", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner une date pour la fin de votre location !", "Date non séléctionnée", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+   
+            //TODO substract credit for borrower and addition for lender
         }
 
         private void EndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
