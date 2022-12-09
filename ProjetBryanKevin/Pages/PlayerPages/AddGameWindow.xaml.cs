@@ -1,4 +1,6 @@
 ﻿using ProjetBryanKevin.Classes;
+using ProjetBryanKevin.DAO;
+using ProjetBryanKevin.Factory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +22,12 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class AddGameWindow : Window
     {
-        public AddGameWindow()
+        AbstractDAOFactory adf = AbstractDAOFactory.GetFactory(DAOFactoryType.MS_SQL_FACTORY);
+        Classes.Player lender;
+        public AddGameWindow(Classes.Player lender)
         {
             InitializeComponent();
+            this.lender = lender;
         }
 
         
@@ -37,13 +42,21 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                 return;
             }
             
-            VideoGame videoGame = new VideoGame(0, gameName, 0, console);
+            VideoGame newVideoGame = new VideoGame(0, gameName, 0, console);
             string message = "";
-            switch (videoGame.CheckDuplicate())
+            switch (newVideoGame.CheckDuplicate())
             {
                 case 0:
-                    message = "Jeux ajouté\nIl apparaitra dans la liste quand un admin l'aura vérifier!";
-                    videoGame.Insert();
+                    if(newVideoGame.Insert() == null)
+                    {
+                        return;
+                    }
+                    newVideoGame = newVideoGame.Insert();
+                    Copy newCopy = new Copy(newVideoGame, lender);
+                    if (newCopy.Insert() != null)
+                    {
+                        message = "Votre copie du jeu " + newCopy.VideoGame.Name + " sur " + newCopy.VideoGame.Console + " a bien été ajouté!\n Un admin vérifiera votre ajout rapidement!";
+                    }
                     break;
                 case 1:
                     message = "Ce jeu a déjà été ajouté mais n'a pas encore été vérifié par un admin";

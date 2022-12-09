@@ -47,7 +47,7 @@ namespace ProjetBryanKevin.Classes
             set { this.idVideoGame = value; }
         }
 
-        public bool Insert()
+        public VideoGame Insert()
         {
             DAO_VideoGame db = new DAO_VideoGame();
             return db.Create(this);

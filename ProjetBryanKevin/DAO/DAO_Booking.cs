@@ -1,12 +1,8 @@
 ﻿using ProjetBryanKevin.Classes;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace ProjetBryanKevin.DAO
 {
@@ -17,22 +13,43 @@ namespace ProjetBryanKevin.DAO
         DAO_VideoGame DAO_VideoGame = new DAO_VideoGame();
         public DAO_Booking() { }
 
-        public override bool Create(Booking book)
+        public override Booking Create(Booking book)
         {
+            Booking newBooking = null;
             bool success = false;
             try
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Booking(idPlayer, idVideoGame, bookingDate) VALUES (@idPlayer, @idVideoGame,@bookingDate)", connection);
-                    cmd.Parameters.AddWithValue("idPlayer", book.Booker.Id);
-                    cmd.Parameters.AddWithValue("idVideoGame", book.VideoGame.IdVideoGame);
-                    cmd.Parameters.AddWithValue("bookingDate", book.BookingDate);
+                    SqlCommand insertCmd = new SqlCommand("INSERT INTO dbo.Booking(idPlayer, idVideoGame, bookingDate) VALUES (@idPlayer, @idVideoGame,@bookingDate)", connection);
+                    insertCmd.Parameters.AddWithValue("idPlayer", book.Booker.Id);
+                    insertCmd.Parameters.AddWithValue("idVideoGame", book.VideoGame.IdVideoGame);
+                    insertCmd.Parameters.AddWithValue("bookingDate", book.BookingDate);
                     connection.Open();
-                    int result = cmd.ExecuteNonQuery();
+                    int result = insertCmd.ExecuteNonQuery();
                     success = result > 0;
+                    connection.Close();
+                    if(success)
+                    {
+                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame AND bookingDate =  @bookingDate", connection);
+                        selectQuery.Parameters.AddWithValue("idPlayer", book.Booker.Id);
+                        selectQuery.Parameters.AddWithValue("idVideoGame", book.VideoGame.IdVideoGame);
+                        selectQuery.Parameters.AddWithValue("bookingDate", book.BookingDate);
+                        connection.Open();
+                        using(SqlDataReader reader = selectQuery.ExecuteReader())
+                        {
+                            if(reader.Read())
+                            {
+                                newBooking = new Booking(
+                                    DAO_Player.Find(reader.GetInt32("idPlayer")),
+                                    DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
+                                    reader.GetDateTime("bookingDate")
+                                    );
+                            }
+                        }
+                    }
                 }
-                return success;
+                return newBooking;
             }
             catch (SqlException e)
             {

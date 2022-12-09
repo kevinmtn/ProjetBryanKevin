@@ -13,6 +13,11 @@ namespace ProjetBryanKevin.Classes
         private VideoGame videoGame;
         private Player player;
 
+        public Copy(VideoGame videoGame, Player player) { 
+            this.videoGame = videoGame;
+            this.player = player;
+            this.idCopy = 0;
+        }
         public Copy(int idCopy, VideoGame videoGame, Player player)
         {
             this.idCopy = idCopy;
@@ -38,21 +43,27 @@ namespace ProjetBryanKevin.Classes
             set { player = value; }
         }
 
-        public bool Insert()
+        public Copy Insert()
         {
-            DAO_Copy db = new DAO_Copy();
-            return db.Create(this);
+            DAO_Copy dao = new DAO_Copy();
+            return dao.Create(this);
         }
         public static List<Copy> GetCopy()
         {
-            DAO_Copy db = new DAO_Copy();
-            return db.FindAll();
+            DAO_Copy dao = new DAO_Copy();
+            return dao.FindAll();
         }
 
         public static Copy GetCopyFromIdVideoGame(int idVideoGame)
         {
-            DAO_Copy db = new DAO_Copy();
-            return db.GetCopyFromVideoGameId(idVideoGame);
+            DAO_Copy dao = new DAO_Copy();
+            return dao.GetCopyFromVideoGameId(idVideoGame);
+        }
+
+        public bool CheckDuplicate()
+        {
+            DAO_Copy dao = new DAO_Copy();
+            return dao.FindDuplicate(this);
         }
     }
 }

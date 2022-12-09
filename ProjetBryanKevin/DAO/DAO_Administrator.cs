@@ -11,9 +11,9 @@ namespace ProjetBryanKevin.DAO
     {
         public DAO_Administrator() { }
 
-        public override bool Create (Administrator admin)
+        public override Administrator Create (Administrator admin)
         {
-            return false;
+            return null;
         }
 
         public override bool Delete (Administrator admin)

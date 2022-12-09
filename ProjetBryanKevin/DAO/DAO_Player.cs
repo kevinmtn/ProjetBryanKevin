@@ -15,25 +15,48 @@ namespace ProjetBryanKevin.DAO
         {
 
         }
-        public override bool Create(Player player)
+        public override Player Create(Player player)
         {
+            Player newPlayer = null;
             bool success = false;
             try
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Player(pseudo, username, password, registrationDate, dateOfBirth, credit) VALUES (@pseudo, @username, @password, @registrationDate,@dateOfBirth, @credit)", connection);
-                    cmd.Parameters.AddWithValue("username", player.UserName);
-                    cmd.Parameters.AddWithValue("password", player.Password);
-                    cmd.Parameters.AddWithValue("pseudo", player.Pseudo);
-                    cmd.Parameters.AddWithValue("registrationDate", player.RegistrationDate);
-                    cmd.Parameters.AddWithValue("dateOfBirth", player.DateOfBirth);
-                    cmd.Parameters.AddWithValue("credit", player.Credit);
+                    SqlCommand insertCmd = new SqlCommand("INSERT INTO dbo.Player(pseudo, username, password, registrationDate, dateOfBirth, credit) VALUES (@pseudo, @username, @password, @registrationDate,@dateOfBirth, @credit)", connection);
+                    insertCmd.Parameters.AddWithValue("username", player.UserName);
+                    insertCmd.Parameters.AddWithValue("password", player.Password);
+                    insertCmd.Parameters.AddWithValue("pseudo", player.Pseudo);
+                    insertCmd.Parameters.AddWithValue("registrationDate", player.RegistrationDate);
+                    insertCmd.Parameters.AddWithValue("dateOfBirth", player.DateOfBirth);
+                    insertCmd.Parameters.AddWithValue("credit", player.Credit);
                     connection.Open();
-                    int result = cmd.ExecuteNonQuery();
+                    int result = insertCmd.ExecuteNonQuery();
                     success = result > 0;
+                    connection.Close();
+                    if(success)
+                    {
+                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Player WHERE pseudo = @pseudo");
+                        selectQuery.Parameters.AddWithValue("pseudo", player.Pseudo);
+                        connection.Open();
+                        using(SqlDataReader reader = selectQuery.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                newPlayer = new Player(
+                                    reader.GetInt32("idPLayer"),
+                                    reader.GetString("username"),
+                                    reader.GetString("password"),
+                                    reader.GetInt32("credit"),
+                                    reader.GetString("pseudo"),
+                                    reader.GetDateTime("registrationDate"),
+                                    reader.GetDateTime("dateOfBirth")
+                                    );
+                            }
+                        }
+                    }
                 }
-                return success;
+                return newPlayer;
             }
             catch (SqlException e)
             {
@@ -79,7 +102,7 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-                throw new Exception("Une erreur sql est survenue !");
+                throw new Exception("Une erreur sql est survenue !\n" + e.Message);
             }
             return players;
         }
@@ -188,7 +211,7 @@ namespace ProjetBryanKevin.DAO
             return player;
         }
 
-        internal bool IsLoginDuplicate(string pseudo)
+        public bool FindDuplicate(string pseudo)
         {
             try
             {
