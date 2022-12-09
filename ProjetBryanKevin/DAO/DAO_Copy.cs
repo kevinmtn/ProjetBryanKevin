@@ -119,7 +119,7 @@ namespace ProjetBryanKevin.DAO
                             copy = new Copy(
                                 reader.GetInt32("idCopy"),
                                 DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
-                                DAO_Player.Find(reader.GetInt32("idPlay")));
+                                DAO_Player.Find(reader.GetInt32("idPlayer")));
                         }
                     }
                 }
