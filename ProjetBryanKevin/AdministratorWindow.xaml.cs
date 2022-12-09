@@ -22,7 +22,6 @@ namespace ProjetBryanKevin
     public partial class AdministratorWindow : Window
     {
         Administrator admin;
-        VideoGame video;
 
         public AdministratorWindow(Administrator administrator)
         {
@@ -47,7 +46,7 @@ namespace ProjetBryanKevin
 
         private void MenuVideoGame(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new UpdateVideoGameCredit(video);
+            Main.Content = new UpdateVideoGameCredit();
         }
     }
 }

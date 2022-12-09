@@ -56,7 +56,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             DateTime startDate = DateTime.Now;
             DateTime endDate = EndDate.SelectedDate.Value;
             TimeSpan duration = endDate.Subtract(startDate);
-            int loanCost = (copy.VideoGame.CreditCost * (duration.Days/7 + 1));
+            loanCost = (copy.VideoGame.CreditCost * (duration.Days/7 + 1));
             LoanCost.Text = loanCost.ToString();
 
         }

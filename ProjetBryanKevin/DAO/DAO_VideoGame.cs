@@ -15,25 +15,42 @@ namespace ProjetBryanKevin.DAO
         {
 
         }
-        public override bool Create(VideoGame videoGame)
+        public override VideoGame Create(VideoGame videoGame)
         {
             bool success;
-
+            VideoGame newVideoGame = null; 
             try
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.VideoGame(name,creditCost,console) VALUES (@name,@creditCost,@console)", connection);
-                    cmd.Parameters.AddWithValue("name", videoGame.Name);
-                    cmd.Parameters.AddWithValue("creditCost", videoGame.CreditCost);
-                    cmd.Parameters.AddWithValue("console", videoGame.Console);
-
+                    SqlCommand insertCmd = new SqlCommand("INSERT INTO dbo.VideoGame(name,creditCost,console) VALUES (@name,@creditCost,@console)", connection);
+                    insertCmd.Parameters.AddWithValue("name", videoGame.Name);
+                    insertCmd.Parameters.AddWithValue("creditCost", videoGame.CreditCost);
+                    insertCmd.Parameters.AddWithValue("console", videoGame.Console);
                     connection.Open();
-
-                    int result = cmd.ExecuteNonQuery();
+                    int result = insertCmd.ExecuteNonQuery();
                     success = result > 0;
+                    connection.Close();
+                    if (success)
+                    {
+                        SqlCommand queryCmd = new SqlCommand("SELECT * FROM dbo.VideoGame WHERE name = @name AND console = @console", connection);
+                        queryCmd.Parameters.AddWithValue("name", videoGame.Name);
+                        queryCmd.Parameters.AddWithValue("console", videoGame.Console);
+                        connection.Open();
+                        using (SqlDataReader reader = queryCmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                newVideoGame = new VideoGame(
+                                    reader.GetInt32("idVideoGame"),
+                                    reader.GetString("name"),
+                                    reader.GetInt32("creditCost"),
+                                    reader.GetString("console"));
+                            }
+                        }
+                    }
+                    return newVideoGame;
                 }
-                return success;
             }
             catch (SqlException e)
             {
@@ -102,7 +119,7 @@ namespace ProjetBryanKevin.DAO
             catch (SqlException e)
             {
 
-                throw new Exception("Une erreur sql est survenue !");
+                throw new Exception("Une erreur sql est survenue !\n" + e.Message );
             }
 
             return videoGames;

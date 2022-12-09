@@ -17,28 +17,53 @@ namespace ProjetBryanKevin.DAO
         public DAO_Loan()
         {
         }
-        public override bool Create(Loan loan)
+        public override Loan Create(Loan loan)
         {
             bool success;
+            Loan newLoan = null;
             try
             {
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Loan(startDate, endDate,ongoing, idCopy,idBorrower,idLender) VALUES (@startDate,@endDate,@ongoing,@idCopy,@idBorrower,@idLender)", connection);
-                    cmd.Parameters.AddWithValue("startDate", loan.StartDate);
-                    cmd.Parameters.AddWithValue("endDate", loan.EndDate);
-                    cmd.Parameters.AddWithValue("ongoing", loan.OnGoing);
-                    cmd.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
-                    cmd.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
-                    cmd.Parameters.AddWithValue("idLender", loan.Lender.Id);
+                    SqlCommand insertCmd = new SqlCommand("INSERT INTO dbo.Loan(startDate, endDate,ongoing, idCopy,idBorrower,idLender) VALUES (@startDate,@endDate,@ongoing,@idCopy,@idBorrower,@idLender)", connection);
+                    insertCmd.Parameters.AddWithValue("startDate", loan.StartDate);
+                    insertCmd.Parameters.AddWithValue("endDate", loan.EndDate);
+                    insertCmd.Parameters.AddWithValue("ongoing", loan.OnGoing);
+                    insertCmd.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
+                    insertCmd.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
+                    insertCmd.Parameters.AddWithValue("idLender", loan.Lender.Id);
 
                     connection.Open();
 
-                    int result = cmd.ExecuteNonQuery();
+                    int result = insertCmd.ExecuteNonQuery();
                     success = result > 0;
+                    connection.Close();
+                    if(success)
+                    {
+                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Loan WHERE startDate = @startDate AND endDate = @endDate AND idCopy = @idCopy AND idBorrower = @idBorrower AND idLender = @idLender", connection);
+                        selectQuery.Parameters.AddWithValue("startDate", loan.StartDate);
+                        selectQuery.Parameters.AddWithValue("endDate", loan.EndDate);
+                        selectQuery.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
+                        selectQuery.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
+                        selectQuery.Parameters.AddWithValue("idLender", loan.Lender.Id);
+                        connection.Open();
+                        using(SqlDataReader reader = selectQuery.ExecuteReader())
+                        {
+                            if(reader.Read()) {
+                                newLoan = new Loan(
+                                    reader.GetInt32("idLoan"),
+                                    reader.GetDateTime("startDate"),
+                                    reader.GetDateTime("endDate"),
+                                    reader.GetBoolean("ongoing"),
+                                    DAO_Player.Find(reader.GetInt32("idLender")),
+                                    DAO_Player.Find(reader.GetInt32("idBorrower")),
+                                    DAO_Copy.Find(reader.GetInt32("idCopy"))
+                                    );
+                            }
+                        }
+                    }
                 }
-                return success;
-
+                return newLoan;
             }
             catch (SqlException e)
             {

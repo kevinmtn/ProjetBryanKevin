@@ -53,7 +53,7 @@ namespace ProjetBryanKevin.Classes
             set { this.videoGame = value; }
         }
 
-        public bool Insert()
+        public Booking Insert()
         {
             DAO_Booking dAO_Booking = new DAO_Booking();
             return dAO_Booking.Create(this);

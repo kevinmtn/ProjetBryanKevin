@@ -63,7 +63,7 @@ namespace ProjetBryanKevin.Classes
             set{ dateOfBirth = value;}
         }
 
-        public bool Insert()
+        public Player Insert()
         {
             DAO_Player db = new DAO_Player();
             return db.Create(this);
@@ -82,6 +82,11 @@ namespace ProjetBryanKevin.Classes
         public void AddBirthdayBonus()
         {
 
+        }
+        public bool CheckDuplicate()
+        {
+            DAO_Player db = new DAO_Player();
+            return db.FindDuplicate(this.pseudo);
         }
     }
 }

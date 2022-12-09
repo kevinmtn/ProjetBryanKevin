@@ -1,4 +1,6 @@
 ﻿using ProjetBryanKevin.Classes;
+using ProjetBryanKevin.DAO;
+using ProjetBryanKevin.Factory;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,16 +24,27 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class LendingPage : Page
     {
-        public LendingPage()
+        Classes.Player lender = null;
+        public LendingPage(Classes.Player lender)
         {
             InitializeComponent();
-            List<VideoGame> approvedVideoGames= VideoGame.GetApprovedVideoGames();
+            this.lender = lender;
+            List<VideoGame> approvedVideoGames = VideoGame.GetApprovedVideoGames();
             GameNames.ItemsSource = approvedVideoGames;
         }
 
         private void Validate_Click(object sender, RoutedEventArgs e)
         {
-            if(GameNames.SelectedItem == null) { return; }
+            if(GameNames.SelectedItem == null) 
+            {
+                return; 
+            }
+            Copy newCopy = new Copy((VideoGame)GameNames.SelectedItem, lender);
+            if (newCopy.Insert() != null)
+            {
+                MessageBox.Show("Votre copie du jeu " + newCopy.VideoGame.Name + " sur " + newCopy.VideoGame.Console + " a bien été ajouté!\n Un admin vérifiera votre ajout rapidement!");
+            }
+
 
         }
         private void GameSelection_Changed(object sender, SelectionChangedEventArgs e)
@@ -43,7 +56,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
         private void AddGame_Click(object sender, RoutedEventArgs e)
         {
-            AddGameWindow addGameWindow = new AddGameWindow();
+            AddGameWindow addGameWindow = new AddGameWindow(lender);
             addGameWindow.Show();
             InitializeComponent();
         }

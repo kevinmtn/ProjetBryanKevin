@@ -23,8 +23,7 @@ namespace ProjetBryanKevin.Pages.Administrator
     /// </summary>
     public partial class UpdateVideoGameCredit : Page
     {
-        VideoGame vid;
-        public UpdateVideoGameCredit(VideoGame video)
+        public UpdateVideoGameCredit()
         {
             InitializeComponent();
             List<VideoGame> videoGames = VideoGame.GetAllVideoGames();

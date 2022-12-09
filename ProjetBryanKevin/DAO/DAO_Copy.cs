@@ -17,21 +17,41 @@ namespace ProjetBryanKevin.DAO
         {
 
         }
-        public override bool Create(Copy copy)
+        public override Copy Create(Copy copy)
         {
+            Copy newCopy = null;
             bool success= false;
             try
             {
                 using(SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("INSERT INTO dbo.Copy(idVideoGame, idPlayer) VALUES (@idVideoGame, @idPlayer)", connection);
-                    cmd.Parameters.AddWithValue("idVideoGame", copy.VideoGame.IdVideoGame);
-                    cmd.Parameters.AddWithValue("idPlayer", copy.Player.Id);
+                    SqlCommand insertCmd = new SqlCommand("INSERT INTO dbo.Copy(idVideoGame, idPlayer) VALUES (@idVideoGame, @idPlayer)", connection);
+                    insertCmd.Parameters.AddWithValue("idVideoGame", copy.VideoGame.IdVideoGame);
+                    insertCmd.Parameters.AddWithValue("idPlayer", copy.Player.Id);
                     connection.Open();
-                    int result = cmd.ExecuteNonQuery();
+                    int result = insertCmd.ExecuteNonQuery();
                     success = result > 0;
+                    connection.Close();
+                    if (success)
+                    {
+                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Copy WHERE idVideoGame = @idVideoGame AND idPlayer = @idPlayer", connection);
+                        selectQuery.Parameters.AddWithValue("idVideoGame", copy.VideoGame.IdVideoGame);
+                        selectQuery.Parameters.AddWithValue("idPlayer", copy.Player.Id);
+                        connection.Open();
+                        using(SqlDataReader reader = selectQuery.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                newCopy = new Copy(
+                                    reader.GetInt32("idCopy"),
+                                    DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
+                                    DAO_Player.Find(reader.GetInt32("idPlayer"))
+                                    );
+                            }
+                        }
+                    }
                 }
-                return success;
+                return newCopy;
 
             }catch(SqlException e)
             {
@@ -157,6 +177,31 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
             return copy;
+        }
+
+        internal bool FindDuplicate(Copy copy)
+        { 
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT idCopy FROM dbo.Copy WHERE idCopy = @idCopy", connection);
+                    command.Parameters.AddWithValue("idCopy", copy.IdCopy);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

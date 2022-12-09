@@ -73,7 +73,7 @@ namespace ProjetBryanKevin.Classes
                 copy = value;
             }
         }
-        public bool Insert()
+        public Loan Insert()
         {
             DAO_Loan db = new DAO_Loan();
             return db.Create(this);

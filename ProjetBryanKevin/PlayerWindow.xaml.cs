@@ -23,15 +23,15 @@ namespace ProjetBryanKevin
     public partial class PlayerWindow : Window
     {
 
-        Player play;
+        Player player;
     
         public PlayerWindow(Player player)
         {
             InitializeComponent();
 
-            play= player;
+            this.player = player;
 
-            Main.Content = new PlayerHome(play);
+            Main.Content = new PlayerHome(this.player);
 
         }
 
@@ -48,21 +48,21 @@ namespace ProjetBryanKevin
 
         private void menuHome(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new PlayerHome(play);
+            Main.Content = new PlayerHome(player);
         }
 
         private void seeVideoGames(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new VideoGameAvailable(play);
+            Main.Content = new VideoGameAvailable(player);
         }
         private void lendVideoGame(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new LendingPage();
+            Main.Content = new LendingPage(player);
         }
 
         private void seePlayerBookingsPage(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new PlayerBookingsPage(play.Id);
+            Main.Content = new PlayerBookingsPage(player.Id);
         }
 
         private void seePlayerLoansPage(Object sender, RoutedEventArgs e)
