@@ -24,6 +24,7 @@ namespace ProjetBryanKevin
     {
 
         Player player;
+        Loan loan;
     
         public PlayerWindow(Player player)
         {
@@ -67,7 +68,7 @@ namespace ProjetBryanKevin
 
         private void seePlayerLoansPage(Object sender, RoutedEventArgs e)
         {
-            return;
+            Main.Content = new BorrowPlayerPage(player.Id);
         }
     }
 }
