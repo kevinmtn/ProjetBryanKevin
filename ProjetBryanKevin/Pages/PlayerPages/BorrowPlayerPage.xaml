@@ -21,6 +21,7 @@
                 <DataGridTextColumn Header="Crédit du jeux" Binding="{Binding Copy.VideoGame.CreditCost}" Width="Auto"/>
                 <DataGridTextColumn Header="Date du début" Binding="{Binding StartDate}" Width="Auto"/>
                 <DataGridTextColumn Header="Date de fin" Binding="{Binding EndDate}" Width="Auto"/>
+                <DataGridTextColumn Header="Prix de la location" Binding="{Binding EndDate}" Width="Auto"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

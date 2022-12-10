@@ -36,7 +36,7 @@ namespace ProjetBryanKevin.DAO
                     connection.Close();
                     if(success)
                     {
-                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Player WHERE pseudo = @pseudo");
+                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Player WHERE pseudo = @pseudo", connection);
                         selectQuery.Parameters.AddWithValue("pseudo", player.Pseudo);
                         connection.Open();
                         using(SqlDataReader reader = selectQuery.ExecuteReader())
