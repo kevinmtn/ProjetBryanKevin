@@ -79,14 +79,21 @@ namespace ProjetBryanKevin.Classes
             return true;
         }
 
-        public void AddBirthdayBonus()
+        public static bool AddBirthdayBonus(DateTime birthday, DateTime endBorrow)
         {
-
+            if(birthday.DayOfYear == endBorrow.DayOfYear)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public bool CheckDuplicate()
         {
             DAO_Player db = new DAO_Player();
             return db.FindDuplicate(this.pseudo);
-        }
+        } 
     }
 }
