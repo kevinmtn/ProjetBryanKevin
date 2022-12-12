@@ -1,18 +1,9 @@
 ﻿using ProjetBryanKevin.Classes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace ProjetBryanKevin.Pages.PlayerPages
 {
@@ -27,11 +18,33 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             InitializeComponent();
             List<Loan> loans = Loan.GetPlayerLoan(idBorrower);
             dataGridLoan.ItemsSource = loans;
+            
         }
 
         private void GiveBackGame(object sender, RoutedEventArgs e)
         {
+            Loan loan = (Loan)dataGridLoan.SelectedItem;
+            int days = loan.EndDate.DayOfYear - DateTime.Now.DayOfYear;
 
+            MessageBoxResult res= MessageBox.Show("Etes vous certain de vouloir rendre ce jeux ?", "Fin de l'emprunt", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
+            switch (res)
+            {
+                case MessageBoxResult.Yes:
+                    if(loan.EndDate.DayOfYear > DateTime.Now.DayOfYear)
+                    {
+                        MessageBox.Show($"Votre emprunt finira dans {days} jours");
+                    }
+                    else if (loan.EndDate.DayOfYear < DateTime.Now.DayOfYear)
+                    {
+                        MessageBox.Show($"Votre emprunt est fini depuis {days} jours", "Retard de l'échéance");
+                    }
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
