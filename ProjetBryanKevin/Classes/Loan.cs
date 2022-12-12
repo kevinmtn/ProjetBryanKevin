@@ -94,6 +94,17 @@ namespace ProjetBryanKevin.Classes
             return dao_loan.FindAll();
         }
 
+        public static List<Loan> GetPlayerLoan(int idBorrower)
+        {
+            DAO_Loan dao_loan = new DAO_Loan();
+            return dao_loan.FindLoanByIdBorrower(idBorrower);
+        }
 
+        public static int CalculateBalance(DateTime startDate, DateTime endDate, Copy copy)
+        {
+            TimeSpan duration = endDate.Subtract(startDate);
+            int loanCost = (copy.VideoGame.CreditCost * (duration.Days / 7 + 1));
+            return loanCost;
+        }
     }
 }

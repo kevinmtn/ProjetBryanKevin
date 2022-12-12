@@ -114,8 +114,8 @@ namespace ProjetBryanKevin.DAO
                         {
                             Loan temporaryLoan = new Loan(
                                 reader.GetInt32("idLoan"),
-                                reader.GetDateTime("startData"),
-                                reader.GetDateTime("endData"),
+                                reader.GetDateTime("startDate"),
+                                reader.GetDateTime("endDate"),
                                 reader.GetBoolean("ongoing"),
                                 DAO_Player.Find(reader.GetInt32("idLender")),
                                 DAO_Player.Find(reader.GetInt32("idBorrower")),
@@ -151,8 +151,8 @@ namespace ProjetBryanKevin.DAO
                         {
                             loan = new Loan(
                                 reader.GetInt32("idLoan"),
-                                reader.GetDateTime("startData"),
-                                reader.GetDateTime("endData"),
+                                reader.GetDateTime("startDate"),
+                                reader.GetDateTime("endDate"),
                                 reader.GetBoolean("ongoing"),
                                 DAO_Player.Find(reader.GetInt32("idLender")),
                                 DAO_Player.Find(reader.GetInt32("idBorrower")),
@@ -195,6 +195,43 @@ namespace ProjetBryanKevin.DAO
             catch (SqlException e)
             { throw new Exception(e.Message); }
 
+        }
+
+
+        public List<Loan> FindLoanByIdBorrower(int idBorrower)
+        {
+            List<Loan> loans = new List<Loan>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idBorrower = @idBorrower", connection);
+                    command.Parameters.AddWithValue("idBorrower", idBorrower);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Loan temporaryLoan = new Loan(
+                                reader.GetInt32("idLoan"),
+                                reader.GetDateTime("startDate"),
+                                reader.GetDateTime("endDate"),
+                                reader.GetBoolean("ongoing"),
+                                DAO_Player.Find(reader.GetInt32("idLender")),
+                                DAO_Player.Find(reader.GetInt32("idBorrower")),
+                                DAO_Copy.Find(reader.GetInt32("idCopy"))
+                                );
+                            loans.Add(temporaryLoan);
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            return loans;
         }
     }
 }

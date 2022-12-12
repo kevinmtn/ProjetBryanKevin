@@ -1,4 +1,5 @@
-﻿using ProjetBryanKevin.DAO;
+﻿using ProjetBryanKevin.Classes;
+using ProjetBryanKevin.DAO;
 using ProjetBryanKevin.Factory;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace ProjetBryanKevin
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
+            Classes.Player newPlayer;
             String username = UserName.Text;
             String pseudo = Pseudo.Text;
             String password = Password.Password.ToString();
@@ -40,7 +42,19 @@ namespace ProjetBryanKevin
                 MessageBox.Show("Veuillez compléter tous les champs", "Formulaire imcomplet",MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            Classes.Player newPlayer = new Classes.Player(username, password, pseudo, registrationDate, (DateTime)birthDate, 10);
+            bool verifBonus = Player.AddBirthdayBonus((DateTime)birthDate,registrationDate);
+          
+
+            if (verifBonus == true)
+            {
+                 MessageBox.Show("Bonus de 2 crédits accordés", "Joyeux anniversaire !", MessageBoxButton.OK, MessageBoxImage.Information);
+                 newPlayer = new Classes.Player(username, password, pseudo, registrationDate, (DateTime)birthDate, 12);
+            }
+            else
+            {
+                newPlayer = new Classes.Player(username, password, pseudo, registrationDate, (DateTime)birthDate, 10);
+            }
+           
 
             if (newPlayer.CheckDuplicate())
             {
