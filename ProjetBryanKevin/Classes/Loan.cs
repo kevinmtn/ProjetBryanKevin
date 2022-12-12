@@ -18,6 +18,16 @@ namespace ProjetBryanKevin.Classes
         private Player borrower;
         private Copy copy;
 
+        public Loan(DateTime startDate, DateTime endDate, bool onGoing, Player lender, Player borrower, Copy copy)
+        {
+            this.idLoan = 0;
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.onGoing = onGoing;
+            this.copy = copy;
+            this.borrower = borrower;
+            this.lender = lender;
+        }
         public Loan(int idLoan, DateTime startDate, DateTime endDate, bool onGoing, Player lender, Player borrower, Copy copy)
         {
             this.idLoan = idLoan;

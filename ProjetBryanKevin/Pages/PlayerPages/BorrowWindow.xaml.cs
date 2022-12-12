@@ -38,8 +38,8 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
             if (endDate.HasValue)
             {
-                Loan newLoan = new Loan(1, DateTime.Now, (DateTime)endDate, true, borrower, copy.Player, copy);
-                if (newLoan.Insert != null)
+                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, borrower, copy.Player, copy);
+                if (newLoan.Insert() != null)
                 {
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
@@ -64,7 +64,6 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             TimeSpan duration = endDate.Subtract(startDate);
             loanCost = (copy.VideoGame.CreditCost * (duration.Days/7 + 1));
             LoanCost.Text = loanCost.ToString();
-
         }
     }
 }
