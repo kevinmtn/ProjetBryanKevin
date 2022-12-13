@@ -29,10 +29,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
         {
             Loan loan = (Loan)dataGridLoan.SelectedItem;
             TimeSpan days = loan.EndDate.Subtract(DateTime.Now);
-            
-
             MessageBoxResult res= MessageBox.Show("Etes vous certain de vouloir rendre ce jeux ?", "Fin de l'emprunt", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            
             switch (res)
             {
 

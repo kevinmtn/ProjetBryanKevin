@@ -47,12 +47,11 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             switch (newVideoGame.CheckDuplicate())
             {
                 case 0:
-                    if(newVideoGame.Insert() == null)
-                    {
-                        break;
-                        
-                    }
                     newVideoGame = newVideoGame.Insert();
+                    if(newVideoGame == null)
+                    {
+                        return;
+                    }
                     Copy newCopy = new Copy(newVideoGame, lender);
                     if (newCopy.Insert() != null)
                     {

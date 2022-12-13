@@ -37,19 +37,19 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
             if (endDate.HasValue)
             {
-                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, borrower, copy.Player, copy);
+                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, copy.Player, borrower, copy);
                 if (newLoan.Insert() != null)
                 {
-                    int newCredit = copy.Player.Credit - borrowCost;
+                    int newCreditBorrower = borrower.Credit - borrowCost;
+                    int newCreditLender = copy.Player.Credit + borrowCost;
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
                     
-                    bool verifUpdate =  Classes.Player.UpdateValueCredit(copy.Player, newCredit);
+                    bool verifUpdate =  Classes.Player.UpdateValueCredit(borrower, newCreditBorrower) && Classes.Player.UpdateValueCredit(copy.Player, newCreditLender);
                     
-                    if (verifUpdate==true)
+                    if (verifUpdate)
                     {
-                        MessageBox.Show("Votre solde de crédit a été mit à jour");
+                        MessageBox.Show("Votre solde de crédit a été mis à jour");
                     }
-
                     this.Close();
                 }
                 else

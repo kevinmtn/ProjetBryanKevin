@@ -17,15 +17,14 @@ namespace ProjetBryanKevin.Pages.Player
 
         bool verifCredit = true;
         Classes.Player player;
-        public VideoGameAvailable(Classes.Player play)
+        public VideoGameAvailable(Classes.Player player)
         {
             InitializeComponent();
             List<Copy> copies = Copy.GetCopy();
             dataGridVideoGame.ItemsSource = copies;
-            player = play;
-            int creditLeft = Classes.Player.GetCreditPlayer(play);
-
-            CreditLeft.Text= creditLeft.ToString();
+            this.player = player;
+            int creditLeft = Classes.Player.GetCreditPlayer(player);
+            CreditLeft.Text = creditLeft.ToString();
     
             if (creditLeft <= 0)
             {
