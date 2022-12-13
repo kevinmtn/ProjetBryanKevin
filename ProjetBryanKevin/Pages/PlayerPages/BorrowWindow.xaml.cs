@@ -16,20 +16,19 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     public partial class BorrowWindow : Window
     {
         private Copy copy;
-        private Classes.Player borrower;
-        private int loanCost;
-       
+        private Classes.Player lender;
+        int borrowCost;
 
-        public BorrowWindow(Copy copy, Classes.Player borrower)
+       
+        public BorrowWindow(Copy copy, Classes.Player lender)
         {
             InitializeComponent();
             this.copy = copy;
-            this.borrower = borrower;
+            this.lender = lender;
             NameGame.Text = copy.VideoGame.Name;
             ConsoleName.Text = copy.VideoGame.Console;
             CreditCost.Text = copy.VideoGame.CreditCost.ToString();
             StartDate.Text = DateTime.Now.ToString();
-            
         }
 
         private void Validation_Click(object sender, RoutedEventArgs e)
@@ -38,10 +37,19 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
             if (endDate.HasValue)
             {
-                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, copy.Player, borrower, copy);
+                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, lender, copy.Player, copy);
                 if (newLoan.Insert() != null)
                 {
+                    int newCredit = copy.Player.Credit - borrowCost;
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
+                    bool verifUpdate =  Classes.Player.UpdateValueCredit(copy.Player, newCredit);
+                    
+                    if (verifUpdate==true)
+                    {
+                        MessageBox.Show("Votre solde de crédit a été mit à jour");
+                    }
+
                     this.Close();
                 }
                 else
@@ -54,7 +62,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                 MessageBox.Show("Veuillez selectionner une date pour la fin de votre location !", "Date non séléctionnée", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
    
-            //TODO substract credit for borrower and addition for lender
+            //TODO addition for lender
         }
 
         private void EndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
@@ -62,7 +70,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             DateTime startDate = DateTime.Now;
             DateTime endDate = EndDate.SelectedDate.Value;
             TimeSpan duration = endDate.Subtract(startDate);
-            int borrowCost = Loan.CalculateBalance(startDate, endDate, copy);
+            borrowCost = Loan.CalculateBalance(startDate, endDate, copy);
             LoanCost.Text = borrowCost.ToString();
         }
     }

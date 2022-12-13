@@ -2,6 +2,7 @@
 using ProjetBryanKevin.Pages.PlayerPages;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,17 +16,18 @@ namespace ProjetBryanKevin.Pages.Player
     {
 
         bool verifCredit = true;
-        Classes.Player player = null;
+        Classes.Player player;
         public VideoGameAvailable(Classes.Player play)
         {
             InitializeComponent();
             List<Copy> copies = Copy.GetCopy();
             dataGridVideoGame.ItemsSource = copies;
             player = play;
+            int creditLeft = Classes.Player.GetCreditPlayer(play);
 
-            Credit.Text = play.Credit.ToString();
-
-            if (play.Credit <= 0)
+            CreditLeft.Text= creditLeft.ToString();
+    
+            if (creditLeft <= 0)
             {
                 verifCredit = false;
             }

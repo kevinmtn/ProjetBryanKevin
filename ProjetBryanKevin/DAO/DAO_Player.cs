@@ -144,6 +144,42 @@ namespace ProjetBryanKevin.DAO
             return player;
         }
 
+        public int SelectCreditPlayer(int id)
+        {
+            Player player = null;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Player WHERE idPlayer = @id", connection);
+                    cmd.Parameters.AddWithValue("id", id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            player = new Player(
+                                reader.GetInt32("idPlayer"),
+                                reader.GetString("userName"),
+                                reader.GetString("password"),
+                                reader.GetInt32("credit"),
+                                reader.GetString("pseudo"),
+                                reader.GetDateTime("registrationDate"),
+                                reader.GetDateTime("dateOfBirth")
+                                );
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+
+                throw new Exception("Une erreur sql est survenue !\n" + e.Message);
+            }
+            return player.Credit;
+        }
+
         public override bool Update(Player updatedPlayer)
         {
             try
@@ -151,7 +187,7 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("UPDATE dbo.Player SET pseudo = @pseudo, username = @username, password = @password," +
-                        " registrationDate = @registrationDate, dateOfBirth = @dateOfBirth, credit = @credit WHERE idPlayer = @idPlayer");
+                        " registrationDate = @registrationDate, dateOfBirth = @dateOfBirth, credit = @credit WHERE idPlayer = @idPlayer", connection);
                     command.Parameters.AddWithValue("idPlayer", updatedPlayer.Id);
                     command.Parameters.AddWithValue("pseudo", updatedPlayer.Pseudo);
                     command.Parameters.AddWithValue("username", updatedPlayer.UserName);
@@ -229,6 +265,26 @@ namespace ProjetBryanKevin.DAO
                 return false;
             }
             catch (SqlException e) { throw new Exception(e.Message); }
+        }
+
+        public bool UpdateCredit(Player player, int newCredit)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE dbo.Player SET  credit = @credit WHERE idPlayer = @idPlayer", connection);
+                    command.Parameters.AddWithValue("idPlayer", player.Id);
+                    command.Parameters.AddWithValue("credit", newCredit);
+                    connection.Open();
+                    bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false;
+                    return isUpdated;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

@@ -46,6 +46,23 @@ dotnet_naming_style.pascal_case.required_prefix =
 dotnet_naming_style.pascal_case.required_suffix = 
 dotnet_naming_style.pascal_case.word_separator = 
 dotnet_naming_style.pascal_case.capitalization = pascal_case
+csharp_style_expression_bodied_methods = false:silent
+csharp_style_expression_bodied_constructors = false:silent
+csharp_style_expression_bodied_operators = false:silent
+csharp_style_expression_bodied_properties = true:silent
+csharp_style_expression_bodied_indexers = true:silent
+csharp_style_expression_bodied_accessors = true:silent
+csharp_style_expression_bodied_lambdas = true:silent
+csharp_style_expression_bodied_local_functions = false:silent
+csharp_style_prefer_switch_expression = true:suggestion
+csharp_style_prefer_pattern_matching = true:silent
+csharp_style_pattern_matching_over_is_with_cast_check = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_prefer_not_pattern = true:suggestion
+csharp_style_prefer_extended_property_pattern = true:suggestion
+csharp_prefer_simple_using_statement = true:suggestion
+csharp_prefer_braces = true:silent
+csharp_style_namespace_declarations = block_scoped:silent
 
 [*.vb]
 #### Styles de nommage ####
@@ -94,3 +111,7 @@ dotnet_naming_style.casse_pascal.required_prefix =
 dotnet_naming_style.casse_pascal.required_suffix = 
 dotnet_naming_style.casse_pascal.word_separator = 
 dotnet_naming_style.casse_pascal.capitalization = pascal_case
+
+[*.{cs,vb}]
+tab_width = 4
+indent_size = 4

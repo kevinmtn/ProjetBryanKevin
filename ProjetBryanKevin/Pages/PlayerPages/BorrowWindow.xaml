@@ -18,7 +18,7 @@
         <TextBox x:Name="NameGame" IsEnabled="False" HorizontalAlignment="Left" Margin="203,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
         <TextBox x:Name="ConsoleName" IsEnabled="False" HorizontalAlignment="Left" Margin="203,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
         <TextBox x:Name="CreditCost" IsEnabled="False" HorizontalAlignment="Left" Margin="203,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="152"/>
-        <TextBox x:Name="LoanCost" IsEnabled="False" HorizontalAlignment="Left" Margin="218,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137"/>
+        <TextBox x:Name="LoanCost" IsEnabled="False" HorizontalAlignment="Left" Margin="218,289,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137" Background="{x:Null}" Foreground="#FFBA0000"/>
         <DatePicker  x:Name="EndDate" DisplayDateStart="{x:Static sys:DateTime.Today}" SelectedDateChanged="EndDate_SelectedDateChanged" HorizontalAlignment="Left" Margin="279,231,0,0" VerticalAlignment="Top" >
             <DatePicker.Resources>
                 <Style TargetType="DatePickerTextBox">

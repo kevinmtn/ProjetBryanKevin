@@ -73,6 +73,12 @@ namespace ProjetBryanKevin.Classes
             DAO_Player db = new DAO_Player();
             return db.FindAll();
         }
+
+        public static int GetCreditPlayer(Player play)
+        {
+            DAO_Player db = new DAO_Player();
+            return db.SelectCreditPlayer(play.Id);
+        }
         public bool LoanAllowed()
         {
             if(credit>=0) return false;
@@ -94,6 +100,12 @@ namespace ProjetBryanKevin.Classes
         {
             DAO_Player db = new DAO_Player();
             return db.FindDuplicate(this.pseudo);
-        } 
+        }
+
+        public static bool UpdateValueCredit(Player play, int newCredit)
+        {
+            DAO_Player db = new DAO_Player();
+            return db.UpdateCredit(play, newCredit);
+        }
     }
 }
