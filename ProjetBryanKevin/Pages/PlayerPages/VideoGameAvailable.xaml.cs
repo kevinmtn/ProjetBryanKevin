@@ -2,6 +2,7 @@
 using ProjetBryanKevin.Pages.PlayerPages;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,12 +23,11 @@ namespace ProjetBryanKevin.Pages.Player
             List<Copy> copies = Copy.GetCopy();
             dataGridVideoGame.ItemsSource = copies;
             player = play;
+            int creditLeft = Classes.Player.GetCreditPlayer(play);
 
-            Credit.Text = play.Credit.ToString();
-
-            //TODO credit not updated when the appli runs => do binding
-
-            if (play.Credit <= 0)
+            CreditLeft.Text= creditLeft.ToString();
+    
+            if (creditLeft <= 0)
             {
                 verifCredit = false;
             }

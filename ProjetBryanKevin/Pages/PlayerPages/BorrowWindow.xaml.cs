@@ -29,7 +29,6 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             ConsoleName.Text = copy.VideoGame.Console;
             CreditCost.Text = copy.VideoGame.CreditCost.ToString();
             StartDate.Text = DateTime.Now.ToString();
-            
         }
 
         private void Validation_Click(object sender, RoutedEventArgs e)
@@ -44,11 +43,11 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                     int newCredit = copy.Player.Credit - borrowCost;
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
                     
-                    bool verif =  Classes.Player.UpdateValueCredit(copy.Player, newCredit);
+                    bool verifUpdate =  Classes.Player.UpdateValueCredit(copy.Player, newCredit);
                     
-                    if (verif==true)
+                    if (verifUpdate==true)
                     {
-                        MessageBox.Show("Solde crédit mit à jour");
+                        MessageBox.Show("Votre solde de crédit a été mit à jour");
                     }
 
                     this.Close();
@@ -63,7 +62,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                 MessageBox.Show("Veuillez selectionner une date pour la fin de votre location !", "Date non séléctionnée", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
    
-            //TODO substract credit for borrower and addition for lender
+            //TODO addition for lender
         }
 
         private void EndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

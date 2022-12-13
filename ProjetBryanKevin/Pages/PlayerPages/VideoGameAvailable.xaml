@@ -38,6 +38,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Solde crédit:" HorizontalAlignment="Left" Margin="634,52,0,0" VerticalAlignment="Top"/>
-        <TextBlock Name="Credit"  HorizontalAlignment="Left" Margin="716,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="74"/>
+        <TextBlock Name="CreditLeft"  HorizontalAlignment="Left" Margin="716,57,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="74"/>
     </Grid>
 </Page>
