@@ -24,7 +24,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class LendingPage : Page
     {
-        Classes.Player lender = null;
+        Classes.Player lender;
         public LendingPage(Classes.Player lender)
         {
             InitializeComponent();
@@ -44,8 +44,6 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             {
                 MessageBox.Show("Votre copie du jeu " + newCopy.VideoGame.Name + " sur " + newCopy.VideoGame.Console + " a bien été ajouté!\n Un admin vérifiera votre ajout rapidement!");
             }
-
-
         }
         private void GameSelection_Changed(object sender, SelectionChangedEventArgs e)
         {

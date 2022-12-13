@@ -49,7 +49,8 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                 case 0:
                     if(newVideoGame.Insert() == null)
                     {
-                        return;
+                        break;
+                        
                     }
                     newVideoGame = newVideoGame.Insert();
                     Copy newCopy = new Copy(newVideoGame, lender);

@@ -15,7 +15,7 @@ namespace ProjetBryanKevin.Pages.Player
     {
 
         bool verifCredit = true;
-        Classes.Player player = null;
+        Classes.Player player;
         public VideoGameAvailable(Classes.Player play)
         {
             InitializeComponent();
@@ -24,6 +24,8 @@ namespace ProjetBryanKevin.Pages.Player
             player = play;
 
             Credit.Text = play.Credit.ToString();
+
+            //TODO credit not updated when the appli runs => do binding
 
             if (play.Credit <= 0)
             {

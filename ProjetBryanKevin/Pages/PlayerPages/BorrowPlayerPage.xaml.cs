@@ -18,28 +18,39 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             InitializeComponent();
             List<Loan> loans = Loan.GetPlayerLoan(idBorrower);
             dataGridLoan.ItemsSource = loans;
-            
+
+            if (loans.Count == 0)
+            {
+                MessageBox.Show("Vous ne posséder aucune location", "Pas de location", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void GiveBackGame(object sender, RoutedEventArgs e)
         {
             Loan loan = (Loan)dataGridLoan.SelectedItem;
-            int days = loan.EndDate.DayOfYear - DateTime.Now.DayOfYear;
+            TimeSpan days = loan.EndDate.Subtract(DateTime.Now);
+            
 
             MessageBoxResult res= MessageBox.Show("Etes vous certain de vouloir rendre ce jeux ?", "Fin de l'emprunt", MessageBoxButton.YesNo, MessageBoxImage.Question);
             
             switch (res)
             {
+
                 case MessageBoxResult.Yes:
-                    if(loan.EndDate.DayOfYear > DateTime.Now.DayOfYear)
+                    if(days.Days>0)
                     {
-                        MessageBox.Show($"Votre emprunt finira dans {days} jours");
+                        MessageBox.Show($"Votre emprunt finira dans {days.Days} jours", "");
                     }
-                    else if (loan.EndDate.DayOfYear < DateTime.Now.DayOfYear)
+                    else if (days.Days<0)
                     {
-                        MessageBox.Show($"Votre emprunt est fini depuis {days} jours", "Retard de l'échéance");
+                        MessageBox.Show($"Votre emprunt est fini depuis {Math.Abs(days.Days)} jours", "Retard de l'échéance");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Votre emprunt est terminé","Validation");
                     }
                     break;
+
                 case MessageBoxResult.No:
                     break;
                 default:

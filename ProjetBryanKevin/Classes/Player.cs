@@ -94,6 +94,12 @@ namespace ProjetBryanKevin.Classes
         {
             DAO_Player db = new DAO_Player();
             return db.FindDuplicate(this.pseudo);
-        } 
+        }
+
+        public static bool UpdateValueCredit(Player play, int newCredit)
+        {
+            DAO_Player db = new DAO_Player();
+            return db.UpdateCredit(play, newCredit);
+        }
     }
 }

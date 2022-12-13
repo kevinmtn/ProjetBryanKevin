@@ -16,15 +16,15 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     public partial class BorrowWindow : Window
     {
         private Copy copy;
-        private Classes.Player borrower;
-        private int loanCost;
-       
+        private Classes.Player lender;
+        int borrowCost;
 
-        public BorrowWindow(Copy copy, Classes.Player borrower)
+       
+        public BorrowWindow(Copy copy, Classes.Player lender)
         {
             InitializeComponent();
             this.copy = copy;
-            this.borrower = borrower;
+            this.lender = lender;
             NameGame.Text = copy.VideoGame.Name;
             ConsoleName.Text = copy.VideoGame.Console;
             CreditCost.Text = copy.VideoGame.CreditCost.ToString();
@@ -38,10 +38,19 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
             if (endDate.HasValue)
             {
-                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, borrower, copy.Player, copy);
+                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, lender, copy.Player, copy);
                 if (newLoan.Insert() != null)
                 {
+                    int newCredit = copy.Player.Credit - borrowCost;
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
+                    
+                    bool verif =  Classes.Player.UpdateValueCredit(copy.Player, newCredit);
+                    
+                    if (verif==true)
+                    {
+                        MessageBox.Show("Solde crédit mit à jour");
+                    }
+
                     this.Close();
                 }
                 else
@@ -62,7 +71,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             DateTime startDate = DateTime.Now;
             DateTime endDate = EndDate.SelectedDate.Value;
             TimeSpan duration = endDate.Subtract(startDate);
-            int borrowCost = Loan.CalculateBalance(startDate, endDate, copy);
+            borrowCost = Loan.CalculateBalance(startDate, endDate, copy);
             LoanCost.Text = borrowCost.ToString();
         }
     }
