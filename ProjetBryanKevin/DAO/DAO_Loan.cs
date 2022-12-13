@@ -39,11 +39,12 @@ namespace ProjetBryanKevin.DAO
                     {
                         Debug.Print("Succesful LOAN INSERT");
                         SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Loan WHERE startDate = @startDate AND endDate = @endDate AND idCopy = @idCopy AND idBorrower = @idBorrower AND idLender = @idLender", connection);
-                        selectQuery.Parameters.AddWithValue("startDate", loan.StartDate.ToString("yyyyMMdd HH:mm:ss"));
-                        selectQuery.Parameters.AddWithValue("endDate", loan.EndDate.ToString("yyyyMMdd HH:mm:ss"));
+                        selectQuery.Parameters.AddWithValue("startDate", loan.StartDate.ToString("ddMMyyyy HH:mm:ss"));
+                        selectQuery.Parameters.AddWithValue("endDate", loan.EndDate.ToString("ddMMyyyy HH:mm:ss"));
                         selectQuery.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
                         selectQuery.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
                         selectQuery.Parameters.AddWithValue("idLender", loan.Lender.Id);
+                        Debug.Print(selectQuery.CommandText);
                         using (SqlDataReader reader = selectQuery.ExecuteReader())
                         {
                             if (reader.Read())
@@ -58,7 +59,7 @@ namespace ProjetBryanKevin.DAO
                                     DAO_Copy.Find(reader.GetInt32("idCopy"))
                                     );
                             }                            
-                            Debug.Print("Name of the game loaned by " + newLoan.Borrower.Pseudo + ": " + newLoan.Copy.VideoGame.Name);
+                            Debug.Print("Name of the game loaned by " + newLoan.Lender.Pseudo + ": " + newLoan.Copy.VideoGame.Name);
                         }
                     }
                 }
@@ -222,6 +223,7 @@ namespace ProjetBryanKevin.DAO
                                 DAO_Copy.Find(reader.GetInt32("idCopy"))
                                 );
                             loans.Add(temporaryLoan);
+                            Debug.Print(temporaryLoan.IdLoan.ToString());
                         }
                     }
                 }
@@ -232,6 +234,33 @@ namespace ProjetBryanKevin.DAO
                 throw new Exception(e.Message);
             }
             return loans;
+        }
+
+        internal bool FindDuplicate(Loan loan)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idCopy = @idCopy AND startDate = @startDate", connection);
+                    command.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
+                    command.Parameters.AddWithValue("startDate", loan.StartDate.ToString("ddMMyyyy HH:mm:ss"));
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            return false;
         }
     }
 }

@@ -86,8 +86,19 @@ namespace ProjetBryanKevin.Classes
         public Loan Insert()
         {
             DAO_Loan db = new DAO_Loan();
+            if (checkDuplicate(this))
+            {
+                return null;
+            }
             return db.Create(this);
         }
+
+        internal bool checkDuplicate(Loan loan)
+        {
+            DAO_Loan db = new DAO_Loan();
+            return db.FindDuplicate(this);
+        }
+
         public static List<Loan> GetLoan()
         {
             DAO_Loan dao_loan= new DAO_Loan();

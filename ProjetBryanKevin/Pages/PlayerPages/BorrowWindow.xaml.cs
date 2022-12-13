@@ -38,7 +38,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
             if (endDate.HasValue)
             {
-                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, borrower, copy.Player, copy);
+                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, copy.Player, borrower, copy);
                 if (newLoan.Insert() != null)
                 {
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
