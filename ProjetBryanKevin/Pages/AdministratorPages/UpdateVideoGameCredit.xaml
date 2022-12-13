@@ -16,13 +16,13 @@
           ItemsSource="{Binding Source=videoGames}"
           AutoGenerateColumns="False" CanUserResizeColumns="True" Margin="0,91,0,0" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Nom du jeux" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Console" Binding="{Binding Console}"/>
-                <DataGridTextColumn Header="Nombre de crédit" Binding="{Binding CreditCost}"/>
+                <DataGridTextColumn x:Name="Name" Header="Nom du jeux" Binding="{Binding Name}"/>
+                <DataGridTextColumn x:Name="Console" Header="Console" Binding="{Binding Console}"/>
+                <DataGridTextColumn x:Name="CreditCost" Header="Nombre de crédit" Binding="{Binding CreditCost}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="Modification" Click="ButtonModification" Content="Modifier les crédits"/>
+                            <Button x:Name="Modification" Click="ButtonModification_Click" Content="Modifier les crédits"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

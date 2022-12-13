@@ -39,8 +39,8 @@ namespace ProjetBryanKevin.DAO
                     {
                         Debug.Print("Succesful LOAN INSERT");
                         SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Loan WHERE startDate = @startDate AND endDate = @endDate AND idCopy = @idCopy AND idBorrower = @idBorrower AND idLender = @idLender", connection);
-                        selectQuery.Parameters.AddWithValue("startDate", loan.StartDate.ToString("ddMMyyyy HH:mm:ss"));
-                        selectQuery.Parameters.AddWithValue("endDate", loan.EndDate.ToString("ddMMyyyy HH:mm:ss"));
+                        selectQuery.Parameters.AddWithValue("startDate", loan.StartDate.ToString("yyyyMMdd HH:mm:ss"));
+                        selectQuery.Parameters.AddWithValue("endDate", loan.EndDate.ToString("yyyyMMdd HH:mm:ss"));
                         selectQuery.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
                         selectQuery.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
                         selectQuery.Parameters.AddWithValue("idLender", loan.Lender.Id);
@@ -244,7 +244,7 @@ namespace ProjetBryanKevin.DAO
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idCopy = @idCopy AND startDate = @startDate", connection);
                     command.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
-                    command.Parameters.AddWithValue("startDate", loan.StartDate.ToString("ddMMyyyy HH:mm:ss"));
+                    command.Parameters.AddWithValue("startDate", loan.StartDate.ToString("yyyyMMdd HH:mm:ss"));
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

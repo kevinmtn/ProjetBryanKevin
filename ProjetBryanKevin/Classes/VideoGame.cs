@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using ProjetBryanKevin.DAO;
+using System.Collections.ObjectModel;
 
 namespace ProjetBryanKevin.Classes
 {
@@ -90,5 +91,12 @@ namespace ProjetBryanKevin.Classes
             DAO_VideoGame dao = new DAO_VideoGame();
             return dao.CheckDuplicate(this);
         }
+
+        internal bool Update()
+        {
+            DAO_VideoGame dao = new DAO_VideoGame();
+            return dao.Update(this);
+        }
+
     }
 }
