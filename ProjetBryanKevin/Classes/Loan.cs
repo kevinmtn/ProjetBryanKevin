@@ -111,6 +111,11 @@ namespace ProjetBryanKevin.Classes
             DAO_Loan dao_loan = new DAO_Loan();
             return dao_loan.FindLoanByIdBorrower(idBorrower);
         }
+        public static bool UpdatePlayerLoan(Loan loan)
+        {
+            DAO_Loan dao_loan = new DAO_Loan();
+            return dao_loan.UpdatePlayerLoan(loan.idLoan);
+        }
 
         public static int CalculateBalance(DateTime startDate, DateTime endDate, Copy copy)
         {

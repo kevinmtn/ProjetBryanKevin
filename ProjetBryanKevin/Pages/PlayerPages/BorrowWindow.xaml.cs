@@ -1,8 +1,5 @@
 ﻿using ProjetBryanKevin.Classes;
-using ProjetBryanKevin.DAO;
-using ProjetBryanKevin.Factory;
 using System;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 

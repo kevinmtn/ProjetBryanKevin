@@ -68,7 +68,7 @@ namespace ProjetBryanKevin
 
         private void seePlayerLoansPage(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new BorrowPlayerPage(play.Id);
+            Main.Content = new BorrowPlayerPage(play.Id, play);
         }
     }
 }

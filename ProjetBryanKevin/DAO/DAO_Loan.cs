@@ -180,7 +180,7 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("UPDATE dbo.Copy SET startDate = @startDate, endDate = @endDate, " +
-                        "ongoing = @ongoing, idCopy = @idCopy, idBorrower = @idBorrower, idLender = @idLender WHERE idLoan = @idLoan");
+                        "ongoing = @ongoing, idCopy = @idCopy, idBorrower = @idBorrower, idLender = @idLender WHERE idLoan = @idLoan", connection);
                     command.Parameters.AddWithValue("idLoan", updatedLoan.IdLoan);
                     command.Parameters.AddWithValue("startDate", updatedLoan.StartDate);
                     command.Parameters.AddWithValue("endDate", updatedLoan.EndDate);
@@ -194,10 +194,10 @@ namespace ProjetBryanKevin.DAO
                 }
             }
             catch (SqlException e)
-            { throw new Exception(e.Message); }
-
+            { 
+                throw new Exception(e.Message); 
+            }
         }
-
 
         public List<Loan> FindLoanByIdBorrower(int idBorrower)
         {
@@ -206,7 +206,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idBorrower = @idBorrower", connection);
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idBorrower = @idBorrower AND ongoing='True'", connection);
                     command.Parameters.AddWithValue("idBorrower", idBorrower);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -227,13 +227,31 @@ namespace ProjetBryanKevin.DAO
                         }
                     }
                 }
-
             }
             catch (SqlException e)
             {
                 throw new Exception(e.Message);
             }
             return loans;
+        }
+
+        public bool UpdatePlayerLoan(int idLoan)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("UPDATE dbo.Loan SET ongoing = 'False' WHERE idLoan = @idLoan", connection);
+                    command.Parameters.AddWithValue("idLoan", idLoan);
+                    connection.Open();
+                    bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false;
+                    return isUpdated;
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         internal bool FindDuplicate(Loan loan)
@@ -254,7 +272,6 @@ namespace ProjetBryanKevin.DAO
                         }
                     }
                 }
-
             }
             catch (SqlException e)
             {
