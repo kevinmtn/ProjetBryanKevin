@@ -273,7 +273,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand("UPDATE dbo.Player SET  credit = @credit WHERE idPlayer = @idPlayer", connection);
+                    SqlCommand command = new SqlCommand("UPDATE dbo.Player SET credit = @credit WHERE idPlayer = @idPlayer", connection);
                     command.Parameters.AddWithValue("idPlayer", player.Id);
                     command.Parameters.AddWithValue("credit", newCredit);
                     connection.Open();

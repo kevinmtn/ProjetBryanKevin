@@ -58,8 +58,6 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             {
                 MessageBox.Show("Veuillez selectionner une date pour la fin de votre location !", "Date non séléctionnée", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-   
-            //TODO addition for lender
         }
 
         private void EndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)

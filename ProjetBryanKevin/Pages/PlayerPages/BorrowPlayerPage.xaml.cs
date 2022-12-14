@@ -12,8 +12,8 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class BorrowPlayerPage : Page
     {
-        private Classes.Player borrower;
-        public BorrowPlayerPage(int idBorrower, Classes.Player borrower)
+
+        public BorrowPlayerPage(int idBorrower)
         {
             InitializeComponent();
             List<Loan> loans = Loan.GetPlayerLoan(idBorrower);
@@ -23,14 +23,13 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             {
                 MessageBox.Show("Vous ne posséder aucune location", "Pas de location", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-
-            this.borrower = borrower;
         }
 
         private void GiveBackGame(object sender, RoutedEventArgs e)
         {
             Loan loan = (Loan)dataGridLoan.SelectedItem;
             TimeSpan days = loan.EndDate.Subtract(DateTime.Now);
+            
             
             MessageBoxResult res= MessageBox.Show("Etes vous certain de vouloir rendre ce jeux ?", "Fin de l'emprunt", MessageBoxButton.YesNo, MessageBoxImage.Question);
             switch (res)
@@ -45,11 +44,13 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                     else if (days.Days<0)
                     {
                         int penalty = 5 * Math.Abs(days.Days) + (loan.Copy.VideoGame.CreditCost * (days.Days / 7 + 1));
-                        int newCreditBorrower = borrower.Credit - penalty;
-                        bool verifUpdate = Classes.Player.UpdateValueCredit(borrower, newCreditBorrower);
+                        int newCreditBorrower = loan.Borrower.Credit - penalty;
+                        int newCreditLender = loan.Lender.Credit + penalty;
+                        bool verifUpdateBorrower = Classes.Player.UpdateValueCredit(loan.Borrower, newCreditBorrower);
+                        bool verifUpdateLender = Classes.Player.UpdateValueCredit(loan.Lender, newCreditLender);
                         bool desactivateLoan = Loan.UpdatePlayerLoan(loan);
 
-                        if (verifUpdate && desactivateLoan)
+                        if (verifUpdateBorrower && verifUpdateLender && desactivateLoan)
                         {
                             MessageBox.Show($"Votre emprunt est fini depuis {Math.Abs(days.Days)} jours \nUne penalité de {penalty} crédits vous sera appliqué", "Retard de l'échéance");
                         }
