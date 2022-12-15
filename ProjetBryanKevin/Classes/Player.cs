@@ -79,9 +79,11 @@ namespace ProjetBryanKevin.Classes
             DAO_Player db = new DAO_Player();
             return db.SelectCreditPlayer(play.Id);
         }
-        public bool LoanAllowed()
+        public bool LoanAllowed(Player play)
         {
-            if(credit>=0) return false;
+            DAO_Player db = new DAO_Player();
+            int valueCredit=  db.SelectCreditPlayer(play.Id);
+            if(valueCredit<=0) return false;
             return true;
         }
 

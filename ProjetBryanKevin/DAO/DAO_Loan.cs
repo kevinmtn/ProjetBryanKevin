@@ -27,8 +27,8 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(this.connectionString))
                 {
                     SqlCommand insertCmd = new SqlCommand("INSERT INTO dbo.Loan(startDate, endDate,ongoing, idCopy,idBorrower,idLender) VALUES (@startDate,@endDate,1,@idCopy,@idBorrower,@idLender)", connection);
-                    insertCmd.Parameters.AddWithValue("startDate", loan.StartDate.ToString("yyyyMMdd HH:mm:ss"));
-                    insertCmd.Parameters.AddWithValue("endDate", loan.EndDate.ToString("yyyyMMdd HH:mm:ss"));
+                    insertCmd.Parameters.AddWithValue("startDate", loan.StartDate);
+                    insertCmd.Parameters.AddWithValue("endDate", loan.EndDate);
                     insertCmd.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
                     insertCmd.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
                     insertCmd.Parameters.AddWithValue("idLender", loan.Lender.Id);
@@ -39,8 +39,8 @@ namespace ProjetBryanKevin.DAO
                     {
                         Debug.Print("Succesful LOAN INSERT");
                         SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Loan WHERE startDate = @startDate AND endDate = @endDate AND idCopy = @idCopy AND idBorrower = @idBorrower AND idLender = @idLender", connection);
-                        selectQuery.Parameters.AddWithValue("startDate", loan.StartDate.ToString("ddMMyyyy HH:mm:ss"));
-                        selectQuery.Parameters.AddWithValue("endDate", loan.EndDate.ToString("ddMMyyyy HH:mm:ss"));
+                        selectQuery.Parameters.AddWithValue("startDate", loan.StartDate);
+                        selectQuery.Parameters.AddWithValue("endDate", loan.EndDate);
                         selectQuery.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
                         selectQuery.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
                         selectQuery.Parameters.AddWithValue("idLender", loan.Lender.Id);
@@ -59,11 +59,11 @@ namespace ProjetBryanKevin.DAO
                                     DAO_Copy.Find(reader.GetInt32("idCopy"))
                                     );
                             }                            
-                            Debug.Print("Name of the game loaned by " + newLoan.Lender.Pseudo + ": " + newLoan.Copy.VideoGame.Name);
+                            Debug.Print("Name of the game loaned by " + loan.Lender.Pseudo + ": " + loan.Copy.VideoGame.Name);
                         }
                     }
                 }
-                return newLoan;
+                return loan;
             }
             catch (SqlException e)
             {
@@ -235,7 +235,7 @@ namespace ProjetBryanKevin.DAO
             return loans;
         }
 
-        public bool UpdatePlayerLoan(int idLoan)
+        public bool DesactivatePlayerLoan(int idLoan)
         {
             try
             {
@@ -262,7 +262,7 @@ namespace ProjetBryanKevin.DAO
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idCopy = @idCopy AND startDate = @startDate", connection);
                     command.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
-                    command.Parameters.AddWithValue("startDate", loan.StartDate.ToString("ddMMyyyy HH:mm:ss"));
+                    command.Parameters.AddWithValue("startDate", loan.StartDate);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

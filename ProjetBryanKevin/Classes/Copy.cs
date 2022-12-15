@@ -65,5 +65,7 @@ namespace ProjetBryanKevin.Classes
             DAO_Copy dao = new DAO_Copy();
             return dao.FindDuplicate(this);
         }
+
+        
     }
 }

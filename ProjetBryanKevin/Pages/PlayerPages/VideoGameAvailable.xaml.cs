@@ -15,7 +15,7 @@ namespace ProjetBryanKevin.Pages.Player
     public partial class VideoGameAvailable : Page
     {
 
-        bool verifCredit = true;
+        
         Classes.Player player;
         public VideoGameAvailable(Classes.Player player)
         {
@@ -25,17 +25,12 @@ namespace ProjetBryanKevin.Pages.Player
             this.player = player;
             int creditLeft = Classes.Player.GetCreditPlayer(player);
             CreditLeft.Text = creditLeft.ToString();
-    
-            if (creditLeft <= 0)
-            {
-                verifCredit = false;
-            }
         }
 
         private void ButtonBooking(object sender, RoutedEventArgs e)
         {
             Copy copy = (Copy)dataGridVideoGame.SelectedItem;
-            if (verifCredit)
+            if (player.LoanAllowed(player))
             {
                 MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir reserver ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 switch (result)
@@ -50,7 +45,7 @@ namespace ProjetBryanKevin.Pages.Player
                         break;
                 }
             }
-            else if (!verifCredit)
+            else 
             {
                 MessageBox.Show("Votre nombre de crédit n'est pas suffisant !", "Reservation impossible", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
@@ -58,7 +53,7 @@ namespace ProjetBryanKevin.Pages.Player
         private void ButtonBorrow(object sender, RoutedEventArgs e)
         {
             Copy copy = (Copy)dataGridVideoGame.SelectedItem;
-            if (verifCredit)
+            if (player.LoanAllowed(player))
             {
                MessageBoxResult result= MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 switch (result)
@@ -75,7 +70,7 @@ namespace ProjetBryanKevin.Pages.Player
                 }
 
             }
-            else if(!verifCredit)
+            else 
             {
                 MessageBox.Show("Votre nombre de crédit n'est pas suffisant !", "Emprunt impossible", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

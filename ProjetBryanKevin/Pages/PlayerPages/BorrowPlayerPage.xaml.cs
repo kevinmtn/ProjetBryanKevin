@@ -48,7 +48,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                         int newCreditLender = loan.Lender.Credit + penalty;
                         bool verifUpdateBorrower = Classes.Player.UpdateValueCredit(loan.Borrower, newCreditBorrower);
                         bool verifUpdateLender = Classes.Player.UpdateValueCredit(loan.Lender, newCreditLender);
-                        bool desactivateLoan = Loan.UpdatePlayerLoan(loan);
+                        bool desactivateLoan = Loan.EndLoan(loan);
 
                         if (verifUpdateBorrower && verifUpdateLender && desactivateLoan)
                         {
@@ -57,7 +57,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                     }
                     else
                     {
-                        bool desactivateLoan = Loan.UpdatePlayerLoan(loan);
+                        bool desactivateLoan = Loan.EndLoan(loan);
 
                         if(desactivateLoan)
                         {
