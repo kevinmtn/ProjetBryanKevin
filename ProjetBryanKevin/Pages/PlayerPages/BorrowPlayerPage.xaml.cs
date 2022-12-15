@@ -33,8 +33,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             
             MessageBoxResult res= MessageBox.Show("Etes vous certain de vouloir rendre ce jeux ?", "Fin de l'emprunt", MessageBoxButton.YesNo, MessageBoxImage.Question);
             switch (res)
-            {
-
+            { 
                 case MessageBoxResult.Yes:
 
                     if(days.Days>0)
@@ -43,7 +42,8 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                     }
                     else if (days.Days<0)
                     {
-                        int penalty = 5 * Math.Abs(days.Days) + (loan.Copy.VideoGame.CreditCost * (days.Days / 7 + 1));
+                 
+                        int penalty = 5 * Math.Abs(days.Days) + (loan.Copy.VideoGame.CreditCost * (Math.Abs(days.Days) / 7 + 1));
                         int newCreditBorrower = loan.Borrower.Credit - penalty;
                         int newCreditLender = loan.Lender.Credit + penalty;
                         bool verifUpdateBorrower = Classes.Player.UpdateValueCredit(loan.Borrower, newCreditBorrower);
