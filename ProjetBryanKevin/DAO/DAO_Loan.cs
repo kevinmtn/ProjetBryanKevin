@@ -171,6 +171,30 @@ namespace ProjetBryanKevin.DAO
             return loan;
         }
 
+        internal bool FindLoanByCopy(Copy copy)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idCopy = @idCopy ", connection);
+                    command.Parameters.AddWithValue("idCopy", copy.IdCopy);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            return false;
+        }
 
 
         public override bool Update(Loan updatedLoan)

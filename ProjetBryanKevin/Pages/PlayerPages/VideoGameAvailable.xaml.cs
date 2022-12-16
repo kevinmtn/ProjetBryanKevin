@@ -15,12 +15,11 @@ namespace ProjetBryanKevin.Pages.Player
     public partial class VideoGameAvailable : Page
     {
 
-        
         Classes.Player player;
         public VideoGameAvailable(Classes.Player player)
         {
             InitializeComponent();
-            List<Copy> copies = Copy.GetCopy();
+            List<Copy> copies = Copy.GetCopy(player);
             dataGridVideoGame.ItemsSource = copies;
             this.player = player;
             int creditLeft = Classes.Player.GetCreditPlayer(player);
@@ -30,6 +29,7 @@ namespace ProjetBryanKevin.Pages.Player
         private void ButtonBooking(object sender, RoutedEventArgs e)
         {
             Copy copy = (Copy)dataGridVideoGame.SelectedItem;
+            
             if (player.LoanAllowed(player))
             {
                 MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir reserver ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -39,8 +39,10 @@ namespace ProjetBryanKevin.Pages.Player
                         BorrowWindow borrow = new BorrowWindow(copy, player);
                         borrow.Show();
                         break;
+
                     case MessageBoxResult.No:
                         break;
+
                     default:
                         break;
                 }
@@ -53,26 +55,34 @@ namespace ProjetBryanKevin.Pages.Player
         private void ButtonBorrow(object sender, RoutedEventArgs e)
         {
             Copy copy = (Copy)dataGridVideoGame.SelectedItem;
-            if (player.LoanAllowed(player))
+
+            if (!copy.IsAvailable(copy))
             {
-               MessageBoxResult result= MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                switch (result)
+                if (player.LoanAllowed(player))
                 {
-                    case MessageBoxResult.Yes:
-                        BorrowWindow borrow = new BorrowWindow(copy, player);
-                        borrow.Show();
+                    MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    switch (result)
+                    {
+                        case MessageBoxResult.Yes:
+                            BorrowWindow borrow = new BorrowWindow(copy, player);
+                            borrow.Show();
+                            break;
 
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                    default:
-                        break;
+                        case MessageBoxResult.No:
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
-
+                else
+                {
+                    MessageBox.Show("Votre nombre de crédit n'est pas suffisant !", "Emprunt impossible", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
-            else 
+            else
             {
-                MessageBox.Show("Votre nombre de crédit n'est pas suffisant !", "Emprunt impossible", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Le jeux n'est pas disponible pour le moment", "Jeux déja loué", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
     }

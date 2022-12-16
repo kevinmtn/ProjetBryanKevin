@@ -10,6 +10,6 @@
       Background="White">
 
     <Grid>
-        <TextBlock Name="WelcomeText" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,198,0,0" FontSize="20" Foreground="#FF1D1717" Width="294"/>
+        <TextBlock Name="WelcomeText" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="303,183,0,0" FontSize="20" Foreground="#FF1D1717" Width="294"/>
     </Grid>
 </Page>

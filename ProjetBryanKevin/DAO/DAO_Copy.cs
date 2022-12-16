@@ -102,6 +102,34 @@ namespace ProjetBryanKevin.DAO
             return copyList;
         }
 
+        public  List<Copy> FindAllCopyExceptFromUser( Player play)
+        {
+            List<Copy> copyList = new List<Copy>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copy WHERE idPlayer != @idPlayer", connection);
+                    cmd.Parameters.AddWithValue("idPlayer", play.Id);
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Copy temporaryCopy = new Copy(
+                                reader.GetInt32("idCopy"),
+                                DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
+                                DAO_Player.Find(reader.GetInt32("idPlayer")));
+                            copyList.Add(temporaryCopy);
+                        }
+                    }
+
+                }
+            }
+            catch (SqlException e) { throw new Exception(e.Message); }
+            return copyList;
+        }
+
         public override Copy Find(int id)
         {
             Copy copy = null;
@@ -130,8 +158,6 @@ namespace ProjetBryanKevin.DAO
             }
             return copy;
         }
-
-
 
         public override bool Update(Copy copy)
         {
