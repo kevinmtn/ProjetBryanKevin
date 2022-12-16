@@ -1,0 +1,22 @@
+﻿<Window x:Class="ProjetBryanKevin.Pages.AdministratorPages.UpdateCreditCostWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjetBryanKevin.Pages.AdministratorPages"
+        mc:Ignorable="d"
+        Title="Changement du coût en crédit d'un jeu" Height="300" Width="400" Background="#FF86726B">
+    <Grid Margin="0,0,0,-6">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Nom du jeu" HorizontalAlignment="Left" Margin="20,37,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" RenderTransformOrigin="0.722,0.533" Foreground="White"/>
+        <TextBox x:Name="GameName" IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="145,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="224" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
+        <Label Content="Console" HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" RenderTransformOrigin="0.232,0.554" Foreground="White"/>
+        <TextBox x:Name="ConsoleType" IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="200,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="169" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
+        <Button Name="UpdateCredit"  Content="Valider" Click="UpdateCredit_Click"  HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,212,0,0" Height="49" Width="348" Background="#FF515959" Foreground="#FFF1EEEE"/>
+        <Label Content="Cout en crédit (par semaine)" HorizontalAlignment="Left" Margin="20,145,0,0" VerticalAlignment="Top" Height="32" Width="202" FontSize="15" RenderTransformOrigin="0.232,0.554" Foreground="White"/>
+        <TextBox x:Name="CreditCost" PreviewTextInput="ValidateInputCost" IsEnabled="True" HorizontalAlignment="Left" Height="26" Margin="309,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" AutomationProperties.IsRequiredForForm="True" FontSize="15"/>
+    </Grid>
+</Window>

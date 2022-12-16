@@ -6,6 +6,7 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
 
 namespace ProjetBryanKevin.DAO
 {
@@ -165,14 +166,14 @@ namespace ProjetBryanKevin.DAO
                 {
                     SqlCommand command = new SqlCommand("UPDATE dbo.VideoGame " +
                         "SET name = @name, creditCost = @creditCost, console = @console " +
-                        "WHERE idVideoGame = @idVideoGame");
+                        "WHERE idVideoGame = @idVideoGame", connection);
                     command.Parameters.AddWithValue("idVideoGame", updatedVideoGame.IdVideoGame);
                     command.Parameters.AddWithValue("name", updatedVideoGame.Name);
                     command.Parameters.AddWithValue("creditCost", updatedVideoGame.CreditCost);
                     command.Parameters.AddWithValue("console", updatedVideoGame.Console);
                     connection.Open();
-                    bool isUpdated = command.ExecuteNonQuery() > 0 ? true : false;
-
+                    int rowsAffected = command.ExecuteNonQuery();
+                    bool isUpdated = rowsAffected > 0 ? true : false;
                     return isUpdated;
                 }
             }
