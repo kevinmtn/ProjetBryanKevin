@@ -239,5 +239,99 @@ namespace ProjetBryanKevin.DAO
             catch (SqlException e) { throw new Exception(e.Message); }
             return videoGame;
         }
+
+        internal object FindCopyAvailable(VideoGame videoGame)
+        {
+            DAO_Player dao_player = new DAO_Player();
+            Copy copyAvailable = null;
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.VideoGame vg JOIN dbo.Copy cp ON vg.idVideoGame = cp.idVideoGame JOIN dbo.Loan l ON cp.idCopy = l.idCopy WHERE vg.idVideoGame = @idVideoGame AND l.ongoing = 0", connection);
+                    command.Parameters.AddWithValue("idVideoGame", videoGame.IdVideoGame);
+                    connection.Open();
+                    using(SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            copyAvailable = new Copy(
+                                this.FindVideoGameById(reader.GetInt32("idVideoGame")),
+                                dao_player.Find(reader.GetInt32("idPlayer"))
+                                );
+                        }
+                    }
+                }
+                return copyAvailable;
+            }
+            catch(SqlException e) { throw new Exception(e.Message + Environment.NewLine + e.StackTrace); }
+        }
+
+        internal Booking FindBookingByUserId(VideoGame videoGame, int idPlayer)
+        {
+            DAO_Player dao_player = new DAO_Player();
+            Booking booking = null;
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.VideoGame vg JOIN dbo.Booking bk ON vg.idVideoGame = bk.idVideoGame WHERE vg.idVideoGame = @idVideoGame AND bk.idPlayer = @idPlayer", connection);
+                    command.Parameters.AddWithValue("idVideoGame", videoGame.IdVideoGame);
+                    command.Parameters.AddWithValue("idPlayer", idPlayer);
+                    connection.Open() ;
+                    using(SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            booking = new Booking(
+                                dao_player.Find(reader.GetInt32("idPlayer")),
+                                this.Find(reader.GetInt32("idVideoGame")),
+                                reader.GetDateTime("bookingDate")
+                                );
+                            Debug.Print(booking.VideoGame.Name);
+                        }
+                    }
+                }
+                return booking;
+            }
+            catch(SqlException e)
+            {
+                throw new Exception(e.Message+Environment.NewLine + e.StackTrace);
+            }
+        }
+
+        internal List<VideoGame> FindLoanedVideoGames( int idPlayer)
+        {
+            try
+            {
+                List<VideoGame> loanedGames = new List<VideoGame>();
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.VideoGame vg " +
+                        "JOIN dbo.Copy c ON vg.idVideoGame = c.idVideoGame " +
+                        "JOIN dbo.Loan l ON c.idCopy = l.idCopy " +
+                        "WHERE l.ongoing = 1 " +
+                        "AND l.idBorrower <> @idPlayer", connection);
+                    command.Parameters.AddWithValue("idPlayer", idPlayer);
+                    connection.Open();
+                    using(SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            VideoGame tmpVideoGame = new VideoGame(
+                                reader.GetInt32("idVideoGame"),
+                                reader.GetString("name"),
+                                reader.GetInt32("creditCost"),
+                                reader.GetString("console")
+                                );
+                            loanedGames.Add(tmpVideoGame);
+                        }
+                    }
+
+                }
+                return loanedGames;
+            }
+            catch(SqlException e) { throw new Exception(e.Message); }
+        }
     }
 }

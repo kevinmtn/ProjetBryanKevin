@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Printing.IndexedProperties;
 
 namespace ProjetBryanKevin.DAO
 {
@@ -28,23 +30,24 @@ namespace ProjetBryanKevin.DAO
                     connection.Open();
                     int result = insertCmd.ExecuteNonQuery();
                     success = result > 0;
-                    connection.Close();
                     if(success)
                     {
-                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame AND bookingDate =  @bookingDate", connection);
+                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idPlayer AND idVideoGame = @idVideoGame", connection);
                         selectQuery.Parameters.AddWithValue("idPlayer", book.Booker.Id);
                         selectQuery.Parameters.AddWithValue("idVideoGame", book.VideoGame.IdVideoGame);
-                        selectQuery.Parameters.AddWithValue("bookingDate", book.BookingDate);
-                        connection.Open();
+                        Debug.Print("booker.id: " + book.Booker.Id.ToString());
+                        Debug.Print("videogame.id: " + book.VideoGame.IdVideoGame.ToString());
+                        Debug.Print("bookingDate: " + book.BookingDate.ToString());
                         using(SqlDataReader reader = selectQuery.ExecuteReader())
                         {
-                            if(reader.Read())
+                            while(reader.Read())
                             {
                                 newBooking = new Booking(
                                     DAO_Player.Find(reader.GetInt32("idPlayer")),
                                     DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
                                     reader.GetDateTime("bookingDate")
                                     );
+                                Debug.Print(newBooking.BookingDate.ToString());
                             }
                         }
                     }

@@ -52,10 +52,15 @@ namespace ProjetBryanKevin
             Main.Content = new PlayerHome(play);
         }
 
-        private void seeVideoGames(Object sender, RoutedEventArgs e)
+        private void seeLoanPage(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new VideoGameAvailable(play);
+            Main.Content = new LoanPage(play);
         }
+        private void seeBookingPage(Object sender, RoutedEventArgs e)
+        {
+            Main.Content = new BookingPage(play);
+        }
+
         private void lendVideoGame(Object sender, RoutedEventArgs e)
         {
             Main.Content = new LendingPage(play);

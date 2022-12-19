@@ -10,11 +10,12 @@
         <DockPanel>
             <Menu DockPanel.Dock="Top" Background="#FF86726B" Height="Auto" Width="Auto">
                 <MenuItem Header="_Accueil" Click="menuHome" Foreground="White" Height="32" FontSize="13"/>
-                <MenuItem Header="_Voir les jeux disponibles" Click ="seeVideoGames" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Location" Click ="seeLoanPage" Foreground="White" Height="32" FontSize="13"/>
+                <MenuItem Header="_Réservation" Click ="seeBookingPage" Foreground="White" Height="32" FontSize="13"/>
                 <MenuItem Header="_Preter un jeux" Click="lendVideoGame" Foreground="White" Height="32" FontSize="13"/>
                 <MenuItem Header="_Mes locations"  Click="seePlayerLoansPage" Foreground="White" Height="32" FontSize="13"/>
                 <MenuItem Header="_Mes réservations"  Click="seePlayerBookingsPage" Foreground="White" Height="32" FontSize="13"/>
-                <MenuItem Width="50"/>
+                <MenuItem Width="150"/>
                 <MenuItem Header="_Se déconnecter" Click="menuDisconnect" Foreground="Red" Height="32" FontSize="13" />
             </Menu>
 

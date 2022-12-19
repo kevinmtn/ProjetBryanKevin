@@ -42,7 +42,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             Copy newCopy = new Copy((VideoGame)GameNames.SelectedItem, lender);
             if (newCopy.Insert() != null)
             {
-                MessageBox.Show("Votre copie du jeu " + newCopy.VideoGame.Name + " sur " + newCopy.VideoGame.Console + " a bien été ajouté!\n Un admin vérifiera votre ajout rapidement!");
+                MessageBox.Show("Votre copie du jeu " + newCopy.VideoGame.Name + " sur " + newCopy.VideoGame.Console + " a bien été ajouté!");
             }
         }
         private void GameSelection_Changed(object sender, SelectionChangedEventArgs e)

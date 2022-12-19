@@ -98,5 +98,22 @@ namespace ProjetBryanKevin.Classes
             return dao.Update(this);
         }
 
+        internal Copy CopyAvailable()
+        {
+            DAO_VideoGame dao = new DAO_VideoGame();
+            return (Copy)dao.FindCopyAvailable(this);
+        }
+
+        internal Booking FindBookingByPlayerId(int playerId)
+        {
+            DAO_VideoGame dao = new DAO_VideoGame();
+            return dao.FindBookingByUserId(this, playerId);
+        }
+
+        internal static List<VideoGame> GetLoanedVideoGames(int idPlayer)
+        {
+            DAO_VideoGame dao = new DAO_VideoGame();
+            return dao.FindLoanedVideoGames(idPlayer);
+        }
     }
 }

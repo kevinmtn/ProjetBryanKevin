@@ -48,7 +48,7 @@ namespace ProjetBryanKevin.Classes
             DAO_Copy dao = new DAO_Copy();
             return dao.Create(this);
         }
-        public static List<Copy> GetCopy(Player play)
+        public static List<Copy> GetCopyExceptUser(Player play)
         {
             DAO_Copy dao = new DAO_Copy();
             return dao.FindAllCopyExceptFromUser(play);
@@ -66,10 +66,10 @@ namespace ProjetBryanKevin.Classes
             return dao.FindDuplicate(this);
         }
 
-        public bool IsAvailable(Copy copy)
+        public static bool IsAvailable(Copy copy)
         {
             DAO_Loan dao = new DAO_Loan();
-            return dao.FindLoanByCopy(copy);
+            return !dao.FindLoanByCopy(copy);
         }
 
     }

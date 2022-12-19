@@ -109,7 +109,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copy WHERE idPlayer != @idPlayer", connection);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.Copy c JOIN dbo.VideoGame vg ON c.idVideoGame = vg.idVideoGame WHERE idPlayer != @idPlayer AND vg.creditCost <> 0", connection);
                     cmd.Parameters.AddWithValue("idPlayer", play.Id);
                     connection.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
