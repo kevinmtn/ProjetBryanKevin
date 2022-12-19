@@ -102,7 +102,7 @@ namespace ProjetBryanKevin.DAO
             return copyList;
         }
 
-        public  List<Copy> FindAllCopyExceptFromUser( Player play)
+        public  List<Copy> FindAllCopyExceptFromUser(Player play)
         {
             List<Copy> copyList = new List<Copy>();
             try

@@ -22,15 +22,14 @@ namespace ProjetBryanKevin.Pages.Player
             List<Copy> copies = Copy.GetCopy(player);
             dataGridVideoGame.ItemsSource = copies;
             this.player = player;
-            int creditLeft = Classes.Player.GetCreditPlayer(player);
-            CreditLeft.Text = creditLeft.ToString();
+            CreditLeft.Text = player.Credit.ToString();
         }
 
         private void ButtonBooking(object sender, RoutedEventArgs e)
         {
             Copy copy = (Copy)dataGridVideoGame.SelectedItem;
             
-            if (player.LoanAllowed(player))
+            if (Classes.Player.LoanAllowed(player))
             {
                 MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir reserver ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 switch (result)
@@ -58,7 +57,7 @@ namespace ProjetBryanKevin.Pages.Player
 
             if (!copy.IsAvailable(copy))
             {
-                if (player.LoanAllowed(player))
+                if (Classes.Player.LoanAllowed(player))
                 {
                     MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     switch (result)
