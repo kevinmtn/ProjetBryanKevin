@@ -16,9 +16,9 @@
           AutoGenerateColumns="False" CanUserResizeColumns="True" Margin="0,91,0,0">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Pseudo du prêteur" Binding="{Binding Player.Pseudo}"/>
-                <DataGridTextColumn Width="*" Header="Nom du jeu" Binding="{Binding VideoGame.Name}"/>
-                <DataGridTextColumn Width="200" Header="Console" Binding="{Binding VideoGame.Console}"/>
-                <DataGridTextColumn Width="50" Header="Nombre de crédit" Binding="{Binding VideoGame.CreditCost}"/>
+                <DataGridTextColumn Width="300" Header="Nom du jeu" Binding="{Binding VideoGame.Name}"/>
+                <DataGridTextColumn Width="Auto" Header="Console" Binding="{Binding VideoGame.Console}"/>
+                <DataGridTextColumn Width="Auto" Header="Nombre de crédit" Binding="{Binding VideoGame.CreditCost}"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

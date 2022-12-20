@@ -31,7 +31,8 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             var availableCopies = from copy in allCopiesExceptUser where Copy.IsAvailable(copy) select copy;
             dataGridVideoGame.ItemsSource = availableCopies;
             this.player = player;
-            CreditLeft.Text = player.Credit.ToString();
+            int creditLeft = Classes.Player.GetCreditPlayer(player);
+            CreditLeft.Text = creditLeft.ToString();
         }
         private void ButtonBorrow(object sender, RoutedEventArgs e)
         {

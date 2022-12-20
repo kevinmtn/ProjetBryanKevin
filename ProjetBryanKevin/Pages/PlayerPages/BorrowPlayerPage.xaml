@@ -19,8 +19,8 @@
                 <DataGridTextColumn Header="Nom du jeu" Binding="{Binding Copy.VideoGame.Name}" Width="Auto"/>
                 <DataGridTextColumn Header="Console" Binding="{Binding Copy.VideoGame.Console}" Width="Auto"/>
                 <DataGridTextColumn Header="Crédit du jeux" Binding="{Binding Copy.VideoGame.CreditCost}" Width="Auto"/>
-                <DataGridTextColumn Header="Date du début" Binding="{Binding StartDate}" Width="Auto"/>
-                <DataGridTextColumn Header="Date de fin" Binding="{Binding EndDate}" Width="Auto"/>
+                <DataGridTextColumn Header="Date du début" Binding="{Binding StartDate, StringFormat='dd/MM/yy'}" Width="Auto"/>
+                <DataGridTextColumn Header="Date de fin" Binding="{Binding EndDate, StringFormat='dd/MM/yy'}" Width="Auto"/>
             
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
