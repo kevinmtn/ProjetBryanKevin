@@ -27,7 +27,7 @@ namespace ProjetBryanKevin.DAO
                 {
                     SqlCommand insertCmd = new SqlCommand("INSERT INTO dbo.Copy(idVideoGame, idPlayer) VALUES (@idVideoGame, @idPlayer)", connection);
                     insertCmd.Parameters.AddWithValue("idVideoGame", copy.VideoGame.IdVideoGame);
-                    insertCmd.Parameters.AddWithValue("idPlayer", copy.Player.Id);
+                    insertCmd.Parameters.AddWithValue("idPlayer", copy.Owner.Id);
                     connection.Open();
                     int result = insertCmd.ExecuteNonQuery();
                     success = result > 0;
@@ -36,7 +36,7 @@ namespace ProjetBryanKevin.DAO
                     {
                         SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Copy WHERE idVideoGame = @idVideoGame AND idPlayer = @idPlayer", connection);
                         selectQuery.Parameters.AddWithValue("idVideoGame", copy.VideoGame.IdVideoGame);
-                        selectQuery.Parameters.AddWithValue("idPlayer", copy.Player.Id);
+                        selectQuery.Parameters.AddWithValue("idPlayer", copy.Owner.Id);
                         connection.Open();
                         using(SqlDataReader reader = selectQuery.ExecuteReader())
                         {
@@ -168,7 +168,7 @@ namespace ProjetBryanKevin.DAO
                     SqlCommand command = new SqlCommand("UPDATE dbo.Copy SET idVideoGame = @idVideoGame, idPlayer = @idPlayer WHERE idCopy = @idCopy", connection);
                     command.Parameters.AddWithValue("idCopy", copy.IdCopy);
                     command.Parameters.AddWithValue("idVideoGame", copy.VideoGame.IdVideoGame);
-                    command.Parameters.AddWithValue("idPlayer", copy.Player.Id);
+                    command.Parameters.AddWithValue("idPlayer", copy.Owner.Id);
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
                     return rowsAffected > 0;
@@ -225,6 +225,37 @@ namespace ProjetBryanKevin.DAO
                 }
             }
             catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        internal List<Booking> FindBookingsForCopy(Copy copy)
+        {
+            try
+            {
+                List<Booking> bookings = new List<Booking>();
+                using(SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT bk.idPlayer, bk.idVideoGame, bk.bookingDate FROM dbo.Copy cp JOIN dbo.Booking bk ON cp.idVideoGame = bk.idVideoGame WHERE cp.idCopy = @idCopy", connection);
+                    command.Parameters.AddWithValue("idCopy", copy.IdCopy);
+                    connection.Open();
+                    using(SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Booking tmpBooking = new Booking(
+                               DAO_Player.Find(reader.GetInt32("idPlayer")),
+                               DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
+                               reader.GetDateTime("bookingDate")
+                               );
+                            bookings.Add(tmpBooking);
+                        }
+                    }
+                }
+                return bookings;
+            }
+            catch(SqlException e)
             {
                 throw new Exception(e.Message);
             }

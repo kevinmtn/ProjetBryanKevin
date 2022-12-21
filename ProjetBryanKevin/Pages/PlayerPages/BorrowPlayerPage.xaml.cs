@@ -1,6 +1,8 @@
 ﻿using ProjetBryanKevin.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,19 +18,36 @@ namespace ProjetBryanKevin.Pages.PlayerPages
         public BorrowPlayerPage(int idBorrower)
         {
             InitializeComponent();
-            List<Loan> loans = Loan.GetPlayerLoan(idBorrower);
-            dataGridLoan.ItemsSource = loans;
-
+            List<Loan> loans = Loan.GetPlayerLoans(idBorrower);
+            List<Loan> pendingLoans = Loan.GetPlayerPendingLoans(idBorrower);
             if (loans.Count == 0)
             {
-                MessageBox.Show("Vous ne posséder aucune location", "Pas de location", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                LoansLabel.Visibility = Visibility.Collapsed;
+                dataGridLoan.Visibility = Visibility.Collapsed;
             }
+            else if (pendingLoans.Count == 0)
+            {
+                PendingLoansLabel.Visibility = Visibility.Collapsed;
+                dataGridPendingLoan.Visibility = Visibility.Collapsed;
+            }
+            else if (pendingLoans.Count == 0 && loans.Count == 0){
+                MessageBox.Show("Vous ne posséder aucune location", "Pas de location", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                LoansLabel.Visibility = Visibility.Collapsed;
+                dataGridLoan.Visibility = Visibility.Collapsed;
+                PendingLoansLabel.Visibility = Visibility.Collapsed;
+                dataGridPendingLoan.Visibility = Visibility.Collapsed;
+            }
+            dataGridLoan.ItemsSource = loans;
+            dataGridPendingLoan.ItemsSource = pendingLoans;
+            Debug.Print(pendingLoans.Count.ToString());
+            
         }
 
         private void GiveBackGame(object sender, RoutedEventArgs e)
         {
             Loan loan = (Loan)dataGridLoan.SelectedItem;
-            TimeSpan days = loan.EndDate.Subtract(DateTime.Now);
+            DateTime endDate = (DateTime)loan.EndDate;
+            TimeSpan days = endDate.Subtract(DateTime.Now);
             
             
             MessageBoxResult res= MessageBox.Show("Etes vous certain de vouloir rendre ce jeux ?", "Fin de l'emprunt", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -38,11 +57,35 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
                     if(days.Days>0)
                     {
-                        MessageBox.Show($"Votre emprunt finira dans {days.Days} jours", "Retour impossible");
+                        bool desactivateLoan = Loan.EndLoan(loan);
+                        if (desactivateLoan)
+                        {
+                            MessageBox.Show("Votre emprunt est terminé", "Validation");
+                        }
+                        List<Booking> bookings = loan.Copy.GetBookingsForCopy();
+                        if (bookings.Count == 0)
+                        {
+                            return;
+                        }
+                        Loan newPendingLoan = null;
+                        if (bookings.Count > 1)
+                        {
+                            Booking priorBooking = bookings[0];
+                            for (int x = 1; x < bookings.Count(); x++)
+                            {
+                                priorBooking = priorBooking.GetPriorityBooking(bookings[x]);
+                            }
+                            newPendingLoan = new Loan(loan.Copy.Owner, priorBooking.Booker, loan.Copy);
+
+                        }
+                        else if (bookings.Count == 1)
+                        {
+                            newPendingLoan = new Loan(loan.Copy.Owner, bookings[0].Booker, loan.Copy);
+                        }
+                        newPendingLoan = newPendingLoan.InsertPendingLoan();
                     }
                     else if (days.Days<0)
                     {
-                 
                         int penalty = 5 * Math.Abs(days.Days) + (loan.Copy.VideoGame.CreditCost * (Math.Abs(days.Days) / 7 + 1));
                         int newCreditBorrower = loan.Borrower.Credit - penalty;
                         int newCreditLender = loan.Lender.Credit + penalty;
@@ -55,21 +98,29 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                             MessageBox.Show($"Votre emprunt est fini depuis {Math.Abs(days.Days)} jours \nUne penalité de {penalty} crédits vous sera appliqué", "Retard de l'échéance");
                         }
                     }
-                    else
-                    {
-                        bool desactivateLoan = Loan.EndLoan(loan);
-
-                        if(desactivateLoan)
-                        {
-                            MessageBox.Show("Votre emprunt est terminé", "Validation");
-                        } 
-                    }
-                    break;
-
-                case MessageBoxResult.No:
                     break;
                 default:
                     break;
+            }
+        }
+
+        private void ConfirmLoan_Click(object sender, RoutedEventArgs e)
+        {
+            Loan loan = (Loan)dataGridPendingLoan.SelectedItem;
+            ConfirmLoanWindow confirmLoanWindow = new ConfirmLoanWindow(loan);
+            confirmLoanWindow.Show();
+        }
+
+        private void RefuseLoan_Click(object sender, RoutedEventArgs e)
+        {
+            Loan loan = (Loan)dataGridPendingLoan.SelectedItem;
+            if (loan == null)
+            {
+                return;
+            }
+            if (loan.Delete())
+            {
+                MessageBox.Show("Location refusé!");
             }
         }
     }

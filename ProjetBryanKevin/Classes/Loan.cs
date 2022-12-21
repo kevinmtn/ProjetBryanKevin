@@ -12,12 +12,33 @@ namespace ProjetBryanKevin.Classes
     public class Loan
     {
         private int idLoan;
-        private DateTime startDate;
-        private DateTime endDate;
+        private DateTime? startDate;
+        private DateTime? endDate;
         private bool onGoing;
         private Player lender;
         private Player borrower;
         private Copy copy;
+
+        public Loan(Player lender, Player borrower, Copy copy)
+        {
+            this.idLoan = 0;
+            this.startDate = null;
+            this.endDate = null;
+            this.onGoing = false;
+            this.lender = lender;
+            this.borrower = borrower;
+            this.copy = copy;
+        }
+        public Loan(int idLoan, Player lender, Player borrower, Copy copy)
+        {
+            this.idLoan = idLoan;
+            this.startDate = null;
+            this.endDate = null;
+            this.onGoing = false;
+            this.lender = lender;
+            this.borrower = borrower;
+            this.copy = copy;
+        }
 
         public Loan(DateTime startDate, DateTime endDate, bool onGoing, Player lender, Player borrower, Copy copy)
         {
@@ -46,12 +67,12 @@ namespace ProjetBryanKevin.Classes
             set { this.idLoan = value; }
         }
 
-        public DateTime StartDate {
+        public DateTime? StartDate {
             get { return startDate;}
             set { startDate = value; }
         }
 
-        public DateTime EndDate
+        public DateTime? EndDate
         {
             get { return endDate;}
             set
@@ -94,6 +115,18 @@ namespace ProjetBryanKevin.Classes
             return db.Create(this);
         }
 
+        internal bool Update()
+        {
+            DAO_Loan dao = new DAO_Loan();
+            return dao.Update(this);
+        }
+
+        public bool Delete()
+        {
+            DAO_Loan dao = new DAO_Loan();
+            return dao.Delete(this);
+        }
+
         internal bool checkDuplicate(Loan loan)
         {
             DAO_Loan db = new DAO_Loan();
@@ -106,7 +139,7 @@ namespace ProjetBryanKevin.Classes
             return dao_loan.FindAll();
         }
 
-        public static List<Loan> GetPlayerLoan(int idBorrower)
+        public static List<Loan> GetPlayerLoans(int idBorrower)
         {
             DAO_Loan dao_loan = new DAO_Loan();
             return dao_loan.FindLoanByIdBorrower(idBorrower);
@@ -123,5 +156,19 @@ namespace ProjetBryanKevin.Classes
             int loanCost = (copy.VideoGame.CreditCost * (duration.Days / 7 + 1));
             return loanCost;
         }
+
+        internal Loan InsertPendingLoan()
+        {
+            DAO_Loan db = new DAO_Loan();
+            return db.CreatePendingLoan(this);
+        }
+
+        internal static List<Loan> GetPlayerPendingLoans(int idBorrower)
+        {
+            DAO_Loan dao = new DAO_Loan();
+            return dao.FindPendingLoansByIdBorrower(idBorrower);
+        }
+
+        
     }
 }

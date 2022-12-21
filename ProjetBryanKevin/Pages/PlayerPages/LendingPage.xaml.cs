@@ -35,14 +35,43 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
         private void Validate_Click(object sender, RoutedEventArgs e)
         {
-            if(GameNames.SelectedItem == null) 
+            if (GameNames.SelectedItem == null)
             {
-                return; 
+                return;
             }
             Copy newCopy = new Copy((VideoGame)GameNames.SelectedItem, lender);
-            if (newCopy.Insert() != null)
+            newCopy = newCopy.Insert();
+            if (newCopy == null)
+            {
+                return;
+            }
+            List<Booking> bookings = newCopy.GetBookingsForCopy();
+            if (bookings.Count == 0)
             {
                 MessageBox.Show("Votre copie du jeu " + newCopy.VideoGame.Name + " sur " + newCopy.VideoGame.Console + " a bien été ajouté!");
+                return;
+            }
+            Loan newPendingLoan = null;
+            if (bookings.Count > 1)
+            {
+                Booking priorBooking = bookings[0];
+                for (int x = 1; x < bookings.Count(); x++)
+                {
+                    priorBooking = priorBooking.GetPriorityBooking(bookings[x]);
+                }
+                newPendingLoan = new Loan(newCopy.Owner, priorBooking.Booker, newCopy);
+                
+            }
+            else if (bookings.Count == 1)
+            {
+                newPendingLoan = new Loan(newCopy.Owner, bookings[0].Booker, newCopy);   
+            }
+            
+            newPendingLoan = newPendingLoan.InsertPendingLoan();
+            
+            if (newPendingLoan != null)
+            {
+                MessageBox.Show("Votre copie a été proposé à " + newPendingLoan.Borrower.Pseudo + " car il l'avait résérvé. En attente de confirmation de sa part!");
             }
         }
         private void GameSelection_Changed(object sender, SelectionChangedEventArgs e)

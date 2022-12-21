@@ -15,6 +15,12 @@ namespace ProjetBryanKevin.Classes
         private Player booker;
         private VideoGame videoGame;
 
+        public Booking(Player booker, VideoGame videoGame)
+        {
+            this.booker = booker;
+            this.videoGame = videoGame;
+        }
+
         public Booking(Player booker, VideoGame videoGame, DateTime bookingDate)
         {
             this.booker = booker;
@@ -71,10 +77,70 @@ namespace ProjetBryanKevin.Classes
             return dao_Booking.Delete(this);
         }
 
+
         public static List<Booking> GetPlayerBookings(int idPlayer)
         {
             DAO_Booking dao_booking = new DAO_Booking();
             return dao_booking.FindBookingsByIdPlayer(idPlayer);
+        }
+
+        internal Booking GetPriorityBooking(Booking booking)
+        {
+            int credComparison = this.Booker.Credit - booking.Booker.Credit;
+            if(credComparison > 0)
+            {
+                return this;
+            }
+            else if(credComparison < 0)
+            {
+                return booking;
+            }
+            else
+            {
+                int bookingDateComparison = DateTime.Compare(this.bookingDate, booking.bookingDate);
+                if(bookingDateComparison < 0) {
+                    return this;
+                }
+                else if(bookingDateComparison > 0){
+                    return booking;
+                }
+                else
+                {
+                    int registrationDateComparison = DateTime.Compare(this.Booker.RegistrationDate, booking.Booker.RegistrationDate);
+                    if(registrationDateComparison < 0)
+                    {
+                        return this;
+                    }
+                    else if(registrationDateComparison > 0)
+                    {
+                        return booking;
+                    }
+                    else
+                    {
+                        int ageComparison = DateTime.Compare(this.Booker.DateOfBirth, booking.Booker.DateOfBirth);
+                        if(ageComparison < 0)
+                        {
+                            return this;
+                        }
+                        else if(registrationDateComparison > 0)
+                        {
+                            return booking;
+                        }
+                        else{
+                            Random random = new Random();
+                            if(random.Next(1,3) == 1)
+                            {
+                                return this;
+                            }
+                            else
+                            {
+                                return booking;
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }
