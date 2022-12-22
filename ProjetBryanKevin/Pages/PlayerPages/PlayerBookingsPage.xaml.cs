@@ -25,9 +25,9 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     {
         public PlayerBookingsPage(int idPlayer)
         {
-            InitializeComponent();
-            List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
-            dataGridBooking.ItemsSource = bookings;
+           InitializeComponent();
+           List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
+           dataGridBooking.ItemsSource = bookings;
            if(bookings.Count==0)
             {
                 MessageBox.Show("Vous ne posséder aucune reservation", "Pas de réservation", MessageBoxButton.OK, MessageBoxImage.Exclamation);

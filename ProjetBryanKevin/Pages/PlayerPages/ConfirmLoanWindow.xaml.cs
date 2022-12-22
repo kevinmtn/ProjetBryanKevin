@@ -1,31 +1,35 @@
 ﻿using ProjetBryanKevin.Classes;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
-
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace ProjetBryanKevin.Pages.PlayerPages
 {
     /// <summary>
-    /// Logique d'interaction pour BorrowWindow.xaml
+    /// Logique d'interaction pour ConfirmLoanWindow.xaml
     /// </summary>
-    public partial class BorrowWindow : Window
+    public partial class ConfirmLoanWindow : Window
     {
-        private Copy copy;
-        private Classes.Player borrower;
+        Loan loan;
         int borrowCost;
-
-       
-        public BorrowWindow(Copy copy, Classes.Player borrower)
+        public ConfirmLoanWindow(Loan loan)
         {
             InitializeComponent();
-            this.copy = copy;
-            this.borrower = borrower;
-            NameGame.Text = copy.VideoGame.Name;
-            ConsoleName.Text = copy.VideoGame.Console;
-            CreditCost.Text = copy.VideoGame.CreditCost.ToString();
-            StartDate.Text = DateTime.Now.ToString("dd MMMM yyyy");
+            this.loan = loan;
+            NameGame.Text = loan.Copy.VideoGame.Name;
+            ConsoleName.Text = loan.Copy.VideoGame.Console;
+            CreditCost.Text = loan.Copy.VideoGame.CreditCost.ToString();
+            StartDate.Text = DateTime.Now.ToString();
         }
 
         private void Validation_Click(object sender, RoutedEventArgs e)
@@ -34,16 +38,20 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
             if (endDate.HasValue)
             {
-                Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, copy.Owner, borrower, copy);
-                if (newLoan.Insert() != null)
+                Loan newLoan = new Loan(loan.IdLoan, DateTime.Now, (DateTime)endDate, true, loan.Lender, loan.Borrower, loan.Copy);
+                if (newLoan.Update())
                 {
-                    int newCreditBorrower = borrower.Credit - borrowCost;
-                    int newCreditLender = copy.Owner.Credit + borrowCost;
+                    Booking oldBooking = new Booking(loan.Borrower, loan.Copy.VideoGame);
+                    if(!oldBooking.Delete())
+                    {
+                        MessageBox.Show("Une erreur est survenue");
+                        this.Close();
+                        return;
+                    }
+                    int newCreditBorrower = loan.Borrower.Credit - borrowCost;
+                    int newCreditLender = loan.Lender.Credit + borrowCost;
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
-
-                    
-                    bool verifUpdate =  Classes.Player.UpdateValueCredit(borrower, newCreditBorrower) && Classes.Player.UpdateValueCredit(copy.Owner, newCreditLender);
-                    
+                    bool verifUpdate = Classes.Player.UpdateValueCredit(loan.Borrower, newCreditBorrower) && Classes.Player.UpdateValueCredit(loan.Lender, newCreditLender);
                     if (verifUpdate)
                     {
                         MessageBox.Show("Votre solde de crédit a été mis à jour");
@@ -66,7 +74,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             DateTime startDate = DateTime.Now;
             DateTime endDate = EndDate.SelectedDate.Value;
             TimeSpan duration = endDate.Subtract(startDate);
-            borrowCost = Loan.CalculateBalance(startDate, endDate, copy);
+            borrowCost = Loan.CalculateBalance(startDate, endDate, loan.Copy);
             LoanCost.Text = borrowCost.ToString();
         }
     }

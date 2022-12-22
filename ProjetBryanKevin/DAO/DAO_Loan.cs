@@ -18,6 +18,52 @@ namespace ProjetBryanKevin.DAO
         public DAO_Loan()
         {
         }
+
+        internal Loan CreatePendingLoan(Loan loan)
+        {
+            bool success;
+            Loan newLoan = null;
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(this.connectionString))
+                {
+                    SqlCommand insertCmd = new SqlCommand("INSERT INTO dbo.Loan(startDate, endDate,ongoing, idCopy,idBorrower,idLender) VALUES (NULL,NULL,0,@idCopy,@idBorrower,@idLender)", connection);
+                    insertCmd.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
+                    insertCmd.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
+                    insertCmd.Parameters.AddWithValue("idLender", loan.Lender.Id);
+                    connection.Open();
+                    int result = insertCmd.ExecuteNonQuery();
+                    success = result > 0;
+                    if (success)
+                    {
+                        Debug.Print("Succesful PENDING LOAN INSERT");
+                        SqlCommand selectQuery = new SqlCommand("SELECT * FROM dbo.Loan WHERE idCopy = @idCopy AND idBorrower = @idBorrower AND idLender = @idLender", connection);
+                        selectQuery.Parameters.AddWithValue("idCopy", loan.Copy.IdCopy);
+                        selectQuery.Parameters.AddWithValue("idBorrower", loan.Borrower.Id);
+                        selectQuery.Parameters.AddWithValue("idLender", loan.Lender.Id);
+                        Debug.Print(selectQuery.CommandText);
+                        using (SqlDataReader reader = selectQuery.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                newLoan = new Loan(
+                                    reader.GetInt32("idLoan"),
+                                    DAO_Player.Find(reader.GetInt32("idLender")),
+                                    DAO_Player.Find(reader.GetInt32("idBorrower")),
+                                    DAO_Copy.Find(reader.GetInt32("idCopy"))
+                                    );
+                            }
+                            Debug.Print("Name of the game loaned by " + loan.Borrower.Pseudo + ": " + loan.Copy.VideoGame.Name);
+                        }
+                    }
+                }
+                return loan;
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         public override Loan Create(Loan loan)
         {
             bool success;
@@ -58,7 +104,7 @@ namespace ProjetBryanKevin.DAO
                                     DAO_Player.Find(reader.GetInt32("idBorrower")),
                                     DAO_Copy.Find(reader.GetInt32("idCopy"))
                                     );
-                            }                            
+                            }
                             Debug.Print("Name of the game loaned by " + loan.Lender.Pseudo + ": " + loan.Copy.VideoGame.Name);
                         }
                     }
@@ -203,7 +249,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand("UPDATE dbo.Copy SET startDate = @startDate, endDate = @endDate, " +
+                    SqlCommand command = new SqlCommand("UPDATE dbo.Loan SET startDate = @startDate, endDate = @endDate, " +
                         "ongoing = @ongoing, idCopy = @idCopy, idBorrower = @idBorrower, idLender = @idLender WHERE idLoan = @idLoan", connection);
                     command.Parameters.AddWithValue("idLoan", updatedLoan.IdLoan);
                     command.Parameters.AddWithValue("startDate", updatedLoan.StartDate);
@@ -218,8 +264,8 @@ namespace ProjetBryanKevin.DAO
                 }
             }
             catch (SqlException e)
-            { 
-                throw new Exception(e.Message); 
+            {
+                throw new Exception(e.Message);
             }
         }
 
@@ -259,6 +305,38 @@ namespace ProjetBryanKevin.DAO
             return loans;
         }
 
+        internal List<Loan> FindPendingLoansByIdBorrower(int idBorrower)
+        {
+            List<Loan> loans = new List<Loan>();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idBorrower = @idBorrower AND ongoing='False' AND startDate IS NULL AND endDate IS NULL", connection);
+                    command.Parameters.AddWithValue("idBorrower", idBorrower);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Loan temporaryLoan = new Loan(
+                                reader.GetInt32("idLoan"),
+                                DAO_Player.Find(reader.GetInt32("idLender")),
+                                DAO_Player.Find(reader.GetInt32("idBorrower")),
+                                DAO_Copy.Find(reader.GetInt32("idCopy"))
+                                );
+                            loans.Add(temporaryLoan);
+                            Debug.Print(temporaryLoan.IdLoan.ToString());
+                        }
+                    }
+                }
+            }
+            catch (SqlException e)
+            {
+                throw new Exception(e.Message);
+            }
+            return loans;
+        }
         public bool DesactivatePlayerLoan(int idLoan)
         {
             try
@@ -303,5 +381,6 @@ namespace ProjetBryanKevin.DAO
             }
             return false;
         }
+
     }
 }

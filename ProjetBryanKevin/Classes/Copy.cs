@@ -11,18 +11,18 @@ namespace ProjetBryanKevin.Classes
     {
         private int idCopy;
         private VideoGame videoGame;
-        private Player player;
+        private Player owner;
 
         public Copy(VideoGame videoGame, Player player) { 
             this.videoGame = videoGame;
-            this.player = player;
+            this.owner = player;
             this.idCopy = 0;
         }
         public Copy(int idCopy, VideoGame videoGame, Player player)
         {
             this.idCopy = idCopy;
             this.videoGame = videoGame;
-            this.player = player;
+            this.owner = player;
         }
 
         public int IdCopy
@@ -37,10 +37,10 @@ namespace ProjetBryanKevin.Classes
             set { videoGame = value; }
         }
 
-        public Player Player
+        public Player Owner
         {
-            get { return player; }
-            set { player = value; }
+            get { return owner; }
+            set { owner = value; }
         }
 
         public Copy Insert()
@@ -72,5 +72,10 @@ namespace ProjetBryanKevin.Classes
             return !dao.FindLoanByCopy(copy);
         }
 
+        internal List<Booking> GetBookingsForCopy()
+        {
+            DAO_Copy dao = new DAO_Copy();
+            return dao.FindBookingsForCopy(this);
+        }
     }
 }
