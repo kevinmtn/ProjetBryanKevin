@@ -15,7 +15,7 @@
           ItemsSource="{Binding Source=loans}"
           AutoGenerateColumns="False" CanUserResizeColumns="True" Margin="0,58,0,0" Height="150">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Pseudo du prêteur" Binding="{Binding Copy.Player.Pseudo}" Width="Auto"/>
+                <DataGridTextColumn Header="Pseudo du prêteur" Binding="{Binding Copy.Owner.Pseudo}" Width="Auto"/>
                 <DataGridTextColumn Header="Nom du jeu" Binding="{Binding Copy.VideoGame.Name}" Width="*"/>
                 <DataGridTextColumn Header="Console" Binding="{Binding Copy.VideoGame.Console}" Width="Auto"/>
                 <DataGridTextColumn Header="Crédit du jeux" Binding="{Binding Copy.VideoGame.CreditCost}" Width="Auto"/>
@@ -35,7 +35,7 @@
           ItemsSource="{Binding Source=pendingLoans}"
           AutoGenerateColumns="False" CanUserResizeColumns="True" Margin="0,263,0,0" Height="177">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Pseudo du prêteur" Binding="{Binding Copy.Player.Pseudo}" Width="Auto"/>
+                <DataGridTextColumn Header="Pseudo du prêteur" Binding="{Binding Copy.Owner.Pseudo}" Width="Auto"/>
                 <DataGridTextColumn Header="Nom du jeu" Binding="{Binding Copy.VideoGame.Name}" Width="*"/>
                 <DataGridTextColumn Header="Console" Binding="{Binding Copy.VideoGame.Console}" Width="Auto"/>
                 <DataGridTextColumn Header="Crédit du jeux" Binding="{Binding Copy.VideoGame.CreditCost}" Width="Auto"/>
