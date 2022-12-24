@@ -267,7 +267,7 @@ namespace ProjetBryanKevin.DAO
             catch(SqlException e) { throw new Exception(e.Message + Environment.NewLine + e.StackTrace); }
         }
 
-        internal Booking FindBookingByUserId(VideoGame videoGame, int idPlayer)
+        internal Booking FindBookingByUserId(VideoGame videoGame, Player player)
         {
             DAO_Player dao_player = new DAO_Player();
             Booking booking = null;
@@ -277,7 +277,7 @@ namespace ProjetBryanKevin.DAO
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.VideoGame vg JOIN dbo.Booking bk ON vg.idVideoGame = bk.idVideoGame WHERE vg.idVideoGame = @idVideoGame AND bk.idPlayer = @idPlayer", connection);
                     command.Parameters.AddWithValue("idVideoGame", videoGame.IdVideoGame);
-                    command.Parameters.AddWithValue("idPlayer", idPlayer);
+                    command.Parameters.AddWithValue("idPlayer", player.Id);
                     connection.Open() ;
                     using(SqlDataReader reader = command.ExecuteReader())
                     {
@@ -300,7 +300,7 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        internal List<VideoGame> FindLoanedVideoGames( int idPlayer)
+        internal List<VideoGame> FindLoanedVideoGames(Player player)
         {
             try
             {
@@ -312,7 +312,7 @@ namespace ProjetBryanKevin.DAO
                         "JOIN dbo.Loan l ON c.idCopy = l.idCopy " +
                         "WHERE l.ongoing = 1 " +
                         "AND l.idBorrower <> @idPlayer", connection);
-                    command.Parameters.AddWithValue("idPlayer", idPlayer);
+                    command.Parameters.AddWithValue("idPlayer", player.Id);
                     connection.Open();
                     using(SqlDataReader reader = command.ExecuteReader())
                     {

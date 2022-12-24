@@ -24,8 +24,8 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             InitializeComponent();
             
             this.player = player;
-            List<VideoGame> loanedGames = VideoGame.GetLoanedVideoGames(this.player.Id);
-            var bookableGames = from game in loanedGames where game.FindBookingByPlayerId(player.Id) == null select game;
+            List<VideoGame> loanedGames = VideoGame.GetLoanedVideoGames(this.player);
+            var bookableGames = from game in loanedGames where game.FindBookingByPlayerId(player) == null select game;
 
             bookableGames = bookableGames.GroupBy(game => new { game.Name, game.Console}).Select(g => g.First()).ToList();
             dataGridVideoGame.ItemsSource = bookableGames;

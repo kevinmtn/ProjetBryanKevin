@@ -20,17 +20,18 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             InitializeComponent();
             List<Loan> loans = Loan.GetPlayerLoans(idBorrower);
             List<Loan> pendingLoans = Loan.GetPlayerPendingLoans(idBorrower);
+
             if (loans.Count == 0)
             {
                 LoansLabel.Visibility = Visibility.Collapsed;
                 dataGridLoan.Visibility = Visibility.Collapsed;
             }
-            else if (pendingLoans.Count == 0)
+            if (pendingLoans.Count == 0)
             {
                 PendingLoansLabel.Visibility = Visibility.Collapsed;
                 dataGridPendingLoan.Visibility = Visibility.Collapsed;
             }
-            else if (pendingLoans.Count == 0 && loans.Count == 0){
+            if (pendingLoans.Count == 0 && loans.Count == 0){
                 MessageBox.Show("Vous ne posséder aucune location", "Pas de location", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 LoansLabel.Visibility = Visibility.Collapsed;
                 dataGridLoan.Visibility = Visibility.Collapsed;
@@ -38,9 +39,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                 dataGridPendingLoan.Visibility = Visibility.Collapsed;
             }
             dataGridLoan.ItemsSource = loans;
-            dataGridPendingLoan.ItemsSource = pendingLoans;
-            Debug.Print(pendingLoans.Count.ToString());
-            
+            dataGridPendingLoan.ItemsSource = pendingLoans;    
         }
 
         private void GiveBackGame(object sender, RoutedEventArgs e)

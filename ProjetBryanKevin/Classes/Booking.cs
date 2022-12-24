@@ -78,10 +78,10 @@ namespace ProjetBryanKevin.Classes
         }
 
 
-        public static List<Booking> GetPlayerBookings(int idPlayer)
+        public static List<Booking> GetPlayerBookings(Player play)
         {
             DAO_Booking dao_booking = new DAO_Booking();
-            return dao_booking.FindBookingsByIdPlayer(idPlayer);
+            return dao_booking.FindBookingsByIdPlayer(play);
         }
 
         internal Booking GetPriorityBooking(Booking booking)

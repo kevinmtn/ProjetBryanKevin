@@ -166,7 +166,7 @@ namespace ProjetBryanKevin.DAO
             }
         }
 
-        public  List<Booking> FindBookingsByIdPlayer(int idPlayer)
+        public  List<Booking> FindBookingsByIdPlayer(Player play)
         {
             List<Booking> playerBookings = new List<Booking>();
             try
@@ -174,7 +174,7 @@ namespace ProjetBryanKevin.DAO
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idPlayer", connection);
-                    command.Parameters.AddWithValue("idPlayer", idPlayer);
+                    command.Parameters.AddWithValue("idPlayer", play.Id);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {

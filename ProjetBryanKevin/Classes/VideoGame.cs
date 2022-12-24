@@ -104,16 +104,16 @@ namespace ProjetBryanKevin.Classes
             return (Copy)dao.FindCopyAvailable(this);
         }
 
-        internal Booking FindBookingByPlayerId(int playerId)
+        internal Booking FindBookingByPlayerId(Player player)
         {
             DAO_VideoGame dao = new DAO_VideoGame();
-            return dao.FindBookingByUserId(this, playerId);
+            return dao.FindBookingByUserId(this, player);
         }
 
-        internal static List<VideoGame> GetLoanedVideoGames(int idPlayer)
+        internal static List<VideoGame> GetLoanedVideoGames(Player player)
         {
             DAO_VideoGame dao = new DAO_VideoGame();
-            return dao.FindLoanedVideoGames(idPlayer);
+            return dao.FindLoanedVideoGames(player);
         }
     }
 }

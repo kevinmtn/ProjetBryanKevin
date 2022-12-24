@@ -68,7 +68,7 @@ namespace ProjetBryanKevin
 
         private void seePlayerBookingsPage(Object sender, RoutedEventArgs e)
         {
-            Main.Content = new PlayerBookingsPage(play.Id);
+            Main.Content = new PlayerBookingsPage(play);
         }
 
         private void seePlayerLoansPage(Object sender, RoutedEventArgs e)

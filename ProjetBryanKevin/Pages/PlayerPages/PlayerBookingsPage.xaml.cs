@@ -23,10 +23,10 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class PlayerBookingsPage : Page
     {
-        public PlayerBookingsPage(int idPlayer)
+        public PlayerBookingsPage(Classes.Player play)
         {
            InitializeComponent();
-           List<Booking> bookings = Booking.GetPlayerBookings(idPlayer);
+           List<Booking> bookings = Booking.GetPlayerBookings(play);
            dataGridBooking.ItemsSource = bookings;
            if(bookings.Count==0)
             {
