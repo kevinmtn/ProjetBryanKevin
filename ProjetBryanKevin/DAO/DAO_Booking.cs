@@ -183,8 +183,7 @@ namespace ProjetBryanKevin.DAO
                             Booking temporaryBooking = new Booking(
                                 DAO_Player.Find(reader.GetInt32("idPlayer")),
                                 DAO_VideoGame.Find(reader.GetInt32("idVideoGame")),
-                                reader.GetDateTime("bookingDate")
-                                );
+                                reader.GetDateTime("bookingDate"));
                             playerBookings.Add(temporaryBooking);
                         }
                     }

@@ -14,12 +14,14 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     /// </summary>
     public partial class BorrowPlayerPage : Page
     {
+        Classes.Player player;
 
-        public BorrowPlayerPage(int idBorrower)
+        public BorrowPlayerPage(Classes.Player play)
         {
             InitializeComponent();
-            List<Loan> loans = Loan.GetPlayerLoans(idBorrower);
-            List<Loan> pendingLoans = Loan.GetPlayerPendingLoans(idBorrower);
+            List<Loan> loans = Loan.GetPlayerLoans(play.Id);
+            List<Loan> pendingLoans = Loan.GetPlayerPendingLoans(play.Id);
+            player = play;
 
             if (loans.Count == 0)
             {
@@ -54,7 +56,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             { 
                 case MessageBoxResult.Yes:
 
-                    if(days.Days>0)
+                    if(days.Days>=0)
                     {
                         bool desactivateLoan = Loan.EndLoan(loan);
                         if (desactivateLoan)
@@ -106,8 +108,17 @@ namespace ProjetBryanKevin.Pages.PlayerPages
         private void ConfirmLoan_Click(object sender, RoutedEventArgs e)
         {
             Loan loan = (Loan)dataGridPendingLoan.SelectedItem;
-            ConfirmLoanWindow confirmLoanWindow = new ConfirmLoanWindow(loan);
-            confirmLoanWindow.Show();
+
+            if(Classes.Player.LoanAllowed(player))
+            {
+                ConfirmLoanWindow confirmLoanWindow = new ConfirmLoanWindow(loan);
+                confirmLoanWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Votre nombre de crédit n'est pas suffisant !", "Emprunt impossible");
+            }
+           
         }
 
         private void RefuseLoan_Click(object sender, RoutedEventArgs e)

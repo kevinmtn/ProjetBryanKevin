@@ -122,7 +122,6 @@ namespace ProjetBryanKevin.DAO
                     {
                         if (reader.Read())
                         {
-
                             player = new Player(
                                 reader.GetInt32("idPlayer"),
                                 reader.GetString("userName"),
@@ -138,7 +137,6 @@ namespace ProjetBryanKevin.DAO
             }
             catch (SqlException e)
             {
-
                 throw new Exception("Une erreur sql est survenue !\n" + e.Message);
             }
             return player;

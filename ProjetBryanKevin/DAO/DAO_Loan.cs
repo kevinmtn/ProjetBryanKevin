@@ -223,7 +223,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idCopy = @idCopy ", connection);
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Loan WHERE idCopy = @idCopy AND ongoing='True'", connection);
                     command.Parameters.AddWithValue("idCopy", copy.IdCopy);
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())

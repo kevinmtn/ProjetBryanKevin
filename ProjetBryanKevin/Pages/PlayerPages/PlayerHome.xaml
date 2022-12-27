@@ -11,5 +11,6 @@
 
     <Grid>
         <TextBlock Name="WelcomeText" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="303,183,0,0" FontSize="20" Foreground="#FF1D1717" Width="294"/>
+        <TextBlock Name="InscriptionDate"  HorizontalAlignment="Left" Margin="313,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="143"/>
     </Grid>
 </Page>
