@@ -1,5 +1,6 @@
 ﻿using ProjetBryanKevin.Classes;
 using System;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,6 +15,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
     {
         private Copy copy;
         private Classes.Player borrower;
+        int creditLeft;
         int borrowCost;
 
        
@@ -26,6 +28,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             ConsoleName.Text = copy.VideoGame.Console;
             CreditCost.Text = copy.VideoGame.CreditCost.ToString();
             StartDate.Text = DateTime.Now.ToString("dd MMMM yyyy");
+            creditLeft = Classes.Player.GetCreditPlayer(borrower);
         }
 
         private void Validation_Click(object sender, RoutedEventArgs e)
@@ -35,12 +38,12 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             if (endDate.HasValue)
             {
                 Loan newLoan = new Loan(DateTime.Now, (DateTime)endDate, true, copy.Owner, borrower, copy);
+              
                 if (newLoan.Insert() != null)
                 {
-                    int newCreditBorrower = borrower.Credit - borrowCost;
+                    int newCreditBorrower = creditLeft - borrowCost;
                     int newCreditLender = copy.Owner.Credit + borrowCost;
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
-
                     
                     bool verifUpdate =  Classes.Player.UpdateValueCredit(borrower, newCreditBorrower) && Classes.Player.UpdateValueCredit(copy.Owner, newCreditLender);
                     
