@@ -17,11 +17,11 @@ namespace ProjetBryanKevin.Pages.PlayerPages
            InitializeComponent();
            List<Booking> bookings = Booking.GetPlayerBookings(play);
            dataGridBooking.ItemsSource = bookings;
+
            if(bookings.Count==0)
             {
                 MessageBox.Show("Vous ne posséder aucune reservation", "Pas de réservation", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-
         }
         private void DelBooking(Object sender, RoutedEventArgs e) 
         { 

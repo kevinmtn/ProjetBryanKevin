@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -26,8 +24,8 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             this.player = player;
             List<VideoGame> loanedGames = VideoGame.GetLoanedVideoGames(this.player);
             var bookableGames = from game in loanedGames where game.FindBookingByPlayerId(player) == null select game;
-
-            bookableGames = bookableGames.GroupBy(game => new { game.Name, game.Console}).Select(g => g.First()).ToList();
+            
+            bookableGames = bookableGames.GroupBy(game => new { game.Name, game.Console }).Select(g => g.First()).ToList();
             dataGridVideoGame.ItemsSource = bookableGames;
             int creditLeft = Classes.Player.GetCreditPlayer(player);
             CreditLeft.Text = creditLeft.ToString();

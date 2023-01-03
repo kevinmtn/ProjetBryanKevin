@@ -311,7 +311,8 @@ namespace ProjetBryanKevin.DAO
                         "JOIN dbo.Copy c ON vg.idVideoGame = c.idVideoGame " +
                         "JOIN dbo.Loan l ON c.idCopy = l.idCopy " +
                         "WHERE l.ongoing = 1 " +
-                        "AND l.idBorrower <> @idPlayer", connection);
+                        "AND l.idBorrower <> @idPlayer " +
+                        "AND l.idLender <> @idPlayer", connection);
                     command.Parameters.AddWithValue("idPlayer", player.Id);
                     connection.Open();
                     using(SqlDataReader reader = command.ExecuteReader())

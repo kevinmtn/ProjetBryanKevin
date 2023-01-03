@@ -37,7 +37,10 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             {
                 return;
             }
-            List<Booking> bookings = newCopy.GetBookingsForCopy();
+            var bookings = newCopy.GetBookingsForCopy();
+          
+            bookings = bookings.Where(booking => booking.Booker.Id != newCopy.Owner.Id).ToList();
+
             if (bookings.Count == 0)
             {
                 MessageBox.Show("Votre copie du jeu " + newCopy.VideoGame.Name + " sur " + newCopy.VideoGame.Console + " a bien été ajouté!");

@@ -68,7 +68,6 @@ namespace ProjetBryanKevin.Pages.PlayerPages
         {
             DateTime startDate = DateTime.Now;
             DateTime endDate = EndDate.SelectedDate.Value;
-            TimeSpan duration = endDate.Subtract(startDate);
             borrowCost = Loan.CalculateBalance(startDate, endDate, copy);
             LoanCost.Text = borrowCost.ToString();
         }
