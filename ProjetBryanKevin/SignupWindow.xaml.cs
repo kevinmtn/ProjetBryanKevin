@@ -22,9 +22,11 @@ namespace ProjetBryanKevin
     /// </summary>
     public partial class SignupWindow : Window
     {
+
         public SignupWindow()
         {
             InitializeComponent();
+            BirthDate.DisplayDateEnd = DateTime.Today.AddYears(-8);
         }
 
         private void SignUp_Click(object sender, RoutedEventArgs e)
