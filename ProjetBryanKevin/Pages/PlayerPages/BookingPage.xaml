@@ -21,7 +21,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="Reservation" Click="Reservation_Click" Content="Reserver le jeux" Margin="2" Height="Auto" Width="Auto" Background="#FFAF622A" FontSize="13" Foreground="White"/>
+                            <Button x:Name="Reservation" Click="Reservation_Click" Content="Reserver le jeu" Margin="2" Height="Auto" Width="Auto" Background="#FFAF622A" FontSize="13" Foreground="White"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
