@@ -11,8 +11,8 @@
 
     <Grid>
         <Grid HorizontalAlignment="Center" Height="280" VerticalAlignment="Center" Width="570" Background="#7F040305">
-            <Label Content="Mise en location d'un jeux" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,25" VerticalAlignment="Top" Height="32" Width="200" FontSize="15" Foreground="White"/>
-            <Label Content="Nom du jeux" HorizontalAlignment="Left" Margin="20,91,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" RenderTransformOrigin="0.722,0.533" Foreground="White"/>
+            <Label Content="Mise en location d'un jeu" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Margin="0,25" VerticalAlignment="Top" Height="32" Width="200" FontSize="15" Foreground="White"/>
+            <Label Content="Nom du jeu" HorizontalAlignment="Left" Margin="20,91,0,0" VerticalAlignment="Top" Height="32" Width="112" FontSize="15" RenderTransformOrigin="0.722,0.533" Foreground="White"/>
             <ComboBox Name="GameNames" Margin="145,96,201,157" SelectionChanged="GameSelection_Changed">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

@@ -22,7 +22,7 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="Borrow" Click="ButtonBorrow" Content="Emprunter le jeux" Margin="2" Width="Auto" Height="Auto" FontSize="13" Background="#FF840505" Foreground="White"/>
+                            <Button x:Name="Borrow" Click="ButtonBorrow" Content="Emprunter le jeu" Margin="2" Width="Auto" Height="Auto" FontSize="13" Background="#FF840505" Foreground="White"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

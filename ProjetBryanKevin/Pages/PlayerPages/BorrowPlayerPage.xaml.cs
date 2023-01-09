@@ -51,7 +51,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
             TimeSpan days = endDate.Subtract(DateTime.Now);
             
             
-            MessageBoxResult res= MessageBox.Show("Etes vous certain de vouloir rendre ce jeux ?", "Fin de l'emprunt", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult res= MessageBox.Show("Etes vous certain de vouloir rendre ce jeu ?", "Fin de l'emprunt", MessageBoxButton.YesNo, MessageBoxImage.Question);
             switch (res)
             { 
                 case MessageBoxResult.Yes:

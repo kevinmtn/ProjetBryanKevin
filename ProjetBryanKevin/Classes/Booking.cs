@@ -71,6 +71,12 @@ namespace ProjetBryanKevin.Classes
             return dao_booking.FindAll();
         }
 
+        public static Booking GetBookingByIdPlayerIdVideoGame(int idPlayer, int idVideoGame)
+        {
+            DAO_Booking dao_booking = new DAO_Booking();
+            return dao_booking.Find(idPlayer, idVideoGame);
+        }
+
         public bool Delete()
         {
             DAO_Booking dao_Booking = new DAO_Booking();

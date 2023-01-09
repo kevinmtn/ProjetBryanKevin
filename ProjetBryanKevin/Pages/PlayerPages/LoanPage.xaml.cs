@@ -31,7 +31,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
 
             if (!Copy.IsAvailable(copy))
             {
-                MessageBox.Show("Le jeux n'est pas disponible pour le moment", "Jeux déja loué", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Le jeu n'est pas disponible pour le moment", "Jeu déja loué", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
             }
 
@@ -41,7 +41,7 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                 return;
             }
 
-            MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir emprunter ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir emprunter ce jeu ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
             switch (result)
             {
                 case MessageBoxResult.Yes:

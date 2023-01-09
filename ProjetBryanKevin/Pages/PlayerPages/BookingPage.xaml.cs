@@ -42,7 +42,11 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                 MessageBox.Show("Votre nombre de crédit n'est pas suffisant !", "Reservation impossible", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir reserver ce jeux ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (Booking.GetBookingByIdPlayerIdVideoGame(player.Id, selectedVideoGame.IdVideoGame) != null){
+                MessageBox.Show("Vous disposez déjà d'une reservation pour ce jeu!", "Reservation impossible", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            MessageBoxResult result = MessageBox.Show("Etes vous certain de vouloir reserver ce jeu ?", "Validation", MessageBoxButton.YesNo, MessageBoxImage.Question);
             switch (result)
             {
                 case MessageBoxResult.Yes:

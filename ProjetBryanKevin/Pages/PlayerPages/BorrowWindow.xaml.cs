@@ -43,6 +43,8 @@ namespace ProjetBryanKevin.Pages.PlayerPages
                 {
                     int newCreditBorrower = creditLeft - borrowCost;
                     int newCreditLender = copy.Owner.Credit + borrowCost;
+
+
                     MessageBox.Show("Votre emprunt est confirmé", "Emprunt confirmé", MessageBoxButton.OK, MessageBoxImage.Information);
                     
                     bool verifUpdate =  Classes.Player.UpdateValueCredit(borrower, newCreditBorrower) && Classes.Player.UpdateValueCredit(copy.Owner, newCreditLender);

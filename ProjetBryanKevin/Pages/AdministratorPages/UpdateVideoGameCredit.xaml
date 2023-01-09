@@ -16,7 +16,7 @@
           ItemsSource="{Binding Source=videoGames}"
           AutoGenerateColumns="False" CanUserResizeColumns="True" Margin="0,91,0,0" >
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="Name" Header="Nom du jeux" Binding="{Binding Name}"/>
+                <DataGridTextColumn x:Name="Name" Header="Nom du jeu" Binding="{Binding Name}"/>
                 <DataGridTextColumn x:Name="Console" Header="Console" Binding="{Binding Console}"/>
                 <DataGridTextColumn x:Name="CreditCost" Header="Nombre de crédit" Binding="{Binding CreditCost}"/>
                 <DataGridTemplateColumn>

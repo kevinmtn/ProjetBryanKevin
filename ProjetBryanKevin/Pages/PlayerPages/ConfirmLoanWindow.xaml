@@ -9,7 +9,7 @@
         Title="ConfirmLoanWindow" Height="450" Width="800">
     <Grid Margin="77,23,81,16">
         <Label Content="Location" HorizontalAlignment="Left" Margin="300,10,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Nom du jeux: " HorizontalAlignment="Left" Margin="93,67,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nom du jeu: " HorizontalAlignment="Left" Margin="93,67,0,0" VerticalAlignment="Top"/>
         <Label Content="Console: " HorizontalAlignment="Left" Margin="93,104,0,0" VerticalAlignment="Top"/>
         <Label Content="Valeur crédit:" HorizontalAlignment="Left" Margin="93,145,0,0" VerticalAlignment="Top"/>
         <Label Content="Date de fin de la location: " HorizontalAlignment="Left" Margin="93,231,0,0" VerticalAlignment="Top"/>

@@ -122,7 +122,7 @@ namespace ProjetBryanKevin.DAO
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idBooker, idVideoGame = @idVideoGame", connection);
+                    SqlCommand command = new SqlCommand("SELECT * FROM dbo.Booking WHERE idPlayer = @idBooker AND idVideoGame = @idVideoGame", connection);
                     command.Parameters.AddWithValue("idBooker", idBooker);
                     command.Parameters.AddWithValue("idVideoGame", idVideoGame);
                     connection.Open();
